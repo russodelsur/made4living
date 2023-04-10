@@ -1,32 +1,183 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gafata&display=swap');
+
+*{
+font-family: 'Open Sans', sans-serif;
+/* font-family: 'Roboto', sans-serif; 
+font-family: 'Abril Fatface', cursive; 
+font-family: 'Gafata', sans-serif;  */
+}
+
+h3, h5 {
+  justify-content: center;
+  text-justify: center;
+}
+
+.logo-image{
+  width: 100%;
+}
+
+.intro-image {
+  height: 90vh;
+  width: 100%;
+  background-image: url('/src/img/l02.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; 
+  position: relative;
+  display: block;
+}
+
+.intro-fade{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: grid;
+  justify-content: center;
+}
+
+.container-intro{
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  max-width: 30rem;
+  min-width: 15rem;
+  margin: auto;
+}
+
+h1, h2, h5{
+  justify-content: center;
+  margin: 1rem;
+}
+
+footer {
+  flex-grow: 1;
+  display: flex;
+  width: 100%;
+  position: relative;
+  /* background:  rgb(39, 39, 39); */
+  bottom: 0;
+}
+.social {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.address {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.address > * {
+  margin: auto;
+  padding: .3rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.light-text{
+  font-weight: 100;
+  font-size: small;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.privacy{
+  padding: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.privacy-button{
+  all: unset;
+  cursor: pointer;
+  padding: 0.4rem !important;
+  font-size: .9rem;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+
+p {
+  text-align: right;
+  margin: auto;
+  padding: 1rem;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  flex-grow: 8;
+  width: 20rem;
+}
+
+a {
+  margin: 0;
+  padding: .4rem !important;
+  font-size: .9rem;
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  flex-grow: 1;
+  display: grid;
+  width: 100%;
+  position: relative;
+
+  /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
+}
+
+ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  margin: 0;
+  height: 100%;
+  flex: auto;
+}
+ul > * {
+  padding: 1rem;
+  margin: auto;
+}
+li > * {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: black;
+  font-size: 1.2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.header-links{
+  justify-content: flex-end;
 }
+
+nav{
+  height: 100%;
+  display: flex;
+}
+
+li {
+  margin: 0;
+  font-size: 1rem;
+  text-decoration: none;
+  list-style-type: none;
+  color: black;
+}
+
+.logo {
+  text-align: center;
+  font-size: large;
+  font-weight: 1000;
+  font-size: 20px;
+}
+
+.about {
+  text-align: left;
+}
+
+.work {
+  text-align: right;
+}
+
 
 @keyframes App-logo-spin {
   from {
