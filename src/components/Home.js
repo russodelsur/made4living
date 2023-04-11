@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { div, Button, Form, Card, Col, Image } from "react-bootstrap";
 
 class Home extends Component {
     render() {
