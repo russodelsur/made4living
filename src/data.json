@@ -1,0 +1,63 @@
+{ "projects": [ {
+    "name": "Via Beccari",
+    "location": "Rome",
+    "type":"Residential",
+    "body": "The project involved a complete internal renovation of a ground floor apartment located in the San Saba neighborhood in the center of Rome. The renovation included meticulous restoration and reuse of the beautiful marble flooring and particular attention to bespoke bookshelving, which added an elegant touch to the overall design, separating the entrance to the living space whilst allowing natural light to penetrate. The outdoor garden was also transformed into a stunning oasis that complements the interior design of the space. The end result was a stunning transformation of the apartment that added an extra bathroom and two walk-in closets.",
+    "image": "rome",
+    "images": ["rome0", "rome1", "rome2","rome3"],
+    "slug": "rome"
+},
+{
+    "name": "Southampton Row",
+    "location": "London",
+    "type": "Residential",
+    "body": "The project involved a complete renovation of five penthouse apartments located on the top floor of a listed building in central London. The apartments are situated atop the iconic Sicilian Avenue in Holborn. The scope of the project included obtaining listed building consent and incorporating top security features to meet the requirements of a high-tech client. The project presented a particular challenge as it required the removal of all fire lobbies, which was accomplished through the use of concealed mist sprinkler systems.",
+    "image": "sr",
+    "images": ["sr0", "sr1", "sr2","sr3","sr4","sr5"],
+    "slug": "sr"
+},
+{
+    "name": "Vonder HQ",
+    "location": "London",
+    "type": "Workspace",
+    "body": "The headquarters of Vonder in the UK. Over 300 square meters of workplace housing two tea points, three meeting rooms, seating space for 40 people, and executive offices. For this project, I was responsible for the design and project delivery throughout all stages. This project features a colorful unfinished look, using polished plaster with Scandinavian furniture, russian feature lightinh, and walnut as the natural wood of choice. Meeting room desks, executive desk, artwork selection... were designed in-house.",
+    "image": "vonder",
+    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
+    "slug": "vonder"
+},
+{
+    "name": "Lingfield",
+    "location": "London",
+    "type": "Residential",
+    "body": "Private residence in South West London. The design features a contemporary style with flat fronted doors, matt black bespoke ironmongery, and book matched marble splashback. The floorboards cabinetry that blends in with the Dinesen flooring, creating a contrasting rustic feel that adds warmth to the space.",
+    "image": "lingfield",
+    "images": ["lingfield0", "lingfield1", "lingfield2","lingfield3"],
+    "slug": "lingfield"
+}
+],
+ "services": [ {
+        "service": "House search and report",
+        "image": "housesearch.png"
+    },
+    {
+        "service": "Architectural Design",
+        "image": "arch.png"
+    },    
+    {
+        "service": "Interior design",
+        "image": "interiordesign.png"
+    },
+    {
+        "service": "3D visualization",
+        "image": "render.png"
+    },
+    {
+        "service": "Bespoke furniture",
+        "image": "bespoke.png"
+    },
+    {
+        "service": "Built works professional consultancy",
+        "image": "professional.png"
+    }
+]
+}

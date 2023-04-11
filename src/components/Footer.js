@@ -17,8 +17,8 @@ function Footer() {
           <p className="light-text">SE16 6BY, London</p>
         </ul>
         <ul className="social">
-        <a href="https://www.linkedin.com/in/ruslan-s-6206661ab/" target={"blank"}>Linkedin</a>
-        <a href="mailto:mrsanakoev@gmail.com" target={"blank"}>Email</a>
+        <a href="https://www.linkedin.com/company/made-4-living/about/" target={"blank"}>Linkedin</a>
+        <a href="mailto:info@made4living.co.uk" target={"blank"}>Email</a>
         <a href="https://github.com/russodelsur" target={"blank"}>Instagram</a>
         <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/privacy-policy")} }> Privacy Policy </button>
         </ul>
