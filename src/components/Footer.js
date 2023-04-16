@@ -13,8 +13,8 @@ function Footer() {
       <footer className="footer">
         <ul className="address">
           <p>LONDON STUDIO</p>
-          <p className="light-text">1 Hull close</p>
-          <p className="light-text">SE16 6BY, London</p>
+          <p className="light-text">224b Walm Lane</p>
+          <p className="light-text">NW2 3BS, London</p>
         </ul>
         <ul className="social">
         <a href="https://www.linkedin.com/company/made-4-living/about/" target={"blank"}>Linkedin</a>

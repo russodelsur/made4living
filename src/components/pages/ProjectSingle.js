@@ -9,9 +9,13 @@ const ProjectSingle = ({projects}) => {
 
     return (
     <Container className="project-individual">
-    <h1>{project?.name}</h1>
-    <p className='project-description'>{project?.body}</p>
     <Row xs={1} md={3} className="g-4">
+        <Card className="card-single-project"> 
+            <div style={{padding:".5rem"}}>
+            <h1>{project?.name}</h1>
+            <p className='project-description'>{project?.body}</p>
+            </div>
+        </Card>
                     {project.images.map((image, index) => (
                     <Col>
                         <Card className='card-project-individual'>
