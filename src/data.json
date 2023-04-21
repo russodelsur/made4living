@@ -37,27 +37,27 @@
 ],
  "services": [ {
         "service": "House search and report",
-        "image": "housesearch.png"
+        "image": "housesearch.jpg"
     },
     {
         "service": "Architectural Design",
-        "image": "arch.png"
+        "image": "arch.jpg"
     },    
     {
         "service": "Interior design",
-        "image": "interiordesign.png"
+        "image": "interiordesign.jpg"
     },
     {
         "service": "3D visualization",
-        "image": "render.png"
+        "image": "render.jpg"
     },
     {
         "service": "Bespoke furniture",
-        "image": "bespoke.png"
+        "image": "bespoke.jpg"
     },
     {
         "service": "Built works professional consultancy",
-        "image": "professional.png"
+        "image": "professional.jpg"
     }
 ]
 }

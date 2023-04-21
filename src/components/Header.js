@@ -8,7 +8,12 @@ const Layout = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/" id="logo" ><img alt='m4llogo' src={require('../img/logo-full.png')} className="logo"></img></Link>
+            <Link to="/" id="logo" >
+              <picture>
+              <source media="(max-width: 900px)" srcSet={require('../img/logo-single.png')}></source>
+              <img alt='m4llogo' src={require('../img/logo-full.png')} className="logo"></img>
+              </picture>
+            </Link>
           </li>
          </ul> 
 

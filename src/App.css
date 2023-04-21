@@ -15,7 +15,18 @@ h3,h2,h5 {
 }
 
 .logo {
-  width: 15rem;
+  /* width: 10rem; */
+  height: 1.8rem;
+}
+
+header {
+  flex-grow: 1;
+  display: grid;
+  width: 100%;
+  position: relative;
+  height: auto;
+
+  /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
 }
 
 .container-aboutus{
@@ -51,7 +62,7 @@ h3,h2,h5 {
 .intro-image {
   height: 90vh;
   width: 100%;
-  background-image: url('/src/img/l02.png');
+  background-image: url('/src/img/l02.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; 
@@ -62,9 +73,14 @@ h3,h2,h5 {
 .intro-fade{
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   display: grid;
   justify-content: center;
+}
+
+.container-contactus{
+  display: flex;
+  flex-direction: row;
 }
 
 .container{
@@ -76,7 +92,7 @@ h3,h2,h5 {
 .container-intro{
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 35vw;
   max-width: 30rem;
   min-width: 15rem;
   margin: auto;
@@ -131,7 +147,20 @@ footer {
   padding-bottom: 1rem;
 }
 
-.para-privacy {
+.para-contact {
+  width: 100%;
+  text-align: center;
+  padding: .5rem;
+}
+
+.para-contact-light {
+  width: 100%;
+  text-align: center;
+  padding: .5rem;
+  font-size: .9rem;
+}
+
+.para-privacy{
   width: 100%;
   text-align: justify;
   padding: .5rem;
@@ -197,15 +226,6 @@ a {
   text-decoration: none !important;
 }
 
-header {
-  flex-grow: 1;
-  display: grid;
-  width: 100%;
-  position: relative;
-
-  /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
-}
-
 ul {
   display: flex;
   flex-direction: row;
@@ -214,8 +234,9 @@ ul {
   flex: auto;
 }
 ul > * {
-  padding: 1rem;
+  padding: 1.1rem;
   margin: auto;
+  margin-bottom: 0;
 }
 li > * {
   text-align: center;
@@ -236,17 +257,12 @@ nav{
 
 li {
   margin: 0;
+  margin-top: auto;
+  margin-bottom: auto;
   font-size: 1rem;
   text-decoration: none;
   list-style-type: none;
   color: black;
-}
-
-.logo {
-  text-align: center;
-  font-size: large;
-  font-weight: 1000;
-  font-size: 20px;
 }
 
 .about {
@@ -255,4 +271,82 @@ li {
 
 .work {
   text-align: right;
+}
+
+@media screen and (max-width: 900px) {   
+  .logo{
+    height: 2.5rem;
+  } 
+  .container{
+    max-width: 100% !important;
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .container-aboutus{
+    width: 100% !important;
+  }
+  .container-contactus{
+    flex-direction: column;
+  }
+  .service-title {
+    padding: .5rem;
+    text-align: center;
+  }
+  footer {
+    flex-direction: column;
+  }
+  p {
+    text-align: center;
+  }
+  a{
+    font-size: .9rem;
+  }
+  li {
+    padding: .8rem;
+  }
+  ul {
+    padding: 0rem;
+    padding-left: 0rem !important;
+  }
+}
+
+@media screen and (max-width: 600px) {   
+  .logo{
+    height: 2.5rem;
+  } 
+  .container{
+    max-width: 100% !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  .container-aboutus{
+    width: 100% !important;
+  }
+  .container-contactus{
+    flex-direction: column;
+  }
+  .service-title {
+    padding: .5rem;
+    text-align: center;
+  }
+  footer {
+    flex-direction: column;
+  }
+  p {
+    width: 100%;
+  }
+  a{
+    font-size: .8rem;
+  }
+  li {
+    padding: .4rem;
+  }
+  .privacy-button{
+    padding: 0rem !important;
+    font-size: .8rem;
+  }
+  ul {
+    padding: 0rem;
+    padding-left: 0rem !important;
+  }
 }

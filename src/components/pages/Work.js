@@ -10,12 +10,13 @@ function Work() {
             <Container>                
                 <Row xs={1} md={2} className="g-4">
                     {projects.projects.map((project, index) => (
-                    <Col>
+                    <Col key={index}>
                         <Card onClick={()=>{navigate(`/projects/${project.slug}`)}} className='card-projects' bg='light'>
-                        <Card.Img  variant="top" className='service-image'src={require("../../img/"+project.image+".jpg")} />
-                        <Card.Body>
-                            <Card.Title>{project.name}</Card.Title>
-                        </Card.Body>
+                            <Card.Img  variant="top" className='service-image'src={require("../../img/"+project.image+".jpg")} />
+                            <Card.Body>
+                                <Card.Title>{project.name}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">{project.type}</Card.Subtitle>
+                            </Card.Body>
                         </Card>
                     </Col>
                     ))}

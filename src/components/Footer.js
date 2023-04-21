@@ -17,10 +17,10 @@ function Footer() {
           <p className="light-text">NW2 3BS, London</p>
         </ul>
         <ul className="social">
-        <a href="https://www.linkedin.com/company/made-4-living/about/" target={"blank"}>Linkedin</a>
-        <a href="mailto:info@made4living.co.uk" target={"blank"}>Email</a>
-        <a href="https://github.com/russodelsur" target={"blank"}>Instagram</a>
-        <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/privacy-policy")} }> Privacy Policy </button>
+          <a href="https://www.linkedin.com/company/made-4-living/about/" target={"blank"}>Linkedin</a>
+          <a href="mailto:info@made4living.co.uk" target={"blank"}>Email</a>
+          <a href="https://www.instagram.com/m4living/" target={"blank"}>Instagram</a>
+          <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/privacy-policy")} }> Privacy Policy </button>
         </ul>
         <p>@made4living {year}</p>
       </footer>
