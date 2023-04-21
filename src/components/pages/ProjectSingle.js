@@ -13,6 +13,8 @@ const ProjectSingle = ({projects}) => {
         <Card className="card-single-project"> 
             <div style={{padding:".5rem"}}>
             <h1>{project?.name}</h1>
+            <h5>Location - {project?.location}</h5>
+            <h5>{project?.type}</h5>
             <p className='project-description'>{project?.body}</p>
             </div>
         </Card>
