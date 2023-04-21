@@ -10,10 +10,13 @@ function Services() {
                     {services.services.map((service, index) => (
                     <Col key={index} index={index}>
                         <Card className='card-service'>
-                        <Card.Img className='service-image' variant="top" src={require("../../img/"+service.image)} />
-                        <Card.Body>
-                            <Card.Title>{service.service}</Card.Title>
-                        </Card.Body>
+                            <Card className='container-services-description'>
+                                <p className='para-services'>{service.copy}</p>
+                            </Card>
+                            <Card.Img className='service-image' variant="top" src={require("../../img/"+service.image)} />
+                            <Card.Body>
+                                <Card.Title>{service.service}</Card.Title>
+                            </Card.Body>
                         </Card>
                     </Col>
                     ))}
