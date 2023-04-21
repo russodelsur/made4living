@@ -105,7 +105,7 @@ font-size: .9rem;
   --x: 500px;
   --y: 30
 0px;
-  background-image: url('/src/img/home02.png');
+  background-image: url('/src/img/home02.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; 
@@ -121,7 +121,7 @@ font-size: .9rem;
   background-size: cover;
   top: 0;
   left: 0;
-  background-image: url('/src/img/home01.png');
+  background-image: url('/src/img/home01.jpg');
   background-size: cover;
   background-position: center; 
   z-index: 1;
