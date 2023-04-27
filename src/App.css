@@ -20,8 +20,22 @@ h2{
   text-align: justify !important;
 }
 
+.container-question{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+}
+
 h5{
   text-align: center;
+}
+
+h6{
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: .5rem;
 }
 
 h2,h4 {
@@ -111,6 +125,11 @@ font-size: .9rem;
   background-position: center; 
   position: relative;
   display: block;
+}
+
+.button-questionnaire{
+ width: 10rem;
+ margin: auto;
 }
 
 .intro-image::after {

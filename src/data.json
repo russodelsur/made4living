@@ -35,11 +35,7 @@
     "slug": "lingfield"
 }
 ],
- "services": [ {
-        "service": "House search and report",
-        "image": "housesearch.jpg",
-        "copy": "House Search and Report: Looking for your dream home or property can be overwhelming, which is why our team of real estate and design experts is here to help. We conduct a thorough search based on your requirements and provide you with a comprehensive report that includes all the details you need to make an informed decision. Additionally, we can accompany you to viewings and offer professional advice on how the property could be transformed and adjusted to your needs."
-    },
+ "services": [ 
     {
         "service": "Architectural Design",
         "image": "arch.jpg",
@@ -64,6 +60,11 @@
         "service": "Professional consultancy",
         "image": "professional.jpg",
         "copy": "Built Works Professional Consultancy: We offer professional consultancy services to guide you throughout the entire construction process. Our team will work closely with you to ensure that your project is completed on time, within budget, and to your satisfaction. We can also help you find all the different professionals that may be required, such as solicitors, mortgage advisors, and moving companies, taking care of the entire process for you."
+    },
+    {
+        "service": "House search and report",
+        "image": "housesearch.jpg",
+        "copy": "House Search and Report: Looking for your dream home or property can be overwhelming, which is why our team of real estate and design experts is here to help. We conduct a thorough search based on your requirements and provide you with a comprehensive report that includes all the details you need to make an informed decision. Additionally, we can accompany you to viewings and offer professional advice on how the property could be transformed and adjusted to your needs."
     }
 ]
 }

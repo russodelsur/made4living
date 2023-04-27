@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from "react-router-dom";
 
-const Layout = () => {
+const Header = () => {
   return (
     <>
     <header>
@@ -38,4 +38,4 @@ const Layout = () => {
   )
 };
 
-export default Layout;
+export default Header;
