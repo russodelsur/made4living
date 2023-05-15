@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormCheck, FormControl, Form, Button } from 'react-bootstrap';
+import { FormCheck, FormControl, Form, Button, InputGroup, Container, Dropdown } from 'react-bootstrap';
 
 function Questionnaire() {
 	let questions = [
@@ -19,7 +19,7 @@ function Questionnaire() {
 	const property = [
 		{
 			questionText: 'Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
-			type: "input",
+			type: "choice",
 			answerOptions: [
 				{ answerText: 'Ready to move in'},
 				{ answerText: "Renovation"},
@@ -43,7 +43,7 @@ function Questionnaire() {
 		},
 		{
 			questionText: 'How many bedrooms minimum would you like the property to have?',
-			type: "choice",
+			type: "Dropdown",
 			answerOptions: [
 				{ answerText: 'Studio'},
 				{ answerText: '1 bedroom'},
@@ -69,6 +69,11 @@ function Questionnaire() {
 			},
 		
 	]
+	const design = [];
+	const render = [];
+	const joinery = [];
+	const mortage = [];
+	const data = [];
 	const [questionnaire, setQuestions] = useState(questions)
     const [answers, setAnswer] = useState(" ");
 	const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -76,7 +81,8 @@ function Questionnaire() {
 	const [element, setElement] = useState("")
 
 	// Radio element
-const radio = <div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
+let radio = <Form>
+				<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
 				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
 						<FormCheck key={i} 
 						type={"checkbox"}
@@ -85,15 +91,32 @@ const radio = <div className='answer-section' onChange={(e) => {setInitialAnswer
 						value={answerOption?.index}>
 					</FormCheck>
 				))}
-				</div>
+				</div>;
+				<Button onClick={() => {handleAnswer()}}> Submit </Button>
+				</Form>
 
-let choice;
-let input = <div className='answer-section'>
-				<input></input>
+let choice = <Form>
+				<div className='answer-section'>
+				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
+					<Button key={i} onClick={() => handleAnswer(answerOption.answerText)}>{answerOption.answerText}</Button>
+				))}
 			</div>
+				<Button onClick={() => {handleAnswer()}}> Submit </Button>
+			</Form>
+let input = <Form>
+				<div className='answer-section'>
+				<InputGroup>
+					<Form.Control as="textarea" aria-label="With textarea" />
+				</InputGroup>
+			</div>
+			<Button onClick={() => {handleAnswer()}}> Submit </Button>
+			</Form>
+let dropdown = <div className='answer-section'>
+
+</div>;
 
 	useEffect(() => {
-		setQuestions(questions)
+		setQuestions(questions);
 		switch (questionnaire[currentQuestion].type) {
 			case "radio":
 				setElement(radio)
@@ -107,40 +130,66 @@ let input = <div className='answer-section'>
 			default:
 				break;
 		}
+		console.log("useeffect")
 	}, []);
 
-    const handleAnswer = (data) => {
+   async function handleAnswer(data) {
 		let array = questionnaire;
 		if (initialAnswer.includes("property")) {
 			for (let i = 0; i < property.length; i++) {
 				array.push(property[i])
 			}
-		setQuestions(array);
 		}
+		if (initialAnswer.includes("design")) {
+			for (let i = 0; i < property.length; i++) {
+				array.push(design[i])
+			}
+		}
+		if (initialAnswer.includes("render")) {
+			for (let i = 0; i < property.length; i++) {
+				array.push(render[i])
+			}
+		}
+		if (initialAnswer.includes("joinery")) {
+			for (let i = 0; i < property.length; i++) {
+				array.push(joinery[i])
+			}
+		}
+		if (initialAnswer.includes("mortage")) {
+			for (let i = 0; i < property.length; i++) {
+				array.push(mortage[i])
+			}
+		}
+		setQuestions(array);
+		setAnswer(data);
 		const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questionnaire.length) {
 			setCurrentQuestion(nextQuestion);
 		} 
-        setAnswer(data);
-		switch (questionnaire[currentQuestion].type) {
-			case "radio":
-				setElement(radio)
-				break;
-			case "choice":
-				setElement(choice)
-				break;		
-			case "input":
-				setElement(input)
-				break;
-			default:
-				break;
-		}
-		
+		console.log(questionnaire[nextQuestion].type)
+		console.log(element)
+		console.log("handle")
+			switch (questionnaire[currentQuestion].type) {
+				case "radio":
+					setElement(radio)
+					break;
+				case "choice":
+					setElement(choice)
+					break;		
+				case "input":
+					setElement(input)
+					break;
+				case "dropdown":
+					setElement(dropdown)
+					break;
+				default:
+					break;
+			}
     }
 
 	const setInitialAnswer= (event) => {
 		const arr = initialAnswer;
-		const arrayText = answers;
+		const arrayText = "";
 		const text = event.target.nextElementSibling.textContent;
 		const str = event.target.value;
 		let result;	
@@ -158,7 +207,7 @@ let input = <div className='answer-section'>
 	}
 	console.log(questionnaire)
         return (
-            <div className='container-question'>
+            <Container className='container-question'>
                 <h1>Welcome</h1>
                 <h5>What are you looking for?</h5>
                     <div className='app'>
@@ -168,12 +217,9 @@ let input = <div className='answer-section'>
                                 </div>
                                 <div className='question-text'>{questionnaire[currentQuestion]?.questionText}</div>
                             </div>
-							<Form>
 							{element}
-							<Button onClick={() => {handleAnswer()}}> Submit </Button>
-							</Form>
                 </div>
-            </div>
+            </Container>
         );
     }
 
