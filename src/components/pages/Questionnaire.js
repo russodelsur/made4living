@@ -5,7 +5,7 @@ function Questionnaire() {
 	let questions = [
 		{
 			questionText: 'What are you looking for? You can select more than one option.',
-			type: "radio",
+			type: "first",
 			answerOptions: [
 				{ answerText: 'I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it.(Currently available only in the London area)', index: "property" },
 				{ answerText: "I’m looking for architectural, interior design or simple furnishing purchase", index: "design"},
@@ -18,7 +18,7 @@ function Questionnaire() {
 
 	const property = [
 		{
-			questionText: 'Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
+			questionText: 'Prorperty Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
 			type: "choice",
 			answerOptions: [
 				{ answerText: 'Ready to move in'},
@@ -67,20 +67,110 @@ function Questionnaire() {
 			questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
 			type: "input",
 			},
-		
 	]
-	const design = [];
-	const render = [];
-	const joinery = [];
-	const mortage = [];
-	const data = [];
-	const [questionnaire, setQuestions] = useState(questions)
-    const [answers, setAnswer] = useState(" ");
+	const design = [
+		{
+			questionText: 'Design Tell us more regarding your project. What type of service are you looking to get?',
+			type: "choice",
+			answerOptions: [
+				{ answerText: 'I am looking for architectural services.'},
+				{ answerText: "I'm looking for interior design and furnishing services."},
+			],
+			},
+		{
+			questionText: 'What type of project is it? (Residential, Commercial, Offices, Mixed Use, etc.)',
+			type: "button",
+			answerOptions: [
+				{ answerText: 'Residential'},
+				{ answerText: 'Commercial'},
+				{ answerText: 'Offices'},
+				{ answerText: 'Mixed use'},
+				{ answerText: 'Hospitality'},
+				{ answerText: 'Food and beverages'},
+			],
+		},
+		{
+			questionText: 'What is your timeline for the project?',
+			type: "input",
+		},
+	]
+	const render = [
+		{
+			questionText: 'Render Tell us more regarding the project. What are you looking for? You can select more than one option.',
+			type: "choice",
+			answerOptions: [
+				{ answerText: 'I am looking for an interiors 3D modelling or visualization.'},
+				{ answerText: "I am looking for an exteriors 3D modelling or visualization."},
+				{ answerText: "I am looking for a full property marketing service."},
+				{ answerText: "I am looking furniture pieces renderings."},
+			],
+			},
+		{
+			questionText: 'Please outline your budget and how many visuals you would like (if none, just write "3D modelling")',
+			type: "input",
+		},
+		{
+			questionText: 'What is your timeline for the project?',
+			type: "input",
+		},
+	]
+	const joinery = [
+		{
+			questionText: 'Joinery - Tell us more regarding the project. What are you looking for? You can select more than one option.',
+			type: "choice",
+			answerOptions: [
+				{ answerText: "I'm looking to buy furniture."},
+				{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
+			],
+			},
+		{
+			questionText: 'Please outline your budget.',
+			type: "input",
+		},
+		{
+			questionText: 'What is your timeline for the project?',
+			type: "input",
+		},
+	]
+	const mortage = [
+		{
+			questionText: 'Mortage - Tell us more regarding the project. What are you looking for? You can select more than one option.',
+			type: "choice",
+			answerOptions: [
+				{ answerText: "I'm looking to buy furniture."},
+				{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
+			],
+			},
+		{
+			questionText: 'Please outline your budget.',
+			type: "input",
+		},
+		{
+			questionText: 'What is your timeline for the project?',
+			type: "input",
+		},
+	]
+
 	const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [questionnaire, setQuestions] = useState(questions)
+    const [answers, setAnswer] = useState(" "); 
 	const [initialAnswer, setInitial] = useState([])
-	const [element, setElement] = useState("")
+	const [element, setElement] = useState()
 
 	// Radio element
+let firstQuestion = <Form>
+						<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
+						{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
+								<FormCheck key={i} 
+								type={"checkbox"}
+								id={"default-checkbox"}
+								label={answerOption?.answerText}
+								value={answerOption?.index}>
+							</FormCheck>
+						))}
+						</div>;
+						<Button onClick={() => {handleFirstQuestion(); questionCount()}}> Submit </Button>
+					</Form>
 let radio = <Form>
 				<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
 				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
@@ -92,32 +182,33 @@ let radio = <Form>
 					</FormCheck>
 				))}
 				</div>;
-				<Button onClick={() => {handleAnswer()}}> Submit </Button>
+				<Button onClick={() => {handleAnswer(); questionCount()}}> Submit </Button>
 				</Form>
 
 let choice = <Form>
 				<div className='answer-section'>
 				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
-					<Button key={i} onClick={() => handleAnswer(answerOption.answerText)}>{answerOption.answerText}</Button>
+					<Button key={i} onClick={() => {handleAnswer(answerOption.answerText); questionCount()}}>{answerOption.answerText}</Button>
 				))}
 			</div>
-				<Button onClick={() => {handleAnswer()}}> Submit </Button>
 			</Form>
 let input = <Form>
-				<div className='answer-section'>
+			<div className='answer-section'>
 				<InputGroup>
 					<Form.Control as="textarea" aria-label="With textarea" />
 				</InputGroup>
 			</div>
-			<Button onClick={() => {handleAnswer()}}> Submit </Button>
+			<Button onClick={() => {handleAnswer(); questionCount()}}> Submit </Button>
 			</Form>
 let dropdown = <div className='answer-section'>
 
 </div>;
 
 	useEffect(() => {
-		setQuestions(questions);
 		switch (questionnaire[currentQuestion].type) {
+			case "first":
+				setElement(firstQuestion)
+				break;
 			case "radio":
 				setElement(radio)
 				break;
@@ -127,13 +218,15 @@ let dropdown = <div className='answer-section'>
 			case "input":
 				setElement(input)
 				break;
+			case "dropdown":
+				setElement(dropdown)
+				break;
 			default:
 				break;
 		}
-		console.log("useeffect")
-	}, []);
+	}, [currentQuestion]);
 
-   async function handleAnswer(data) {
+	function handleFirstQuestion(data){
 		let array = questionnaire;
 		if (initialAnswer.includes("property")) {
 			for (let i = 0; i < property.length; i++) {
@@ -141,51 +234,41 @@ let dropdown = <div className='answer-section'>
 			}
 		}
 		if (initialAnswer.includes("design")) {
-			for (let i = 0; i < property.length; i++) {
+			for (let i = 0; i < design.length; i++) {
 				array.push(design[i])
 			}
 		}
 		if (initialAnswer.includes("render")) {
-			for (let i = 0; i < property.length; i++) {
+			for (let i = 0; i < render.length; i++) {
 				array.push(render[i])
 			}
 		}
 		if (initialAnswer.includes("joinery")) {
-			for (let i = 0; i < property.length; i++) {
+			for (let i = 0; i < joinery.length; i++) {
 				array.push(joinery[i])
 			}
 		}
 		if (initialAnswer.includes("mortage")) {
-			for (let i = 0; i < property.length; i++) {
+			for (let i = 0; i < mortage.length; i++) {
 				array.push(mortage[i])
 			}
 		}
 		setQuestions(array);
 		setAnswer(data);
+	}
+
+	function questionCount() {
+		let array = questionnaire;
 		const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < questionnaire.length) {
+        if (nextQuestion < array.length) {
 			setCurrentQuestion(nextQuestion);
+			console.log(nextQuestion, currentQuestion)
 		} 
-		console.log(questionnaire[nextQuestion].type)
-		console.log(element)
-		console.log("handle")
-			switch (questionnaire[currentQuestion].type) {
-				case "radio":
-					setElement(radio)
-					break;
-				case "choice":
-					setElement(choice)
-					break;		
-				case "input":
-					setElement(input)
-					break;
-				case "dropdown":
-					setElement(dropdown)
-					break;
-				default:
-					break;
-			}
     }
+
+	function handleAnswer(){
+
+	}
 
 	const setInitialAnswer= (event) => {
 		const arr = initialAnswer;
@@ -205,7 +288,6 @@ let dropdown = <div className='answer-section'>
 		setInitial(arr)
 		setAnswer(result)
 	}
-	console.log(questionnaire)
         return (
             <Container className='container-question'>
                 <h1>Welcome</h1>
