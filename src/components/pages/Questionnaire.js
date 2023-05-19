@@ -15,15 +15,25 @@ function Questionnaire() {
 			],
 		},
 	];
-
+	
+	let lastQuestions = [
+	{
+		questionText: 'What is your timeline for the project?',
+		type: "input",
+	},
+	{
+		questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
+		type: "input",
+	},
+	{
+		type: "summary",
+	},
+	]
+	
 	const property = [
 		{
 			questionText: 'Prorperty Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'Ready to move in'},
-				{ answerText: "Renovation"},
-			],
+			type: "input",
 			},
 		{
 			questionText: 'Are you looking to purchase a property ready to move-in or also in need of renovation? You can select both.',
@@ -35,15 +45,18 @@ function Questionnaire() {
 		},
 		{
 			questionText: 'Please outline your price range',
-			type: "choice",
+			type: "dropdown",
 			answerOptions: [
-				{ answerText: 'Ready to move in'},
-				{ answerText: "Renovation"},
+				{ answerText: '£0 - £250.000'},
+				{ answerText: '£250.000 - £500.000'},
+				{ answerText: '£500.000 - £1.000.000'},
+				{ answerText: '£1.000.000 - £2.000.000'},
+				{ answerText: '+2.000.000'},
 			],
 		},
 		{
 			questionText: 'How many bedrooms minimum would you like the property to have?',
-			type: "Dropdown",
+			type: "dropdown",
 			answerOptions: [
 				{ answerText: 'Studio'},
 				{ answerText: '1 bedroom'},
@@ -79,7 +92,7 @@ function Questionnaire() {
 			},
 		{
 			questionText: 'What type of project is it? (Residential, Commercial, Offices, Mixed Use, etc.)',
-			type: "button",
+			type: "dropdown",
 			answerOptions: [
 				{ answerText: 'Residential'},
 				{ answerText: 'Commercial'},
@@ -134,12 +147,8 @@ function Questionnaire() {
 	]
 	const mortage = [
 		{
-			questionText: 'Mortage - Tell us more regarding the project. What are you looking for? You can select more than one option.',
-			type: "choice",
-			answerOptions: [
-				{ answerText: "I'm looking to buy furniture."},
-				{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
-			],
+			questionText: 'Tell us more regarding the services you need, please list all the ones you are looking for.',
+			type: "input",
 			},
 		{
 			questionText: 'Please outline your budget.',
@@ -158,22 +167,25 @@ function Questionnaire() {
 	const [element, setElement] = useState()
 
 	// Radio element
+const next = <Button onClick={() => {handleAnswer()}}> Next </Button>;
+const back = <Button onClick={() => {goBack()}}> Back </Button>;
 let firstQuestion = <Form>
-						<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
-						{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
-								<FormCheck key={i} 
-								type={"checkbox"}
-								id={"default-checkbox"}
-								label={answerOption?.answerText}
-								value={answerOption?.index}>
-							</FormCheck>
-						))}
-						</div>;
-						<Button onClick={() => {handleFirstQuestion(); questionCount()}}> Submit </Button>
-					</Form>
+					<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
+					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
+							<FormCheck key={i} 
+							type={"checkbox"}
+							id={"default-checkbox"}
+							label={answerOption?.answerText}
+							value={answerOption?.index}>
+						</FormCheck>
+					))}
+					</div>;
+					<Button onClick={() => {handleFirstQuestion()}}> Next </Button>
+				</Form>;
+
 let radio = <Form>
 				<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
-				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
+				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<FormCheck key={i} 
 						type={"checkbox"}
 						id={"default-checkbox"}
@@ -182,30 +194,45 @@ let radio = <Form>
 					</FormCheck>
 				))}
 				</div>;
-				<Button onClick={() => {handleAnswer(); questionCount()}}> Submit </Button>
-				</Form>
+					{back}
+					{next}
+				</Form>;
 
 let choice = <Form>
 				<div className='answer-section'>
-				{questionnaire[currentQuestion]?.answerOptions.map((answerOption, i) => (
-					<Button key={i} onClick={() => {handleAnswer(answerOption.answerText); questionCount()}}>{answerOption.answerText}</Button>
+				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
+					<Button key={i} onClick={() => {handleAnswer(answerOption.answerText)}}>{answerOption.answerText}</Button>
 				))}
 			</div>
-			</Form>
+			{back}
+			</Form>;
+
 let input = <Form>
 			<div className='answer-section'>
 				<InputGroup>
 					<Form.Control as="textarea" aria-label="With textarea" />
 				</InputGroup>
 			</div>
-			<Button onClick={() => {handleAnswer(); questionCount()}}> Submit </Button>
-			</Form>
+			{back}
+			{next}
+			</Form>;
+			
 let dropdown = <div className='answer-section'>
+					<Dropdown.Menu show>
+						{/* <Dropdown.Header>Dropdown header</Dropdown.Header> */}
+						{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
+						<Dropdown.Item eventKey="i" onClick={() => {handleAnswer(answerOption.answerText)}}>{answerOption.answerText}</Dropdown.Item>
+						))}
+					</Dropdown.Menu>
+					{back}
+				</div>;
 
-</div>;
+let summary = <div className='answer-section'>
+					{answers}
+			</div>;	
 
 	useEffect(() => {
-		switch (questionnaire[currentQuestion].type) {
+		switch (questionnaire[currentQuestion]?.type) {
 			case "first":
 				setElement(firstQuestion)
 				break;
@@ -220,6 +247,9 @@ let dropdown = <div className='answer-section'>
 				break;
 			case "dropdown":
 				setElement(dropdown)
+				break;
+			case "summary":
+				setElement(summary)
 				break;
 			default:
 				break;
@@ -253,38 +283,34 @@ let dropdown = <div className='answer-section'>
 				array.push(mortage[i])
 			}
 		}
+		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
 		setQuestions(array);
 		setAnswer(data);
 	}
 
-	function questionCount() {
-		let array = questionnaire;
-		const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < array.length) {
-			setCurrentQuestion(nextQuestion);
-			console.log(nextQuestion, currentQuestion)
-		} 
-    }
-
-	function handleAnswer(){
-
+	function handleAnswer(data){
+		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
+		setAnswer(data);
 	}
 
+	function goBack(){
+		setCurrentQuestion((currentQuestion)  => currentQuestion- 1)
+	}
+	let result= [];
 	const setInitialAnswer= (event) => {
 		const arr = initialAnswer;
-		const arrayText = "";
 		const text = event.target.nextElementSibling.textContent;
 		const str = event.target.value;
-		let result;	
 		const b = arr.includes(str);
 			if (b === false) {
-			arr.push(str);
-			result = arrayText.concat(" ", text)
+				arr.push(str);
+				result.push(text)
 			} else {
-			let index = arr.indexOf(str);
-			arr.splice(index, 1);
-			result = arrayText.replace(text,"")
+				let index = arr.indexOf(str);
+				arr.splice(index, 1);
+				result.splice(index,1)
 			}
+		console.log(result)
 		setInitial(arr)
 		setAnswer(result)
 	}
