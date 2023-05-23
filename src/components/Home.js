@@ -21,7 +21,7 @@ function Home() {
                     <h2>Smart design and property solutions. All in one place.</h2>
                     <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                     <h6>Tell us more about your project.</h6>
-                    <Button className="button-questionnaire" variant="dark" onClick={function Clicked(){console.log("clicked"); navigate("/tellusmore")}}>Get Started</Button>
+                    <Button className="button-questionnaire" variant="dark" onClick={function Clicked(){navigate("/tellusmore")}}>Get Started</Button>
                 </div>
                 <div 
                 onMouseOver={() => setIsShown(true)}

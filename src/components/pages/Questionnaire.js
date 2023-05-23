@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FormCheck, FormControl, Form, Button, InputGroup, Container, Dropdown } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Form, Button, InputGroup, Container, NavLink } from 'react-bootstrap';
+import emailjs from '@emailjs/browser';
+import { useNavigate } from "react-router-dom";
 
 function Questionnaire() {
 	let questions = [
@@ -28,16 +30,19 @@ function Questionnaire() {
 	{
 		type: "summary",
 	},
+	{
+		type: "submit",
+	},
 	]
 	
 	const property = [
 		{
-			questionText: 'Prorperty Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
+			questionText: 'Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
 			type: "input",
 			},
 		{
 			questionText: 'Are you looking to purchase a property ready to move-in or also in need of renovation? You can select both.',
-			type: "button",
+			type: "choice",
 			answerOptions: [
 				{ answerText: 'Ready to move in'},
 				{ answerText: "Renovation"},
@@ -45,7 +50,7 @@ function Questionnaire() {
 		},
 		{
 			questionText: 'Please outline your price range',
-			type: "dropdown",
+			type: "choice",
 			answerOptions: [
 				{ answerText: '£0 - £250.000'},
 				{ answerText: '£250.000 - £500.000'},
@@ -56,7 +61,7 @@ function Questionnaire() {
 		},
 		{
 			questionText: 'How many bedrooms minimum would you like the property to have?',
-			type: "dropdown",
+			type: "choice",
 			answerOptions: [
 				{ answerText: 'Studio'},
 				{ answerText: '1 bedroom'},
@@ -83,7 +88,7 @@ function Questionnaire() {
 	]
 	const design = [
 		{
-			questionText: 'Design Tell us more regarding your project. What type of service are you looking to get?',
+			questionText: 'Tell us more regarding your project. What type of service are you looking to get?',
 			type: "choice",
 			answerOptions: [
 				{ answerText: 'I am looking for architectural services.'},
@@ -92,7 +97,7 @@ function Questionnaire() {
 			},
 		{
 			questionText: 'What type of project is it? (Residential, Commercial, Offices, Mixed Use, etc.)',
-			type: "dropdown",
+			type: "choice",
 			answerOptions: [
 				{ answerText: 'Residential'},
 				{ answerText: 'Commercial'},
@@ -109,7 +114,7 @@ function Questionnaire() {
 	]
 	const render = [
 		{
-			questionText: 'Render Tell us more regarding the project. What are you looking for? You can select more than one option.',
+			questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
 			type: "choice",
 			answerOptions: [
 				{ answerText: 'I am looking for an interiors 3D modelling or visualization.'},
@@ -129,7 +134,7 @@ function Questionnaire() {
 	]
 	const joinery = [
 		{
-			questionText: 'Joinery - Tell us more regarding the project. What are you looking for? You can select more than one option.',
+			questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
 			type: "choice",
 			answerOptions: [
 				{ answerText: "I'm looking to buy furniture."},
@@ -162,74 +167,92 @@ function Questionnaire() {
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [questionnaire, setQuestions] = useState(questions)
-    const [answers, setAnswer] = useState(" "); 
-	const [initialAnswer, setInitial] = useState([])
-	const [element, setElement] = useState()
+    const [answerToQuestion, setAnswer] = useState([]); 
+	const [answers, addAnswers] = useState([]);
+	const [initialAnswer, setInitial] = useState([]);
+	const [element, setElement] = useState();
+	const [buttonStatus, setStatus] = useState("btn btn-dark");
+	const [emailMessage, setEmailMessage] = useState("");
+	const [message, setMessage] = useState("");
+	const stateRef = useRef();
+	stateRef.current = answerToQuestion;
+
+	const navigate = useNavigate();
+	const form = useRef();
 
 	// Radio element
-const next = <Button onClick={() => {handleAnswer()}}> Next </Button>;
-const back = <Button onClick={() => {goBack()}}> Back </Button>;
+
+const next = <Button variant="dark" className='button-questions' onClick={() => {nextQuestion()}}> Next </Button>;
+const back = <Button variant="dark" className='button-questions' onClick={() => {goBack()}}> Back </Button>;
+const buttons = <div className='buttons'>{back}{next}</div>;
 let firstQuestion = <Form>
-					<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
+					<div className='answer-section' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-							<FormCheck key={i} 
-							type={"checkbox"}
-							id={"default-checkbox"}
-							label={answerOption?.answerText}
-							value={answerOption?.index}>
-						</FormCheck>
+						<div key={i} className='form-check' >
+							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+						</div>
 					))}
-					</div>;
-					<Button onClick={() => {handleFirstQuestion()}}> Next </Button>
+					</div>
+					<Button variant="dark" style={{display:"flex", margin:"auto"}} onClick={() => {handleFirstQuestion();}}> Next </Button>
 				</Form>;
 
 let radio = <Form>
-				<div className='answer-section' onChange={(e) => {setInitialAnswer(e)}}>
+				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-						<FormCheck key={i} 
-						type={"checkbox"}
-						id={"default-checkbox"}
-						label={answerOption?.answerText}
-						value={answerOption?.index}>
-					</FormCheck>
+					<div key={i} className='form-check' >
+						<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+						<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+					</div>
 				))}
-				</div>;
-					{back}
-					{next}
+				</div>
+					{buttons}
 				</Form>;
 
 let choice = <Form>
-				<div className='answer-section'>
+				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-					<Button key={i} onClick={() => {handleAnswer(answerOption.answerText)}}>{answerOption.answerText}</Button>
+					<div key={i} className='form-check' >
+						<input value={answerOption?.answerText} type="radio" className="btn-check" name="options" id={i}  autoComplete="off"/>
+						<label className="btn btn-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+					</div>
 				))}
+				{buttons}
 			</div>
-			{back}
 			</Form>;
 
 let input = <Form>
-			<div className='answer-section'>
+			<div className='answer-section' onKeyUp={(e) => {produceAnswer(e)}}>
 				<InputGroup>
-					<Form.Control as="textarea" aria-label="With textarea" />
+					<Form.Control id='inputBox' as="textarea" aria-label="With textarea" />
 				</InputGroup>
 			</div>
-			{back}
-			{next}
+			{buttons}
 			</Form>;
-			
-let dropdown = <div className='answer-section'>
-					<Dropdown.Menu show>
-						{/* <Dropdown.Header>Dropdown header</Dropdown.Header> */}
-						{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-						<Dropdown.Item eventKey="i" onClick={() => {handleAnswer(answerOption.answerText)}}>{answerOption.answerText}</Dropdown.Item>
-						))}
-					</Dropdown.Menu>
-					{back}
-				</div>;
 
 let summary = <div className='answer-section'>
-					{answers}
+					<h2 style={{margin: "2rem", textAlign:"center"}}>Summary</h2>
+					{answers.map((question, i) => (
+					<div key={i} className='questions-summary' >
+						<h5>{question.question}</h5>
+						<p>{question.answer}</p>
+					</div>
+					))}<div className='buttons'>
+					{back}
+					<Button variant="dark" className='button-questions' onClick={() => {setCurrentQuestion((currentQuestion)  => currentQuestion+ 1); generateAnswer()}}> Submit </Button>;
+					</div>
 			</div>;	
+let submit =<div>
+			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
+				<label className="input-group-text">Name</label>
+				<input type="text" name="user_name" aria-label="First name" className="form-control"/>
+				<label className="input-group-text">Email</label>
+				<input type="email" name="user_email" aria-label="Email" className="form-control"/>
+				<textarea style={{display:"none",position:"absolute"}} name='message' value={message}/>
+				<input type="submit" value="Send" className={buttonStatus} />
+			</form>
+			<p>{emailMessage}</p>
+			</div>;
 
 	useEffect(() => {
 		switch (questionnaire[currentQuestion]?.type) {
@@ -245,18 +268,64 @@ let summary = <div className='answer-section'>
 			case "input":
 				setElement(input)
 				break;
-			case "dropdown":
-				setElement(dropdown)
-				break;
 			case "summary":
 				setElement(summary)
+				break;
+			case "submit":
+				setElement(submit)
 				break;
 			default:
 				break;
 		}
+		setAnswer("NA");
 	}, [currentQuestion]);
 
-	function handleFirstQuestion(data){
+	function removeText(){
+		if(questionnaire[currentQuestion].type === "input"){
+			document.getElementById("inputBox").value="";
+		}
+	}
+
+	function nextQuestion(){
+		let question = questionnaire[currentQuestion].questionText;
+		let array = answers;
+		array.push({currentQuestion, "question": question, "answer": stateRef.current})
+		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
+		addAnswers(array);
+		removeText();
+	}
+
+	function goBack(){
+		let array = answers;
+		array.pop();
+		addAnswers(array)
+		setCurrentQuestion((currentQuestion)  => currentQuestion- 1)
+		removeText()
+	}
+
+	const produceAnswer = (event) =>{
+		const array = [];
+		let text;
+		if (event.target.tagName.toLowerCase() === "textarea") {
+			text = event.target.value;
+		} else {
+			text = event.target.nextElementSibling.textContent;
+		}
+		array.push(text)
+		setAnswer(array)
+	}
+
+	function generateAnswer(){
+		let strings = [];
+		for (let i = 0; i < answers.length; i++) {
+			let sentance = `${answers[i].question}\n${answers[i].answer}`;
+			strings.push(sentance);
+		}
+		console.log(strings.join(`\n`));
+		setMessage(strings.join(`\n`));
+	}
+
+	function handleFirstQuestion(){
 		let array = questionnaire;
 		if (initialAnswer.includes("property")) {
 			for (let i = 0; i < property.length; i++) {
@@ -283,47 +352,53 @@ let summary = <div className='answer-section'>
 				array.push(mortage[i])
 			}
 		}
+		for (let i = 0; i < lastQuestions.length; i++) {
+			array.push(lastQuestions[i])
+		}
+		let question = questionnaire[currentQuestion].questionText;
+		let arrayAnswers = answers;
+		arrayAnswers.push({currentQuestion, "question": question, "answer": stateRef.current})
+		addAnswers(arrayAnswers);
 		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
 		setQuestions(array);
-		setAnswer(data);
 	}
 
-	function handleAnswer(data){
-		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
-		setAnswer(data);
-	}
-
-	function goBack(){
-		setCurrentQuestion((currentQuestion)  => currentQuestion- 1)
-	}
 	let result= [];
-	const setInitialAnswer= (event) => {
-		const arr = initialAnswer;
+	const produceInitialAnswer= (event) => {
+		const array = initialAnswer;
 		const text = event.target.nextElementSibling.textContent;
-		const str = event.target.value;
-		const b = arr.includes(str);
-			if (b === false) {
-				arr.push(str);
+		const keyWord = event.target.value;
+		const boolean = array.includes(keyWord);
+			if (boolean === false) {
+				array.push(keyWord);
 				result.push(text)
 			} else {
-				let index = arr.indexOf(str);
-				arr.splice(index, 1);
+				let index = array.indexOf(keyWord);
+				array.splice(index, 1);
 				result.splice(index,1)
 			}
-		console.log(result)
-		setInitial(arr)
+		setInitial(array)
 		setAnswer(result)
 	}
+
+	const sendEmail = (e) => {
+		e.preventDefault();
+		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
+		  .then((result) => {
+			setEmailMessage("Thank you for submitting the information, we will reach out soon!");
+			setStatus("btn btn-success");
+		  }, (error) => {
+			setEmailMessage(error.text);
+			setStatus("btn btn-danger");
+		  });
+	  };
+
         return (
             <Container className='container-question'>
-                <h1>Welcome</h1>
-                <h5>What are you looking for?</h5>
-                    <div className='app'>
+                    <div className='box-question'>
+					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>
                             <div className='question-section'>
-                                <div className='question-count'>
-                                    <span>Question {currentQuestion + 1}</span>/{questionnaire?.length}
-                                </div>
-                                <div className='question-text'>{questionnaire[currentQuestion]?.questionText}</div>
+                                <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>
 							{element}
                 </div>
