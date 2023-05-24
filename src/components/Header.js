@@ -15,7 +15,7 @@ const Header = () => {
               </picture>
             </Link>
           </li>
-         </ul> 
+         </ul>  
 
          <ul className='header-links'>
           <li>
