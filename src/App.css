@@ -11,28 +11,33 @@ font-family: 'Gafata', sans-serif;  */
 h1, h3{
   text-align: center;
 }
-h2{
+h2, h4{
   font-weight: 600 !important;
   font-size: 2rem !important;
   text-align: justify;
-}
-.slogan{
-  text-align: justify !important;
+  margin-top: .5rem !important;
+  justify-content: right;
+  text-justify: right;
 }
 
 h5{
   text-align: center;
 }
 
-h2,h4 {
-  margin-top: .5rem !important;
-  justify-content: right;
-  text-justify: right;
+h6{
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: .5rem;
 }
 
-.logo {
-  /* width: 10rem; */
-  height: 1.8rem;
+label{
+  display: flex!important;
+  width: auto;
+  justify-content: center;
+}
+
+textarea{
+  height: 10rem!important;
 }
 
 header {
@@ -43,6 +48,124 @@ header {
   height: auto;
 
   /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
+}
+
+p {
+  margin: auto !important;
+  padding: 1rem;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  flex-grow: 8;
+  text-align: center;
+}
+
+a {
+  margin: 0;
+  padding: .4rem !important;
+  font-size: .9rem;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  height: 100%;
+  flex: auto;
+}
+ul > * {
+  padding: 1.1rem;
+  margin: auto;
+  margin-bottom: 0;
+}
+li > * {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: black;
+  font-size: 1.2rem;
+}
+
+nav{
+  height: 100%;
+  display: flex;
+}
+
+li {
+  margin: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1rem;
+  text-decoration: none;
+  list-style-type: none;
+  color: black;
+}
+
+.input-group {
+  padding: 1rem;
+}
+
+.slogan{
+  text-align: justify !important;
+}
+
+.box-question{
+  margin: auto;
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 60rem;
+}
+
+.answer-section{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+}
+.questions-summary{
+  padding-bottom: 1rem;
+}
+
+.form-check{
+  padding: .5rem;
+  padding-left: 0!important;
+  margin: auto;
+}
+
+.nav-link{
+  margin: auto;
+}
+
+.buttons {
+  display: flex;
+  padding: 1rem;
+}
+
+.button-questions{
+  display: flex;
+  margin: auto;
+}
+
+.question-count{
+  text-align: center;
+
+}
+
+.container-question{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  transition: all 2s!;
+}
+
+.logo {
+  /* width: 10rem; */
+  height: 3rem;
 }
 
 .container-aboutus{
@@ -103,14 +226,18 @@ font-size: .9rem;
   width: 100vw;
   height: 100vh;
   --x: 500px;
-  --y: 30
-0px;
+  --y: 300px;
   background-image: url('/src/img/home02.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; 
   position: relative;
   display: block;
+}
+
+.button-questionnaire{
+ width: 10rem;
+ margin: auto;
 }
 
 .intro-image::after {
@@ -263,61 +390,8 @@ footer {
   border: none !important;
 }
 
-p {
-  margin: auto !important;
-  padding: 1rem;
-  font-size: 1rem;
-  color: black;
-  text-decoration: none;
-  flex-grow: 8;
-
-}
-
-a {
-  margin: 0;
-  padding: .4rem !important;
-  font-size: .9rem;
-  color: black !important;
-  text-decoration: none !important;
-}
-
-ul {
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  height: 100%;
-  flex: auto;
-}
-ul > * {
-  padding: 1.1rem;
-  margin: auto;
-  margin-bottom: 0;
-}
-li > * {
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  color: black;
-  font-size: 1.2rem;
-}
-
 .header-links{
   justify-content: flex-end;
-}
-
-nav{
-  height: 100%;
-  display: flex;
-}
-
-li {
-  margin: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 1rem;
-  text-decoration: none;
-  list-style-type: none;
-  color: black;
 }
 
 .about {
@@ -333,6 +407,10 @@ li {
   padding: .2rem;
   font-size: .7rem;
   }
+  .box-question{
+    padding: 1rem;
+  }
+
 }
 
 @media screen and (max-width: 900px) {   
@@ -356,6 +434,17 @@ li {
   .service-title {
     padding: .5rem;
     text-align: center;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-control {
+      width: 100%!important;
+      margin-bottom: 1rem!important;
+    }
+  .input-group * {
+   border-radius: 5px!important;
   }
   footer {
     flex-direction: column;
@@ -389,6 +478,10 @@ li {
   }
   li {
     padding: .4rem;
+  }
+  .question-logo{
+    width: 100%!important;
+    padding-bottom: 2rem!important;
   }
   .privacy-button{
     padding: 0.4rem !important;
