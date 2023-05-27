@@ -174,6 +174,7 @@ function Questionnaire() {
 	const [buttonStatus, setStatus] = useState("btn btn-dark");
 	const [emailMessage, setEmailMessage] = useState("");
 	const [message, setMessage] = useState("");
+	const [sent, setSent] = useState("Send")
 	const stateRef = useRef();
 	stateRef.current = answerToQuestion;
 
@@ -249,7 +250,7 @@ let submit =<div>
 				<label className="input-group-text">Email</label>
 				<input type="email" name="user_email" aria-label="Email" className="form-control"/>
 				<textarea style={{display:"none",position:"absolute"}} name='message' value={message}/>
-				<input type="submit" value="Send" className={buttonStatus} />
+				<input type="submit" value={sent} className={buttonStatus} />
 			</form>
 			<p>{emailMessage}</p>
 			</div>;
@@ -279,7 +280,7 @@ let submit =<div>
 		}
 		setAnswer("NA");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentQuestion]);
+	}, [currentQuestion, sent]);
 
 	function removeText(){
 		if(questionnaire[currentQuestion].type === "input"){
@@ -388,6 +389,8 @@ let submit =<div>
 		  .then((result) => {
 			setEmailMessage("Thank you for submitting the information, we will reach out soon!");
 			setStatus("btn btn-success");
+			setSent("Success")
+			console.log("success")
 		  }, (error) => {
 			setEmailMessage(error.text);
 			setStatus("btn btn-danger");
