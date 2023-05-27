@@ -278,6 +278,7 @@ let submit =<div>
 				break;
 		}
 		setAnswer("NA");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentQuestion]);
 
 	function removeText(){
