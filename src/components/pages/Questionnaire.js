@@ -400,7 +400,7 @@ let submit =<div>
         return (
             <Container className='container-question'>
                     <div className='box-question'>
-					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>
+					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>
                             <div className='question-section'>
                                 <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>

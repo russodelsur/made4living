@@ -131,6 +131,7 @@ li {
 
 .form-check{
   padding: .5rem;
+  padding-left: 0!important;
   margin: auto;
 }
 
@@ -406,6 +407,10 @@ footer {
   padding: .2rem;
   font-size: .7rem;
   }
+  .box-question{
+    padding: 1rem;
+  }
+
 }
 
 @media screen and (max-width: 900px) {   
@@ -462,6 +467,10 @@ footer {
   }
   li {
     padding: .4rem;
+  }
+  .question-logo{
+    width: 100%!important;
+    padding-bottom: 2rem!important;
   }
   .privacy-button{
     padding: 0.4rem !important;
