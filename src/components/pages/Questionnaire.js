@@ -244,6 +244,7 @@ let summary = <div className='answer-section'>
 					</div>
 			</div>;	
 let submit =<div>
+			<p>{emailMessage[0]}</p>
 			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
 				<label className="input-group-text">Name</label>
 				<input type="text" name="user_name" aria-label="First name" className="form-control"/>
@@ -252,7 +253,7 @@ let submit =<div>
 				<textarea style={{display:"none",position:"absolute"}} name='message' value={message}/>
 				<input type="submit" value={sent} className={buttonStatus} />
 			</form>
-			<p>{emailMessage}</p>
+			<p>{emailMessage[1]}</p>
 			</div>;
 
 	useEffect(() => {
@@ -387,7 +388,7 @@ let submit =<div>
 		e.preventDefault();
 		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
 		  .then((result) => {
-			setEmailMessage("Thank you for submitting the information, we will reach out soon!");
+			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
 			setSent("Success")
 			console.log("success")
