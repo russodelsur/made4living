@@ -12,6 +12,31 @@ import Privacy from './components/pages/Privacy';
 import ProjectSingle from './components/pages/ProjectSingle';
 import projects from "./data.json"
 import Questionnaire from './components/pages/Questionnaire';
+import ReactGA from "react-ga4";
+
+ReactGA.initialize([
+  {
+    trackingId: "G-283F8NNGEC",
+  },
+]);
+
+// Send pageview with a custom path
+ReactGA.send({ hitType: "pageview", page: "/my-path", title: "Custom Title" });
+
+// window.dataLayer = window.dataLayer || [];
+// function gtag(){dataLayer.push(arguments);}
+// gtag('js', new Date());
+
+// gtag('config', 'G-283F8NNGEC');
+
+// Send a custom event
+ReactGA.event({
+  category: "your category",
+  action: "your action",
+  label: "your label", // optional
+  value: 99, // optional, must be a number
+  nonInteraction: true, // optional, true/false
+});
 
 // import Landing from './components/Landing';
 
