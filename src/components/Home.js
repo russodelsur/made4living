@@ -18,7 +18,7 @@ function Home() {
             <div className='container-home'>
                 <div className='container-intro'>
                     {/* <img className='logo-image' alt="logo" src={require('../img/logo-full.png')}/>           */}
-                    <h2>Smart design and property solutions. All in one place.</h2>
+                    <h1>Smart design and property solutions. All in one place.</h1>
                     <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                     <h6>Tell us more about your project.</h6>
                     <Button className="button-questionnaire" variant="dark" onClick={function Clicked(){navigate("/tellusmore")}}>Get Started</Button>
