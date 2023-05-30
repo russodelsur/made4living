@@ -57,10 +57,8 @@ export default function App() {
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
           <Route path="privacy-policy" element={<Privacy />} />
+          <Route path="tellusmore" element={<Questionnaire />} />
         </Route>
-      </Routes>
-      <Routes>
-      <Route path="tellusmore" element={<Questionnaire />} />
       </Routes>
       {/* <Landing/> */}
       <Footer/>
