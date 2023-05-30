@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Header = () => {
   return (
@@ -16,7 +16,6 @@ const Header = () => {
             </Link>
           </li>
          </ul>  
-
          <ul className='header-links'>
           <li>
             <Link to="/services" id="services">Services</Link>
@@ -33,7 +32,6 @@ const Header = () => {
         </ul>
       </nav>
     </header>
-    <Outlet />
   </>
   )
 };

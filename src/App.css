@@ -260,6 +260,9 @@ font-size: .9rem;
  width: 10rem;
  margin: auto;
 }
+.button-questionnaire-link{
+  margin: auto;
+ }
 
 .intro-image::after {
   content: '';

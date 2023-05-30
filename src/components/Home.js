@@ -1,13 +1,12 @@
 import { Button } from 'react-bootstrap';
 import React, {useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
     const [isShown, setIsShown] = useState(false);
     const [localMousePos, setLocalMousePos] = useState({});
 
     const div = document.querySelector('.intro-image');
-    const navigate = useNavigate();
     const handleMouseMove = (event) => {
       const localX = event.pageX - event.target.offsetLeft;
       const localY = event.pageY - event.target.offsetTop;
@@ -21,7 +20,7 @@ function Home() {
                     <h1>Smart design and property solutions. All in one place.</h1>
                     <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                     <h6>Tell us more about your project.</h6>
-                    <Button className="button-questionnaire" variant="dark" onClick={function Clicked(){navigate("/tellusmore")}}>Get Started</Button>
+                    <Link className="button-questionnaire-link"  to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                 </div>
                 <div 
                 onMouseOver={() => setIsShown(true)}

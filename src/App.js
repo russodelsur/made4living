@@ -1,6 +1,6 @@
 import './App.css';
 import {React} from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Footer from './components/Footer';
 import Work from './components/pages/Work';
 import About from './components/pages/About';
@@ -12,6 +12,7 @@ import Privacy from './components/pages/Privacy';
 import ProjectSingle from './components/pages/ProjectSingle';
 import projects from "./data.json"
 import Questionnaire from './components/pages/Questionnaire';
+import NotFound from './components/pages/NotFound';
 import ReactGA from "react-ga4";
 
 ReactGA.initialize([
@@ -20,8 +21,8 @@ ReactGA.initialize([
   },
 ]);
 
-// Send pageview with a custom path
-ReactGA.send({ hitType: "pageview", page: "/my-path", title: "Custom Title" });
+// Send pageview with a custom exact path
+ReactGA.send({ hitType: "pageview", page: "/my-exact path", title: "Custom Title" });
 
 // window.dataLayer = window.dataLayer || [];
 // function gtag(){dataLayer.push(arguments);}
@@ -40,28 +41,45 @@ ReactGA.event({
 
 // import Landing from './components/Landing';
 
+function BasicLayout() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  )
+}
+
+function QuestionnaireLayout() {
+  return <Outlet />
+}
+
+
 export default function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header />}>
+        <Route exact path="/" element={<BasicLayout />}>
           <Route index element={<Home />} />
-          <Route path="work" element={<Work />} />
+          <Route exact path="work" element={<Work />} />
           <Route
             exact
             path="/projects/:slug"
             Component={(props) => <ProjectSingle {...props} projects={projects} />}
           />
-          <Route path="about" element={<About />} />
-          <Route path="services" element={<Services />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="privacy-policy" element={<Privacy />} />
-          <Route path="tellusmore" element={<Questionnaire />} />
+          <Route exact path="about" element={<About />} />
+          <Route exact path="services" element={<Services />} />
+          <Route exact path="contact" element={<Contact />} />
+          <Route exact path="privacy-policy" element={<Privacy />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route exact path="/" element={<QuestionnaireLayout />}>
+          <Route exact path="tellusmore" element={<Questionnaire />} />
         </Route>
       </Routes>
       {/* <Landing/> */}
-      <Footer/>
     </BrowserRouter>
   );
 }
