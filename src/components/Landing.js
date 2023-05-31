@@ -1,29 +1,39 @@
 import {React, useEffect, useRef } from 'react';
-import gsap, { Linear } from 'gsap';
+import gsap, {Power2 } from 'gsap';
 // import DrawSVGPlugin from 'gsap';
 
 function Landing() {
 
-    let top = useRef(null);  
-    let bottom = useRef(null);
+    let top = useRef();  
+    let bottom = useRef();
+    let water = useRef();
+    let landing = useRef();
 
-    let tl = gsap.timeline({ });
+    let tl = gsap.timeline({defaults:{duration: 10}}); 
     useEffect(() => {
-        let svg = document.getElementById("top-logo");
-        console.log(svg,top)
-        let obj = {length:10, pathLength:top.current.getTotalLength()};
-        console.log(obj)
-        tl.to(obj, 7, {length: top.current.pathLength, duration: 4, onUpdate:drawLine , ease:Linear.easeNone })
+        const start = "M 0 100 V 50 Q 50 0 100 50 V 100 z";
+        const end = "M 0 100 V 0 Q 50 0 100 0 V 100 z";
+        tl.to(water.current, 1, {attr: { d: start }, ease: Power2.easeIn})
+        .to(water.current, 1, {attr: { d: end }, ease: Power2.easeOut})
+        .from(top.current, .8, {y: 75}, '-=.8')
+        .play(0);
 
-        function drawLine() {
-            top.current.style.strokeDasharray =
-             [obj.length,obj.pathLength].join(' '); 
-          }
-          tl.restart();
+        setTimeout(()=>{landing.current.style.opacity = 0}, 3000)
+        setTimeout(()=>{landing.current.style.display = "none"}, 5000)
+
+        // tl.to(top.current, {x:1200})
+        // tl.from(bottom.current, {x:11200, y:6000})
+
       }, [tl]);
 
         return (
-            <div className='container-landing'>
+            <div ref={landing} className='container-landing'>
+                    <svg className="transition" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path ref={water} class="path" stroke="#000" stroke-width="10px" fill='white' vector-effect="non-scaling-stroke" d="M 0 100 V 100 Q 50 100 100 100 V 100 z"/>
+                        <animateMotion repeatCount="indefinite">
+                            <mpath  xlinkXhref="#path" />
+                        </animateMotion>
+                    </svg>
                 <svg className='landing-logo' 
                 version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="2834.000000pt" height="2834.000000pt" viewBox="0 0 2834.000000 2834.000000"

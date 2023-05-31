@@ -176,17 +176,23 @@ flex-direction: row;
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: white;
+  background-color: black;
   z-index: 10;
+  top: 0;
   justify-content: center;
   display: flex;
+  transition: all 1s;
 }
-
+.transition{
+position: absolute;
+}
 .landing-logo{
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 40%;
   margin: auto;
   display: block;
+  overflow: visible;
+  z-index: 10;
 }
 
 .input-group {
