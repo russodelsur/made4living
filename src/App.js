@@ -13,6 +13,7 @@ import ProjectSingle from './components/pages/ProjectSingle';
 import projects from "./data.json"
 import Questionnaire from './components/pages/Questionnaire';
 import NotFound from './components/pages/NotFound';
+import Landing from './components/Landing';
 import ReactGA from "react-ga4";
 
 ReactGA.initialize([
@@ -79,7 +80,7 @@ export default function App() {
           <Route exact path="tellusmore" element={<Questionnaire />} />
         </Route>
       </Routes>
-      {/* <Landing/> */}
+      <Landing/>
     </BrowserRouter>
   );
 }
