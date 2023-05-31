@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import React, {useState } from 'react';
 import { Link } from "react-router-dom";
-import Landing from './Landing';
+// import Landing from './Landing';
 
 
 function Home() {
@@ -17,7 +17,7 @@ function Home() {
     };
         return (
             <div className='container-home'>
-                <Landing/>
+                {/* <Landing/> */}
                 <div className='container-intro'>
                     {/* <img className='logo-image' alt="logo" src={require('../img/logo-full.png')}/>           */}
                     <h1>Smart design and property solutions. All in one place.</h1>
