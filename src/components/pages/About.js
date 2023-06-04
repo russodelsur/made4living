@@ -1,8 +1,14 @@
 import React from 'react';
 import { Container, Image } from 'react-bootstrap';
+import {motion} from 'framer-motion';
 
 function About() {
         return (
+            <motion.div className='effect-wrapper'
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            exit={{opacity:0}}
+            >
             <Container className="container-aboutus">
                 <Image className="img-aboutus" alt="sketch" src={require("../../img/aboutus.jpg")} />
                 <h1>Made4Living design studio</h1>
@@ -19,6 +25,7 @@ function About() {
                 One unique point of contact: all type of enquires from house finding to personal shopping. 
                 </p>
             </Container>
+            </motion.div>
         );
     }
 

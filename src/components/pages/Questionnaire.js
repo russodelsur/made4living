@@ -236,7 +236,9 @@ let summary = <div className='answer-section'>
 					{answers.map((question, i) => (
 					<div key={i} className='questions-summary' >
 						<h5>{question.question}</h5>
-						<p>{question.answer}</p>
+							{question.answer.map((ans, i) => (
+							<p key={i}>{ans}</p>
+							))}	
 					</div>
 					))}<div className='buttons'>
 					{back}
@@ -292,7 +294,16 @@ let submit =<div>
 	function nextQuestion(){
 		let question = questionnaire[currentQuestion].questionText;
 		let array = answers;
-		array.push({currentQuestion, "question": question, "answer": stateRef.current})
+		let arr = stateRef.current;
+		let arrs = [];
+			if (arr.type === Array) {
+						for (let i = 0; i < arr.length; i++) {
+							arrs.push(arr[i]);
+						}
+			} else {
+				arrs.push(arr)
+			}
+		array.push({currentQuestion, "question": question, "answer": arrs})
 		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
 		addAnswers(array);
 		removeText();
@@ -321,10 +332,14 @@ let submit =<div>
 	function generateAnswer(){
 		let strings = [];
 		for (let i = 0; i < answers.length; i++) {
-			let sentance = `${answers[i].question}\n${answers[i].answer}`;
+			let sentance;
+			if (answers[i].answer.length !== 1) {
+				sentance = `${answers[i].question}\n${answers[i].answer}`;
+			} else {
+				sentance = `${answers[i].question}\n${answers[i].answer.join(`\n`)}`;
+			}
 			strings.push(sentance);
 		}
-		console.log(strings.join(`\n`));
 		setMessage(strings.join(`\n`));
 	}
 
@@ -360,7 +375,12 @@ let submit =<div>
 		}
 		let question = questionnaire[currentQuestion].questionText;
 		let arrayAnswers = answers;
-		arrayAnswers.push({currentQuestion, "question": question, "answer": stateRef.current})
+		let arr = stateRef.current;
+		let arrs = [];
+		for (let i = 0; i < arr.length; i++) {
+			arrs.push(arr[i]);
+		}
+		arrayAnswers.push({currentQuestion, "question": question, "answer": arrs})
 		addAnswers(arrayAnswers);
 		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
 		setQuestions(array);
@@ -391,7 +411,6 @@ let submit =<div>
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
 			setSent("Success")
-			console.log("success")
 		  }, (error) => {
 			setEmailMessage(error.text);
 			setStatus("btn btn-danger");
