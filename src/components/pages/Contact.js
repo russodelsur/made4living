@@ -1,8 +1,14 @@
 import React from 'react';
 import { Container, Image } from 'react-bootstrap';
+import {motion} from 'framer-motion';
 
 function Contact() {
         return (
+            <motion.div className='effect-wrapper'
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            exit={{opacity:0}}
+            >
             <Container className='container-contactus'>
                 <div className='contact-info'>
                     <p className='para-contact-light'>Thank you for considering Made4Living for your architectural and interior design needs. We are here to help you transform your space into a beautiful, functional and inspiring environment.</p> 
@@ -14,6 +20,7 @@ function Contact() {
                 </div>
                 <Image className="img-aboutus" alt="sketch" src={require("../../img/contactus.jpg")} />
             </Container>
+            </motion.div>
         );
     }
 

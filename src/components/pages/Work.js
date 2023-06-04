@@ -2,9 +2,15 @@ import React from 'react';
 import { Container, Card, Col, Row } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import projects from "../../data.json"
+import {motion} from 'framer-motion';
 
 function Work() {
     return (
+        <motion.div className='effect-wrapper'
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
+        >
             <Container>                
                 <Row xs={1} md={2} className="g-4">
                     {projects.projects.map((project, index) => (
@@ -22,6 +28,7 @@ function Work() {
                     ))}
                 </Row>
             </Container>
+            </motion.div>
         );
     }
 
