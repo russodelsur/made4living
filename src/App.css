@@ -22,6 +22,11 @@ h1 {
 h1, h3{
   text-align: center;
 }
+
+h3 {
+  font-size: 1.5rem!important;
+}
+
 h2, h4{
   font-weight: 600 !important;
   font-size: 2rem !important;
@@ -69,6 +74,9 @@ footer {
   /* background:  rgb(39, 39, 39); */
   bottom: 0;
   max-height: 180px;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
+
 }
 
 p {
@@ -124,6 +132,12 @@ li {
   color: black;
 }
 
+.social-icon{
+  height: 2rem!important;
+  width: 2rem!important;
+  margin: .5rem;
+}
+
 .container{
   flex:1;
   max-width: 100% !important;
@@ -140,7 +154,9 @@ li {
   transition: all 2s!;
 }
 .container-aboutus{
-  width: 70% !important;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr ;
+  padding-top: 1rem;
 }
 .container-home{
 display: flex;
@@ -250,10 +266,10 @@ position: absolute;
   height: 3rem;
 }
 
-.subtitle-aboutus {
+.title-aboutus {
   text-align: left;
   margin: 0;
-  margin-top: 1rem;
+  margin-top: 0rem;
   margin-bottom: .5rem;
 }
 
@@ -267,7 +283,7 @@ position: absolute;
 
 .para-services{
 padding: 1rem;
-font-size: .9rem;
+font-size: 1rem;
 }
 
 .logo-image{
@@ -339,20 +355,17 @@ font-size: .9rem;
   text-align: justify;
   width: 80%;
 }
-.social {
-  margin: 1rem;
+
+.footer-content {
+  margin: auto;
   display: flex;
   flex-direction: column;
   position: relative;
-}
-.address {
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-.address > * {
+.footer-content > * {
   margin: auto;
   padding: .3rem;
   text-align: center;
@@ -407,7 +420,8 @@ font-size: .9rem;
 }
 
 .service-title {
-  padding: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .project-individual{
@@ -444,12 +458,16 @@ font-size: .9rem;
 @media screen and (max-width: 1400px) {   
 .para-services{
   padding: .2rem;
-  font-size: .7rem;
+  font-size: 1rem;
   }
   .box-question{
     padding: 1rem;
   }
   .container-contactus{
+    display: flex;
+    flex-direction: column;
+  }
+  .container-aboutus{
     display: flex;
     flex-direction: column;
   }
@@ -474,7 +492,10 @@ font-size: .9rem;
   .container-home{
     flex-direction: column;
   }
-
+  .para-services{
+    padding: 1rem;
+    font-size: 1rem;
+    }
   .service-title {
     padding: .5rem;
     text-align: center;

@@ -15,7 +15,7 @@ function Home() {
             turnOffLanding(false);
         } else {
             sessionStorage.setItem("visitedBefore", "true");
-            setTimeout(()=>{turnOffLanding(false)}, 5000)
+            setTimeout(()=>{turnOffLanding(false)}, 4000)
         }    
         }, []);
 

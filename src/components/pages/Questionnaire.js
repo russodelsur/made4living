@@ -24,6 +24,10 @@ function Questionnaire() {
 		type: "input",
 	},
 	{
+		questionText: 'Please outline your budget.',
+		type: "input",
+	},
+	{
 		questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
 		type: "input",
 	},
@@ -81,10 +85,6 @@ function Questionnaire() {
 				{ answerText: 'Parking (space or garage)'}
 			],
 		},
-		{
-			questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
-			type: "input",
-			},
 	]
 	const design = [
 		{
@@ -107,10 +107,6 @@ function Questionnaire() {
 				{ answerText: 'Food and beverages'},
 			],
 		},
-		{
-			questionText: 'What is your timeline for the project?',
-			type: "input",
-		},
 	]
 	const render = [
 		{
@@ -123,14 +119,6 @@ function Questionnaire() {
 				{ answerText: "I am looking furniture pieces renderings."},
 			],
 			},
-		{
-			questionText: 'Please outline your budget and how many visuals you would like (if none, just write "3D modelling")',
-			type: "input",
-		},
-		{
-			questionText: 'What is your timeline for the project?',
-			type: "input",
-		},
 	]
 	const joinery = [
 		{
@@ -141,28 +129,12 @@ function Questionnaire() {
 				{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
 			],
 			},
-		{
-			questionText: 'Please outline your budget.',
-			type: "input",
-		},
-		{
-			questionText: 'What is your timeline for the project?',
-			type: "input",
-		},
 	]
 	const mortage = [
 		{
 			questionText: 'Tell us more regarding the services you need, please list all the ones you are looking for.',
 			type: "input",
 			},
-		{
-			questionText: 'Please outline your budget.',
-			type: "input",
-		},
-		{
-			questionText: 'What is your timeline for the project?',
-			type: "input",
-		},
 	]
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -284,7 +256,7 @@ let submit =<div>
 		setAnswer("NA");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentQuestion, sent]);
-
+	// removing text from input box when switching boxes
 	function removeText(){
 		if(questionnaire[currentQuestion].type === "input"){
 			document.getElementById("inputBox").value="";
@@ -295,6 +267,7 @@ let submit =<div>
 		let question = questionnaire[currentQuestion].questionText;
 		let array = answers;
 		let arr = stateRef.current;
+		//pushing answer to array in an ordely fashion
 		let arrs = [];
 			if (arr.type === Array) {
 						for (let i = 0; i < arr.length; i++) {
@@ -307,6 +280,7 @@ let submit =<div>
 		setCurrentQuestion((currentQuestion)  => currentQuestion+ 1)
 		addAnswers(array);
 		removeText();
+
 	}
 
 	function goBack(){
@@ -314,12 +288,19 @@ let submit =<div>
 		array.pop();
 		addAnswers(array)
 		setCurrentQuestion((currentQuestion)  => currentQuestion- 1)
+		//removing initial answer if going back
+		setInitial([])
 		removeText()
+		// removing the questions if going back to the first question
+		if (currentQuestion === 1) {
+			setQuestions(questions)
+			}
 	}
 
 	const produceAnswer = (event) =>{
 		const array = [];
 		let text;
+		//producing answer if text is in input box or in selection click
 		if (event.target.tagName.toLowerCase() === "textarea") {
 			text = event.target.value;
 		} else {
@@ -331,6 +312,7 @@ let submit =<div>
 
 	function generateAnswer(){
 		let strings = [];
+		//generating message for email answer
 		for (let i = 0; i < answers.length; i++) {
 			let sentance;
 			if (answers[i].answer.length !== 1) {
@@ -386,6 +368,7 @@ let submit =<div>
 		setQuestions(array);
 	}
 
+	//function producing initial answer from clicks
 	let result= [];
 	const produceInitialAnswer= (event) => {
 		const array = initialAnswer;
@@ -416,7 +399,6 @@ let submit =<div>
 			setStatus("btn btn-danger");
 		  });
 	  };
-
         return (
             <Container className='container-question'>
                     <div className='box-question'>

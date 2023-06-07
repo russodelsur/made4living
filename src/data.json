@@ -39,32 +39,32 @@
     {
         "service": "Architectural Design",
         "image": "arch.jpg",
-        "copy": "Architectural Design: We specialize in creating customized architectural designs that bring your vision to life. Our team of experienced architects works closely with you to understand your needs and preferences, and then uses their expertise to create a functional and aesthetically pleasing design."
+        "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality."
     },    
     {
         "service": "Interior design",
         "image": "interiordesign.jpg",
-        "copy": "Interior Design: Our interior design services are tailored to your unique style and preferences. We help you choose the right colors, materials, and furnishings to create a space that reflects your personality and meets your needs."
+        "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury."
     },
     {
         "service": "3D visualization",
         "image": "render.jpg",
-        "copy": "3D Visualization: Our advanced 3D visualization software allows you to see your design concepts come to life before construction begins. We create realistic 3D models of your space, so you can visualize every detail and make any necessary changes to achieve your desired result."
+        "copy": "Experience your project before it comes to life with our cutting-edge 3D visualization services. Our realistic renderings bring your ideas to vivid reality, allowing you to make informed decisions and visualize the end result with unparalleled clarity."
     },
     {
         "service": "Bespoke furniture",
         "image": "bespoke.jpg",
-        "copy": "Bespoke Furniture: Our bespoke furniture services provide you with unique, one-of-a-kind pieces that are designed specifically for your space. We work with skilled craftsmen to create custom furniture that is not only beautiful but also functional and durable."
+        "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style."
     },
     {
         "service": "Professional consultancy",
         "image": "professional.jpg",
-        "copy": "Built Works Professional Consultancy: We offer professional consultancy services to guide you throughout the entire construction process. Our team will work closely with you to ensure that your project is completed on time, within budget, and to your satisfaction. We can also help you find all the different professionals that may be required, such as solicitors, mortgage advisors, and moving companies, taking care of the entire process for you."
+        "copy": "Navigate the complexities of your house purchase or renovation with our expert consultancy services. We connect you with trusted professionals from various disciplines, ensuring a seamless and efficient process from start to finish."
     },
     {
         "service": "House search and report",
         "image": "housesearch.jpg",
-        "copy": "House Search and Report: Looking for your dream home or property can be overwhelming, which is why our team of real estate and design experts is here to help. We conduct a thorough search based on your requirements and provide you with a comprehensive report that includes all the details you need to make an informed decision. Additionally, we can accompany you to viewings and offer professional advice on how the property could be transformed and adjusted to your needs."
+        "copy": "Let us be your guide in finding your dream property. Our dedicated team accompanies you throughout the house hunting process, providing insightful advice, conducting thorough inspections, and delivering comprehensive reports, empowering you to make informed decisions."
     }
 ]
 }

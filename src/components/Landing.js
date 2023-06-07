@@ -5,17 +5,15 @@ function Landing() {
 
     let top = useRef(null);
     let bottom = useRef(null);
-    let landing = useRef(null);
     let svg = useRef(null);
 
     useEffect(() => {
 
-        // setTimeout(()=>{landing.current.style.opacity = 0}, 3000)
         let logo = svg.current;
         gsap.set(logo, {opacity: 0});
         const tl = gsap.timeline();
         tl.delay(0.5) // add delay before animation starts
-        .to(logo, {opacity: 1, duration: 2}) // fade in logo
+        .to(logo, {opacity: 1, duration: 1}) // fade in logo
         .fromTo(logo, {strokeDasharray: "4400px"}, {strokeDasharray: "0px", duration: 2, ease: "power4.out"}); // animate logo drawing itself
         
         // tl.to(top.current, {x:1200})
@@ -24,7 +22,7 @@ function Landing() {
       }, []);
 
         return (
-            <div ref={landing} className='container-landing'>
+            <div className='container-landing'>
 
                 {/* <svg ref={svg} className='landing-logo' 
                 version="1.0" xmlns="http://www.w3.org/2000/svg"
