@@ -15,63 +15,40 @@ async function connectMongo(){
             useUnifiedTopology: true
         })
         mongoose.connection.on("connected", ()=>{
-            connection = mongoose.connection;
-            console.log("MongoDB database connection established successfully");
-            resolve(true)
+            resolve( mongoose.connection)
         })
         mongoose.connection.on("error", e=>{
             connection= null;
-            console.log("error");
             reject(e)
         })
 
         mongoose.connection.on("disconnected", e=>{
             connection= null;
-            console.log("MongoDB database disconnected");
             reject(e)
         })
     })
 }
 
-
-// mongoose.connect(uri, {
-//     dbName: 'questionnaire',
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }, err => err ? console.log(err) :
-//     console.log('Connected to yourDB-name database'));
-
-// const connection = mongoose.connection;
-// connection.once('open', () => {
-//     console.log("MongoDB database connection established successfully");
-// })
-
-
-// const { MongoClient } = require("mongodb");
-
-// const mongoClient = new MongoClient(process.env.MONGODB_URI);
-
-// const clientPromise = mongoClient.connect();
-
 const handler = async (event) => {
     try {
         if(!connection){
-            await connectMongo()
+            connection = await connectMongo()
         }
         console.log("Body:", event.body)
         let answers = JSON.parse(event.body);
         const user = new Answers(answers);
-        console.log("User:", user)
-        let result = await user.save();
-        result = result.toObject();
-        console.log("result", result)
+        await user.save();
         return {
             statusCode: 200,
-            body: "Success",
+            body: JSON.stringify({message: "Data saved succesfully"}),
         }
     } catch (error) {
         console.log(error)
-        return { statusCode: 500, body: error.toString() }
+        if (error.code === 11000) {
+            return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used"}) }
+        } else {
+            return { statusCode: 500, body: JSON.stringify({message: "An error has occurred"}) }
+        }
     }
 }
 

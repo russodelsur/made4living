@@ -146,6 +146,7 @@ function Questionnaire() {
 	const [buttonStatus, setStatus] = useState("btn btn-dark");
 	const [emailMessage, setEmailMessage] = useState("");
 	const [message, setMessage] = useState("");
+	const [dbmessage, setdbMessage] = useState("");
 	const [sent, setSent] = useState("Send")
 	const stateRef = useRef();
 	stateRef.current = answerToQuestion;
@@ -221,6 +222,7 @@ let summary = <div className='answer-section'>
 					</div>
 			</div>;	
 let submit =<div>
+			<p>{dbmessage}</p>
 			<p>{emailMessage[0]}</p>
 			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
 				<label className="input-group-text">Name</label>
@@ -258,7 +260,7 @@ let submit =<div>
 		}
 		setAnswer("NA");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentQuestion, sent]);
+	}, [currentQuestion, sent, dbmessage]);
 	// removing text from input box when switching boxes
 	function removeText(){
 		if(questionnaire[currentQuestion].type === "input"){
@@ -403,24 +405,22 @@ let submit =<div>
 					'Content-Type': 'application/json'
 				}
 			})
+			console.log(result)
 			result = await result.json();
-			console.warn(result);
-			if (result) {
-				alert("Data saved succesfully");
-			}
+			console.log(result.message)
+			setdbMessage(result.message);
 		}
 		postToDatabase();
-		if(!process.env.REACT_APP_DEVELOPMENT){
 		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
 			setSent("Success")
 		  }, (error) => {
-			setEmailMessage(error.text);
+			setEmailMessage(["Refresh to start over", "An error has occurred"]);
 			setStatus("btn btn-danger");
+			setSent("Error")
 		  });
-		}
 	  };
         return (
             <Container className='container-question'>
