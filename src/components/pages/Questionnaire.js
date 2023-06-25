@@ -396,7 +396,7 @@ let submit =<div>
 			const name = form.current.user_name.value;
 			const email = form.current.user_email.value
 			let result = await fetch(
-			('/.netlify/functions/send'), {
+			('/.netlify/functions/post_answers'), {
 				method: "post",
 				body: JSON.stringify({ name, email, answers }),
 				headers: {
