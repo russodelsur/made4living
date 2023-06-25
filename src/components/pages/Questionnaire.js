@@ -410,7 +410,7 @@ let submit =<div>
 			}
 		}
 		postToDatabase();
-		
+		if(!process.env.REACT_APP_DEVELOPMENT){
 		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
@@ -420,6 +420,7 @@ let submit =<div>
 			setEmailMessage(error.text);
 			setStatus("btn btn-danger");
 		  });
+		}
 	  };
         return (
             <Container className='container-question'>
