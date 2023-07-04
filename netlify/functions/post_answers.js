@@ -4,20 +4,19 @@ const mongoose = require('mongoose');
 const Answers = require("./schemas/answersSchema")
 require('dotenv').config();
 
-let connection = null;
+// let connection = null;
 const uri = process.env.MONGODB_URI;
-
-mongoose.set("strictQuery", true);
 
 async function connectMongo(){
     return new Promise((resolve,reject)=>{
+        mongoose.set("strictQuery", false);
         mongoose.connect(uri, {
             dbName: 'questionnaire',
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
         mongoose.connection.on("connected", ()=>{
-            resolve( mongoose.connection)
+            resolve(mongoose.connection)
         })
         mongoose.connection.on("error", e=>{
             connection= null;
@@ -45,12 +44,11 @@ const handler = async (event) => {
             body: JSON.stringify({message: "Data saved succesfully"}),
         }
     } catch (error) {
-        console.log(error)
         if (error.code === 11000) {
             return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used"}) }
         } else {
             return { statusCode: 500, body: JSON.stringify({message: "An error has occurred"}) }
-        }
+        } 
     }
 }
 

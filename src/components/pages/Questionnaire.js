@@ -405,8 +405,9 @@ let submit =<div>
 					'Content-Type': 'application/json'
 				}
 			})
-			console.log(result)
+
 			result = await result.json();
+			console.log(result)
 			console.log(result.message)
 			setdbMessage(result.message);
 		}
