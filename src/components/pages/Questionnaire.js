@@ -9,8 +9,8 @@ function Questionnaire() {
 			questionText: 'What are you looking for? You can select more than one option.',
 			type: "first",
 			answerOptions: [
-				{ answerText: 'I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it.(Currently available only in the London area)', index: "property" },
-				{ answerText: "I’m looking for architectural, interior design or simple furnishing purchase", index: "design"},
+				{ answerText: 'I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).', index: "property" },
+				{ answerText: "I’m looking for architectural, interior design or simple furnishing purchase.", index: "design"},
 				{ answerText: 'I’m looking for 3D modelling and visualization services.', index: "render"},
 				{ answerText: 'I’m looking for bespoke furniture and joinery services.', index: "joinery" },
 				{ answerText: 'I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).', index: "mortage" },
@@ -146,6 +146,7 @@ function Questionnaire() {
 	const [buttonStatus, setStatus] = useState("btn btn-dark");
 	const [emailMessage, setEmailMessage] = useState("");
 	const [message, setMessage] = useState("");
+	const [dbmessage, setdbMessage] = useState("");
 	const [sent, setSent] = useState("Send")
 	const stateRef = useRef();
 	stateRef.current = answerToQuestion;
@@ -172,6 +173,7 @@ let firstQuestion = <Form>
 
 let radio = <Form>
 				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
+				<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 					<div key={i} className='form-check' >
 						<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
@@ -184,6 +186,7 @@ let radio = <Form>
 
 let choice = <Form>
 				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
+				<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 					<div key={i} className='form-check' >
 						<input value={answerOption?.answerText} type="radio" className="btn-check" name="options" id={i}  autoComplete="off"/>
@@ -195,6 +198,7 @@ let choice = <Form>
 			</Form>;
 
 let input = <Form>
+			<h5 style={{color:"grey", padding:"1rem"}}>{currentQuestion} of {questionnaire.length - 2}</h5>  
 			<div className='answer-section' onKeyUp={(e) => {produceAnswer(e)}}>
 				<InputGroup>
 					<Form.Control id='inputBox' as="textarea" aria-label="With textarea" />
@@ -209,7 +213,7 @@ let summary = <div className='answer-section'>
 					<div key={i} className='questions-summary' >
 						<h5>{question.question}</h5>
 							{question.answer.map((ans, i) => (
-							<p key={i}>{ans}</p>
+							<p style={{color:"grey"}} key={i}>{ans}</p>
 							))}	
 					</div>
 					))}<div className='buttons'>
@@ -218,6 +222,7 @@ let summary = <div className='answer-section'>
 					</div>
 			</div>;	
 let submit =<div>
+			<p>{dbmessage}</p>
 			<p>{emailMessage[0]}</p>
 			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
 				<label className="input-group-text">Name</label>
@@ -255,7 +260,7 @@ let submit =<div>
 		}
 		setAnswer("NA");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentQuestion, sent]);
+	}, [currentQuestion, sent, dbmessage]);
 	// removing text from input box when switching boxes
 	function removeText(){
 		if(questionnaire[currentQuestion].type === "input"){
@@ -389,21 +394,39 @@ let submit =<div>
 
 	const sendEmail = (e) => {
 		e.preventDefault();
+		const postToDatabase = async (e) => {
+			const name = form.current.user_name.value;
+			const email = form.current.user_email.value
+			let result = await fetch(
+			('/.netlify/functions/post_answers'), {
+				method: "post",
+				body: JSON.stringify({ name, email, answers }),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			console.log(result)
+			result = await result.json();
+			console.log(result.message)
+			setdbMessage(result.message);
+		}
+		postToDatabase();
 		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
 			setSent("Success")
 		  }, (error) => {
-			setEmailMessage(error.text);
+			setEmailMessage(["Refresh to start over", "An error has occurred"]);
 			setStatus("btn btn-danger");
+			setSent("Error")
 		  });
 	  };
         return (
             <Container className='container-question'>
                     <div className='box-question'>
-					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>
-                            <div className='question-section'>
+					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
+							<div className='question-section'>
                                 <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>
 							{element}
