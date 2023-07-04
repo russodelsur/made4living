@@ -7,12 +7,14 @@ require('dotenv').config();
 let connection = null;
 const uri = process.env.MONGODB_URI;
 
+mongoose.set("strictQuery", false);
+
 async function connectMongo(){
     return new Promise((resolve,reject)=>{
         mongoose.connect(uri, {
             dbName: 'questionnaire',
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         })
         mongoose.connection.on("connected", ()=>{
             resolve( mongoose.connection)

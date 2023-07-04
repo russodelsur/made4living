@@ -229,7 +229,7 @@ let submit =<div>
 				<input type="text" name="user_name" aria-label="First name" className="form-control"/>
 				<label className="input-group-text">Email</label>
 				<input type="email" name="user_email" aria-label="Email" className="form-control"/>
-				<textarea style={{display:"none",position:"absolute"}} name='message' value={message}/>
+				<textarea style={{display:"none",position:"absolute"}} name='message' defaultValue={message}/>
 				<input type="submit" value={sent} className={buttonStatus} />
 			</form>
 			<p>{emailMessage[1]}</p>
