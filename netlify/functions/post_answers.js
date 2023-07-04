@@ -7,7 +7,7 @@ require('dotenv').config();
 let connection = null;
 const uri = process.env.MONGODB_URI;
 
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 
 async function connectMongo(){
     return new Promise((resolve,reject)=>{
