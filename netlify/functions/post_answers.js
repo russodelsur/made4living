@@ -12,6 +12,11 @@ async function connectMongo(){
             dbName: 'questionnaire',
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            // server: {
+            //     socketOptions: {
+            //       socketTimeoutMS: 0,
+            //       connectTimeoutMS: 0
+            //     }}
         })
         resolve()
         reject()
@@ -33,7 +38,6 @@ const handler = async (event) => {
     } catch (error) {
         console.log(error)
         if (error.code === 11000) {
-            console.log("Errorrrrrrrr:",error)
             return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used, please use a different address"}) }
         } else {
             return { statusCode: 500, body: JSON.stringify({message: "An error has occurred"}) }

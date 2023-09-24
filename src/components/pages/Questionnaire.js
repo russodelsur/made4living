@@ -396,19 +396,22 @@ let submit =<div>
 		e.preventDefault();
 		const postToDatabase = async (e) => {
 			const name = form.current.user_name.value;
-			const email = form.current.user_email.value
+			const email = form.current.user_email.value;
 			let result = await fetch(
 			('/.netlify/functions/post_answers'), {
 				method: "post",
+				isBase64Encoded: true,
+				statusCode: "httpStatusCode",
 				body: JSON.stringify({ name, email, answers }),
 				headers: {
 					'Content-Type': 'application/json'
 				}
+				
 			})
-			console.log(result)
+			console.log(result);
 			result = await result.json();
-			console.log(result)
-			console.log(result.message)
+			console.log(result);
+			console.log(result.message);
 			setdbMessage(result.message);
 		}
 		postToDatabase();
