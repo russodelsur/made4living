@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form, Button, InputGroup, Container, NavLink } from 'react-bootstrap';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
+import ModelStart from '../Three/Three';
 
 function Questionnaire() {
 	let questions = [
@@ -9,11 +10,16 @@ function Questionnaire() {
 			questionText: 'What are you looking for? You can select more than one option.',
 			type: "first",
 			answerOptions: [
-				{ answerText: 'I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).', index: "property" },
-				{ answerText: "I’m looking for architectural, interior design or simple furnishing purchase.", index: "design"},
-				{ answerText: 'I’m looking for 3D modelling and visualization services.', index: "render"},
-				{ answerText: 'I’m looking for bespoke furniture and joinery services.', index: "joinery" },
-				{ answerText: 'I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).', index: "mortage" },
+				{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
+					name: "./gltf/01.gltf"},
+				{ answerText: "Hire architectural, interior design or FFE services.", index: "design", image: "housesearch", explain:"",
+					name: "./gltf/02.gltf"},
+				{ answerText: 'Hire 3D modelling and visualization services.', index: "render", image:"home01", explain:"",
+					name: "./gltf/03.gltf"},
+				{ answerText: 'Hire bespoke furniture and joinery design and construction services.', index: "joinery", image:"bespoke", explain:"",
+				name: "./gltf/04.gltf"},
+				{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
+				name: "./gltf/05.gltf"},
 			],
 		},
 	];
@@ -162,8 +168,9 @@ const buttons = <div className='buttons'>{back}{next}</div>;
 let firstQuestion = <Form>
 					<div className='answer-section' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-						<div key={i} className='form-check' >
-							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+						<div key={i} className='form-check'>
+							<div id={i+10}><ModelStart name={answerOption.name} i={i} /></div>
+							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 						</div>
 					))}
@@ -429,7 +436,7 @@ let submit =<div>
         return (
             <Container className='container-question'>
                     <div className='box-question'>
-					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
+					<NavLink className='qs-logo'><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
 							<div className='question-section'>
                                 <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>

@@ -50,6 +50,7 @@ label{
   display: flex!important;
   width: auto;
   justify-content: center;
+  max-width: 20rem;
 }
 
 textarea{
@@ -224,15 +225,16 @@ position: absolute;
 
 .box-question{
   margin: auto;
-  padding: 10rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
-  max-width: 60rem;
+  max-width: 100rem;
 }
 
 .answer-section{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: auto;
   justify-content: center;
 }
@@ -241,9 +243,14 @@ position: absolute;
 }
 
 .form-check{
-  padding: .5rem;
-  padding-left: 0!important;
-  margin: auto;
+  /* border: 1px solid black; */
+  /* padding-left: unset!important; */
+  padding: 1rem!important;
+  max-width: 20rem;
+  max-height: 20rem;
+  flex: 1 0 30%; /* explanation below */
+  margin: 1rem;
+  margin-bottom: auto!important;
 }
 
 .nav-link{
@@ -466,6 +473,7 @@ font-size: 1rem;
   }
   .box-question{
     padding: 1rem;
+    flex-direction: column;
   }
   .container-contactus{
     display: flex;
