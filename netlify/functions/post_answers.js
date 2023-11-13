@@ -26,10 +26,8 @@ async function connectMongo(){
 const handler = async (event) => {
     try {
         await connectMongo();
-        console.log("Body:", event.body)
         let answers = JSON.parse(event.body);
         const user = new AnswersSchema(answers);
-        console.log("USER:", user)
         await user.save();
         return {
             statusCode: 200,
