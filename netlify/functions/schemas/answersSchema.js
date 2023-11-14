@@ -24,4 +24,3 @@ const AnswersSchema = new mongoose.Schema({
 // Answers.createIndexes();
 
 module.exports = mongoose.models.user_answers || mongoose.model('user_answers', AnswersSchema); 
-console.log(mongoose.models);
