@@ -3,22 +3,21 @@ import "./Three.css";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap/all';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { useState, useEffect} from 'react';
-import { convertHtmlToReact } from '@hedgedoc/html-to-react';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
 
 function ModelStart(props) {
   const [scenes, setScenes] = useState([]);
-  const [canvas, setCanvas] = useState(document.createElement('canvas'));
-
+  const [canvas] = useState(document.createElement('canvas'));
   let model, camera, scene, renderer, exposure;
 
 useEffect(() =>{
   canvas.className = 'render-item';
   renderCanvas(props.i);
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[props.i])
 
 
@@ -53,10 +52,10 @@ function init(name, i, canvas) {
     powerPreference: "high-performance",
     precision: "highp",
   });
-  renderer.physicallyCorrectLights = true;
+
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.outputEncoding = THREE.sRGBEncoding;
+
   renderer.toneMapping = THREE.ReinhardToneMapping;
   exposure = 1.2;
   renderer.toneMappingExposure = exposure;
@@ -96,16 +95,28 @@ loader.load(name, function (gltf) {
   });
   model = gltf.scene;
   scene.add(model);
-  const mesh = model.children[0];
-  mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
-  const edges = new THREE.EdgesGeometry( mesh.geometry );
-  let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000} ));
-  line.material.opacity = 0.25;
-  line.material.transparent = true;
-  scene.add( line );
+
+  if (i !== 4) {
+    const mesh = model.children[0];
+    // mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
+    const edges = new THREE.EdgesGeometry( mesh.geometry );
+    let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000} ));
+    line.material.opacity = 0.25;
+    line.material.transparent = true;
+    scene.add( line );
+  } else {
+    const mesh = model.children[0];
+    // mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
+    const edges = new THREE.EdgesGeometry( mesh.geometry );
+    let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x5f5f5f } ));
+    line.material.opacity = 0.25;
+    line.material.transparent = true;
+    scene.add( line ); 
+  }
+
 });
 
-camera = new THREE.PerspectiveCamera( 30, 1.1, .01, 15 );
+camera = new THREE.PerspectiveCamera( 30, 1.2, .01, 15 );
 
 camera.position.set(0,2,5);
 camera.rotation.set(Math.PI/-14, 0, 0)
@@ -137,11 +148,9 @@ document.getElementById(i+10).addEventListener("mouseover", function(){
   clearInterval(lightDown)
   if (quantity === 50) {
     clearInterval(lightUp)
-    console.log("stopped")
   } else {
   dirLight.intensity = quantity+1;
   quantity = dirLight.intensity;
-  console.log(quantity)  
   }
   }
 });
@@ -156,8 +165,7 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
       clearInterval(lightDown)
   } else {
     dirLight.intensity = quantity-1;
-    quantity = dirLight.intensity;
-  console.log(quantity)  
+    quantity = dirLight.intensity; 
   }
 }});
 

@@ -7,19 +7,19 @@ import ModelStart from '../Three/Three';
 function Questionnaire() {
 	let questions = [
 		{
-			questionText: 'What are you looking for? You can select more than one option.',
+			questionText: 'What services are you looking for? You can select more than one option.',
 			type: "first",
 			answerOptions: [
 				{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
 					name: "./gltf/01.gltf"},
-				{ answerText: "Hire architectural, interior design or FFE services.", index: "design", image: "housesearch", explain:"",
+				{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
 					name: "./gltf/02.gltf"},
-				{ answerText: 'Hire 3D modelling and visualization services.', index: "render", image:"home01", explain:"",
+				{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
 					name: "./gltf/03.gltf"},
-				{ answerText: 'Hire bespoke furniture and joinery design and construction services.', index: "joinery", image:"bespoke", explain:"",
-				name: "./gltf/04.gltf"},
+				{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
+					name: "./gltf/04.gltf"},
 				{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
-				name: "./gltf/05.gltf"},
+					name: "./gltf/05.gltf"},
 			],
 		},
 	];
@@ -166,7 +166,7 @@ const next = <Button variant="dark" className='button-questions' onClick={() => 
 const back = <Button variant="dark" className='button-questions' onClick={() => {goBack()}}> Back </Button>;
 const buttons = <div className='buttons'>{back}{next}</div>;
 let firstQuestion = <Form>
-					<div className='answer-section' onChange={(e) => {produceInitialAnswer(e)}}>
+					<div className='answer-section' id='answer-section-first-form' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
 							<div id={i+10}><ModelStart name={answerOption.name} i={i} /></div>
@@ -179,23 +179,23 @@ let firstQuestion = <Form>
 				</Form>;
 
 let radio = <Form>
-				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
-				<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
-				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-					<div key={i} className='form-check' >
-						<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
-						<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+					<div className='answer-section' id='answer-section-radio' onChange={(e) => {produceAnswer(e)}}>
+						<h5 className='text' style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
+						{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
+							<div key={i} className='form-check-choice' >
+								<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+								<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+							</div>
+						))}
 					</div>
-				))}
-				</div>
-					{buttons}
+						{buttons}
 				</Form>;
 
 let choice = <Form>
-				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
+				<div className='answer-section' id='answer-section-choice' onChange={(e) => {produceAnswer(e)}}>
 				<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-					<div key={i} className='form-check' >
+					<div key={i} className='form-check-choice' >
 						<input value={answerOption?.answerText} type="radio" className="btn-check" name="options" id={i}  autoComplete="off"/>
 						<label className="btn btn-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 					</div>
@@ -205,8 +205,8 @@ let choice = <Form>
 			</Form>;
 
 let input = <Form>
-			<h5 style={{color:"grey", padding:"1rem"}}>{currentQuestion} of {questionnaire.length - 2}</h5>  
-			<div className='answer-section' onKeyUp={(e) => {produceAnswer(e)}}>
+			<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
+			<div className='answer-section' id='answer-section-input' onKeyUp={(e) => {produceAnswer(e)}}>
 				<InputGroup>
 					<Form.Control id='inputBox' as="textarea" aria-label="With textarea" />
 				</InputGroup>
@@ -228,7 +228,8 @@ let summary = <div className='answer-section'>
 					<Button variant="dark" className='button-questions' onClick={() => {setCurrentQuestion((currentQuestion)  => currentQuestion+ 1); generateAnswer()}}> Submit </Button>;
 					</div>
 			</div>;	
-let submit =<div>
+let submit =<div className='answer-section' id='answer-section-submit'>
+			<h5 style={{color:"grey", padding:"1rem"}}>Please submit your answers to a member of our staff and database by introducing your details.</h5>  
 			<p>{dbmessage}</p>
 			<p>{emailMessage[0]}</p>
 			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
@@ -240,6 +241,9 @@ let submit =<div>
 				<input type="submit" value={sent} className={buttonStatus} />
 			</form>
 			<p>{emailMessage[1]}</p>
+			<div className='buttons'>
+			{back}
+			</div>
 			</div>;
 
 	useEffect(() => {
@@ -415,10 +419,7 @@ let submit =<div>
 				}
 				
 			})
-			console.log(result);
 			result = await result.json();
-			console.log(result);
-			console.log(result.message);
 			setdbMessage(result.message);
 		}
 		postToDatabase();
@@ -426,7 +427,7 @@ let submit =<div>
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
-			setSent("Success")
+			setSent("Your data has submitted succesfully. A member of our staff will be in touch.")
 		  }, (error) => {
 			setEmailMessage(["Refresh to start over", "An error has occurred"]);
 			setStatus("btn btn-danger");
@@ -436,7 +437,7 @@ let submit =<div>
         return (
             <Container className='container-question'>
                     <div className='box-question'>
-					<NavLink className='qs-logo'><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
+					<NavLink className='qs-logo'><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:".5rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
 							<div className='question-section'>
                                 <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>

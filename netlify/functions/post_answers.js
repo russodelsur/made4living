@@ -34,7 +34,6 @@ const handler = async (event) => {
             body: JSON.stringify({message: "Data saved succesfully in our server"}),
         }
     } catch (error) {
-        console.log(error)
         if (error.code === 11000) {
             return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used, please use a different address"}) }
         } else {

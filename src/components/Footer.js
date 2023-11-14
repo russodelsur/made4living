@@ -28,8 +28,8 @@ function Footer() {
         </ul>
         <ul className="footer-content">
           <p>Support and information</p>
-          <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/privacy-policy")} }> Privacy Policy </button>
-          <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/contact")} }> Contact us </button>
+          <button className="privacy-button" onClick={function Clicked(){navigate("/privacy-policy")} }> Privacy Policy </button>
+          <button className="privacy-button" onClick={function Clicked(){navigate("/contact")} }> Contact us </button>
         </ul>
         <ul className="footer-content">
           <p className="light-text">@made4living {year}</p>
