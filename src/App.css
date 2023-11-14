@@ -50,10 +50,15 @@ label{
   display: flex!important;
   width: auto;
   justify-content: center;
+  max-width: 20rem;
 }
 
 textarea{
-  height: 10rem!important;
+  min-height: 10rem!important;
+}
+
+.btn-secondary{
+  --bs-btn-active-bg: #1a1a1a!important;
 }
 
 header {
@@ -146,9 +151,11 @@ li {
 }
 
 .container-question{
-  position: absolute;
+  position: relative;
+  display: flex;
   height: 100%;
-  width: 100%;
+  max-width: 94rem!important;
+  margin: auto!important;
   z-index: 1;
   background-color: white;
   transition: all 2s!;
@@ -220,26 +227,64 @@ position: absolute;
 
 .box-question{
   margin: auto;
-  padding: 10rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  max-width: 60rem;
+  max-width: 100rem;
+  height: 100%!important;
 }
-
+.answer-section-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+}
 .answer-section{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   margin: auto;
   justify-content: center;
+}
+#answer-section-first-form{
+  flex-direction: row!important;
+  margin-bottom: 2rem;
+}
+#answer-section-choice{
+
+}
+#answer-section-radio{
+
+}
+#answer-section-input{
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  margin: auto;
+}
+#answer-section-submit{
+  max-width: 50rem;
+  margin: auto;
 }
 .questions-summary{
   padding-bottom: 1rem;
 }
 
 .form-check{
-  padding: .5rem;
-  padding-left: 0!important;
+  /* border: 1px solid black; */
+  /* padding-left: unset!important; */
+  padding: 1rem!important;
+  max-width: 22rem;
+  max-height: 18rem;
+  flex: 1 0 100%; /* explanation below */
+  margin: 1.3rem!important;
+
+}
+
+.form-check-choice{
   margin: auto;
+  padding: 1rem;
 }
 
 .nav-link{
@@ -248,17 +293,25 @@ position: absolute;
 
 .buttons {
   display: flex;
+  margin: auto;
   padding: 1rem;
+  justify-content: center;
+  min-height: 100%;
 }
 
 .button-questions{
   display: flex;
-  margin: auto;
+  margin: 2rem;
 }
 
 .question-count{
   text-align: center;
+}
 
+.question-section{
+  max-width: 40rem;
+  min-width: 40rem;
+  margin: auto;
 }
 
 .logo {
@@ -462,6 +515,7 @@ font-size: 1rem;
   }
   .box-question{
     padding: 1rem;
+    flex-direction: column;
   }
   .container-contactus{
     display: flex;

@@ -65,7 +65,7 @@ function Landing() {
 
                 <svg ref={svg} className='landing-logo' viewBox="0 0 22500 3640.5"
                 xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" 
-                shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" 
+                shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" 
                 preserveAspectRatio="xMidYMid meet"
                 xlink="http://www.w3.org/1999/xlink" >
                 <metadata>

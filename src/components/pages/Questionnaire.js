@@ -2,18 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form, Button, InputGroup, Container, NavLink } from 'react-bootstrap';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
+import ModelStart from '../Three/Three';
 
 function Questionnaire() {
 	let questions = [
 		{
-			questionText: 'What are you looking for? You can select more than one option.',
+			questionText: 'What services are you looking for? You can select more than one option.',
 			type: "first",
 			answerOptions: [
-				{ answerText: 'I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it.(Currently available only in the London area)', index: "property" },
-				{ answerText: "I’m looking for architectural, interior design or simple furnishing purchase", index: "design"},
-				{ answerText: 'I’m looking for 3D modelling and visualization services.', index: "render"},
-				{ answerText: 'I’m looking for bespoke furniture and joinery services.', index: "joinery" },
-				{ answerText: 'I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).', index: "mortage" },
+				{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
+					name: "./gltf/01.gltf"},
+				{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
+					name: "./gltf/02.gltf"},
+				{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
+					name: "./gltf/03.gltf"},
+				{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
+					name: "./gltf/04.gltf"},
+				{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
+					name: "./gltf/05.gltf"},
 			],
 		},
 	];
@@ -146,6 +152,7 @@ function Questionnaire() {
 	const [buttonStatus, setStatus] = useState("btn btn-dark");
 	const [emailMessage, setEmailMessage] = useState("");
 	const [message, setMessage] = useState("");
+	const [dbmessage, setdbMessage] = useState("");
 	const [sent, setSent] = useState("Send")
 	const stateRef = useRef();
 	stateRef.current = answerToQuestion;
@@ -159,10 +166,11 @@ const next = <Button variant="dark" className='button-questions' onClick={() => 
 const back = <Button variant="dark" className='button-questions' onClick={() => {goBack()}}> Back </Button>;
 const buttons = <div className='buttons'>{back}{next}</div>;
 let firstQuestion = <Form>
-					<div className='answer-section' onChange={(e) => {produceInitialAnswer(e)}}>
+					<div className='answer-section' id='answer-section-first-form' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-						<div key={i} className='form-check' >
-							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+						<div key={i} className='form-check'>
+							<div id={i+10}><ModelStart name={answerOption.name} i={i} /></div>
+							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 						</div>
 					))}
@@ -171,21 +179,23 @@ let firstQuestion = <Form>
 				</Form>;
 
 let radio = <Form>
-				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
-				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-					<div key={i} className='form-check' >
-						<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
-						<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+					<div className='answer-section' id='answer-section-radio' onChange={(e) => {produceAnswer(e)}}>
+						<h5 className='text' style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
+						{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
+							<div key={i} className='form-check-choice' >
+								<input value={answerOption?.index} type="checkbox" className="btn-check" id={i}  autoComplete="off"/>
+								<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
+							</div>
+						))}
 					</div>
-				))}
-				</div>
-					{buttons}
+						{buttons}
 				</Form>;
 
 let choice = <Form>
-				<div className='answer-section' onChange={(e) => {produceAnswer(e)}}>
+				<div className='answer-section' id='answer-section-choice' onChange={(e) => {produceAnswer(e)}}>
+				<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
 				{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
-					<div key={i} className='form-check' >
+					<div key={i} className='form-check-choice' >
 						<input value={answerOption?.answerText} type="radio" className="btn-check" name="options" id={i}  autoComplete="off"/>
 						<label className="btn btn-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 					</div>
@@ -195,7 +205,8 @@ let choice = <Form>
 			</Form>;
 
 let input = <Form>
-			<div className='answer-section' onKeyUp={(e) => {produceAnswer(e)}}>
+			<h5 style={{color:"grey", padding:"1rem"}}>You are in question {currentQuestion} of {questionnaire.length - 2}</h5>  
+			<div className='answer-section' id='answer-section-input' onKeyUp={(e) => {produceAnswer(e)}}>
 				<InputGroup>
 					<Form.Control id='inputBox' as="textarea" aria-label="With textarea" />
 				</InputGroup>
@@ -209,7 +220,7 @@ let summary = <div className='answer-section'>
 					<div key={i} className='questions-summary' >
 						<h5>{question.question}</h5>
 							{question.answer.map((ans, i) => (
-							<p key={i}>{ans}</p>
+							<p style={{color:"grey"}} key={i}>{ans}</p>
 							))}	
 					</div>
 					))}<div className='buttons'>
@@ -217,17 +228,22 @@ let summary = <div className='answer-section'>
 					<Button variant="dark" className='button-questions' onClick={() => {setCurrentQuestion((currentQuestion)  => currentQuestion+ 1); generateAnswer()}}> Submit </Button>;
 					</div>
 			</div>;	
-let submit =<div>
+let submit =<div className='answer-section' id='answer-section-submit'>
+			<h5 style={{color:"grey", padding:"1rem"}}>Please submit your answers to a member of our staff and database by introducing your details.</h5>  
+			<p>{dbmessage}</p>
 			<p>{emailMessage[0]}</p>
 			<form className="input-group" ref={form} onSubmit={(e)=>sendEmail(e)}>
 				<label className="input-group-text">Name</label>
 				<input type="text" name="user_name" aria-label="First name" className="form-control"/>
 				<label className="input-group-text">Email</label>
 				<input type="email" name="user_email" aria-label="Email" className="form-control"/>
-				<textarea style={{display:"none",position:"absolute"}} name='message' value={message}/>
+				<textarea style={{display:"none",position:"absolute"}} name='message' defaultValue={message}/>
 				<input type="submit" value={sent} className={buttonStatus} />
 			</form>
 			<p>{emailMessage[1]}</p>
+			<div className='buttons'>
+			{back}
+			</div>
 			</div>;
 
 	useEffect(() => {
@@ -255,7 +271,7 @@ let submit =<div>
 		}
 		setAnswer("NA");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentQuestion, sent]);
+	}, [currentQuestion, sent, dbmessage]);
 	// removing text from input box when switching boxes
 	function removeText(){
 		if(questionnaire[currentQuestion].type === "input"){
@@ -389,21 +405,40 @@ let submit =<div>
 
 	const sendEmail = (e) => {
 		e.preventDefault();
+		const postToDatabase = async (e) => {
+			const name = form.current.user_name.value;
+			const email = form.current.user_email.value;
+			let result = await fetch(
+			('/.netlify/functions/post_answers'), {
+				method: "post",
+				isBase64Encoded: true,
+				statusCode: "httpStatusCode",
+				body: JSON.stringify({ name, email, answers }),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+				
+			})
+			result = await result.json();
+			setdbMessage(result.message);
+		}
+		postToDatabase();
 		emailjs.sendForm(process.env.REACT_APP_YOUR_SERVICE_ID, process.env.REACT_APP_YOUR_TEMPLATE_ID, form.current, process.env.REACT_APP_YOUR_PUBLIC_KEY)
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
-			setSent("Success")
+			setSent("Your data has submitted succesfully. A member of our staff will be in touch.")
 		  }, (error) => {
-			setEmailMessage(error.text);
+			setEmailMessage(["Refresh to start over", "An error has occurred"]);
 			setStatus("btn btn-danger");
+			setSent("Error")
 		  });
 	  };
         return (
             <Container className='container-question'>
                     <div className='box-question'>
-					<NavLink><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:"4rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>
-                            <div className='question-section'>
+					<NavLink className='qs-logo'><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:".5rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
+							<div className='question-section'>
                                 <h5 style={{textAlign:"center"}} className='question-text'>{questionnaire[currentQuestion]?.questionText}</h5>
                             </div>
 							{element}

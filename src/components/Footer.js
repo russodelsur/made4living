@@ -12,8 +12,8 @@ function Footer() {
       <footer className="footer">
         <ul className="footer-content">
           <p>London office</p>
-          <p className="light-text">224b Walm Lane</p>
-          <p className="light-text">NW2 3BS, London</p>
+          <p className="light-text">71-75 Shelton Street</p>
+          <p className="light-text">London, United Kingdom</p>
         </ul>
         <ul className="footer-content">
           <p>Social</p>
@@ -28,8 +28,8 @@ function Footer() {
         </ul>
         <ul className="footer-content">
           <p>Support and information</p>
-          <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/privacy-policy")} }> Privacy Policy </button>
-          <button className="privacy-button" onClick={function Clicked(){console.log("clicked"); navigate("/contact")} }> Contact us </button>
+          <button className="privacy-button" onClick={function Clicked(){navigate("/privacy-policy")} }> Privacy Policy </button>
+          <button className="privacy-button" onClick={function Clicked(){navigate("/contact")} }> Contact us </button>
         </ul>
         <ul className="footer-content">
           <p className="light-text">@made4living {year}</p>
