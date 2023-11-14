@@ -12,8 +12,8 @@ function Footer() {
       <footer className="footer">
         <ul className="footer-content">
           <p>London office</p>
-          <p className="light-text">224b Walm Lane</p>
-          <p className="light-text">NW2 3BS, London</p>
+          <p className="light-text">71-75 Shelton Street</p>
+          <p className="light-text">London, United Kingdom</p>
         </ul>
         <ul className="footer-content">
           <p>Social</p>
