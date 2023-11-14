@@ -1,0 +1,19 @@
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border: none;
+}
+
+.render-item{
+    width: 100%;
+    height: 15rem;
+    width:100%; 
+    border-radius: 10px;
+    /* height:auto;  */
+    margin:auto; 
+    margin-bottom: .5rem;
+}
