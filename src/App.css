@@ -525,6 +525,9 @@ font-size: 1rem;
     display: flex;
     flex-direction: column;
   }
+  .question-section{
+    min-width: 5rem;
+  }
 }
 
 @media screen and (max-width: 900px) {   
