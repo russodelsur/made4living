@@ -427,7 +427,7 @@ let submit =<div className='answer-section' id='answer-section-submit'>
 		  .then((result) => {
 			setEmailMessage(["Click on the logo to return to the site.","Thank you for submitting the information, we will reach out soon!"]);
 			setStatus("btn btn-success");
-			setSent("Your data has submitted succesfully. A member of our staff will be in touch.")
+			setSent("Success!")
 		  }, (error) => {
 			setEmailMessage(["Refresh to start over", "An error has occurred"]);
 			setStatus("btn btn-danger");
