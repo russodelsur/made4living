@@ -9,7 +9,7 @@ import { hydrateRoot } from 'react-dom/client';
 const rootElement = document.getElementById("root");
 const croot = createRoot(rootElement);
 if (rootElement.hasChildNodes()) {
-  hydrateRoot(document.getElementById("root"), rootElement);
+  hydrateRoot(rootElement, <App />)
 } else {
   croot.render(<App />);
 }
