@@ -35,7 +35,7 @@ const handler = async (event) => {
         }
     } catch (error) {
         if (error.code === 11000) {
-            return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used, please use a different address"}) }
+            return { statusCode: 500, body: JSON.stringify({message: "Email address has already been used, your new answers has been sent to us by email"}) }
         } else {
             return { statusCode: 500, body: JSON.stringify({message: "An error has occurred"}) }
         } 
