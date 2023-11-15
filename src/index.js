@@ -3,15 +3,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { hydrate} from "react-dom";
 import { createRoot } from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
  
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
+const croot = createRoot(rootElement);
 if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+  hydrateRoot(document.getElementById("root"), rootElement);
 } else {
-  root.render(<App />);
+  croot.render(<App />);
 }
 // root.render(<App />, rootElement);
 
