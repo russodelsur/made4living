@@ -10,7 +10,7 @@ function Services() {
             animate={{opacity:1}}
             exit={{opacity:0}}
             >
-            <Container>
+            <Container className='content'>
             <h3 className='service-title' >From bespoke house searches to creating your dream space, we offer all-in-one design and property solutions for individuals and businesses.</h3>
                 <Row xs={1} md={3} className="g-4">
                     {services.services.map((service, index) => (

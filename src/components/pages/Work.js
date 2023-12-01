@@ -11,7 +11,7 @@ function Work() {
         animate={{opacity:1}}
         exit={{opacity:0}}
         >
-            <Container>                
+            <Container className='content'>                
                 <Row xs={1} md={2} className="g-4">
                     {projects.projects.map((project, index) => (
                     <Col key={index}>

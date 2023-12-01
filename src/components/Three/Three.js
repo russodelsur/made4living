@@ -181,12 +181,12 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
 				// LIGHTS
 
 				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 2 );
-				hemiLight.color.setHSL( 0.6, 1, 0.6 );
-				hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+				hemiLight.color.setRGB( 1, 1, 1 );
+				hemiLight.groundColor.setRGB( 1, 1, 1 );
 				hemiLight.position.set( 0, 50, 0 );
 				scene.add( hemiLight );
 
-				//
+				
 
 				const dirLight = new THREE.DirectionalLight( 0xffffff, 2 );
 				dirLight.color.setHSL( 0.1, 1, 0.95 );

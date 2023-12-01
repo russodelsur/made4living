@@ -7,11 +7,11 @@ import { createRoot } from 'react-dom/client';
 import { hydrateRoot } from 'react-dom/client';
  
 const rootElement = document.getElementById("root");
-const croot = createRoot(rootElement);
+const root = createRoot(rootElement);
 if (rootElement.hasChildNodes()) {
   hydrateRoot(rootElement, <App />)
 } else {
-  croot.render(<App />);
+  root.render(<App />);
 }
 // root.render(<App />, rootElement);
 

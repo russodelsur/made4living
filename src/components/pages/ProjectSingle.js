@@ -14,7 +14,7 @@ const ProjectSingle = ({projects}) => {
     animate={{opacity:1}}
     exit={{opacity:0}}
     >
-        <Container className="containe-project-individual">
+        <Container className='content'>
         <Row xs={1} md={3} className="g-4">
             <Card className="card-single-project"> 
                 <div style={{padding:".5rem"}}>

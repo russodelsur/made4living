@@ -1,4 +1,12 @@
 { "projects": [ {
+    "name": "Welbeck street HQ",
+    "location": "London",
+    "type": "Workspace",
+    "body": "The headquarters of a real estate developer in the UK. Over 300 square meters of workplace housing two tea points, three meeting rooms, seating space for 40 people, and executive offices. For this project, I was responsible for the design and project delivery throughout all stages. This project features a colorful unfinished look, using polished plaster with Scandinavian furniture, russian feature lightinh, and walnut as the natural wood of choice. Meeting room desks, executive desk, artwork selection... were designed in-house.",
+    "image": "vonder",
+    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
+    "slug": "vonder"
+},{
     "name": "Via Beccari",
     "location": "Rome",
     "type":"Residential",
@@ -16,15 +24,7 @@
     "images": ["sr0", "sr1", "sr2","sr3","sr4","sr5"],
     "slug": "sr"
 },
-{
-    "name": "Vonder HQ",
-    "location": "London",
-    "type": "Workspace",
-    "body": "The headquarters of Vonder in the UK. Over 300 square meters of workplace housing two tea points, three meeting rooms, seating space for 40 people, and executive offices. For this project, I was responsible for the design and project delivery throughout all stages. This project features a colorful unfinished look, using polished plaster with Scandinavian furniture, russian feature lightinh, and walnut as the natural wood of choice. Meeting room desks, executive desk, artwork selection... were designed in-house.",
-    "image": "vonder",
-    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
-    "slug": "vonder"
-},
+
 {
     "name": "Lingfield",
     "location": "London",
@@ -64,7 +64,7 @@
     {
         "service": "House search and report",
         "image": "housesearch.jpg",
-        "copy": "Let us be your guide in finding your dream property. Our dedicated team accompanies you throughout the house hunting process, providing insightful advice, conducting thorough inspections, and delivering comprehensive reports, empowering you to make informed decisions."
+        "copy": "Discover your dream property with our expert guidance. Our team supports you with tailored advice, detailed inspections, and clear reports to ensure you make informed choices every step of the way."
     }
 ]
 }

@@ -1,31 +1,49 @@
-import React from 'react';
+import {React, useRef, useEffect} from 'react';
 import { Container, Image } from 'react-bootstrap';
 import {motion} from 'framer-motion';
+import LondonModel from '../Three/AboutusModel';
 
 function About() {
+        const ref = useRef()
+
         return (
             <motion.div className='effect-wrapper'
             initial={{opacity:0}}
             animate={{opacity:1}}
             exit={{opacity:0}}
             >
-            <Container className="container-aboutus">
-                <Image className="img-aboutus" alt="sketch" src={require("../../img/aboutus.jpg")} />
-                <div>
+            <Container >
+                <div className='aboutus-block'>
                     <h3 className='title-aboutus'>Made4Living design studio</h3>
                     <p className="para-aboutus">
-                    Made4Living is a design and architecture studio in London that offers affordable and stress-free renovation and property design services. Our team of professionals work together to create custom designs that are functional, sustainable, and aesthetically pleasing while considering the social, cultural, economic, and environmental context of each project. We offer complete overhauls and simple renovations to exceed expectations. Our values include integrity, creativity, and excellence. Contact us now for a free consultation.                    </p> 
-                    <h3 className='title-aboutus'>Our Services</h3> 
+                        Welcome to Made4Living, the premier design and architecture studio nestled in the heart of London, where your vision for the perfect living space transforms into reality with absolute elegance and efficiency. At Made4Living, we embrace the art of creating harmonious designs that not only encapsulate the essence of sophistication but also integrate functionality, sustainability, and the unique facets of each client's lifestyle.                    
+                    </p> 
+                </div>
+                <div id='canvas-london' ref={ref}>
+                     <LondonModel ref={ref}/>
+                </div>
+                <div className='aboutus-block' id='our-approach'>
+                    <h3 className='title-aboutus'>Our Approach</h3> 
                     <p className="para-aboutus">
-                    When design combines innovative tech, dedicated experts and tailored services – Concept Design, Bespoke furniture design, Architectural Design, 3D Visualization, Bespoke Property search, Property Report,  and more. 
-                    </p>
-                    <h3 className='title-aboutus'>Our Product</h3> 
-                    <p className="para-aboutus">
-                    The easiest way to quote, appoint, track and manage your project. Take off the hassle that characterizes the house research if you have no time to search, or you are moving to a new area, or you simply don’t want to waste time in viewing houses that are not suitable. 
-                    Know-how to give concrete ideas to build the property of your dream: we can offer design and architectural solutions that our clients cannot necessarily see. 
-                    One unique point of contact: all type of enquires from house finding to personal shopping. 
+                    At Made4Living, we understand that renovation and design are not merely about altering spaces but reinventing the way you experience home and leisure. With a commitment to delivering a seamless renovation experience, our dedicated team of seasoned professionals thoughtfully converges on every project, offering tailor-made solutions that reflect our core values: unyielding integrity, boundless creativity, and an unwavering commitment to excellence.                    
                     </p>
                 </div>
+                <Image className="img-aboutus" alt="sketch" src={require("../../img/aboutus.jpg")} />
+                <div className='aboutus-block' >
+                    <h3 className='title-aboutus'>Our Expertise</h3> 
+                    <p className="para-aboutus">
+                    Elevating the ordinary to the extraordinary is our forte. Our comprehensive array of services encompasses the entirety of your design needs:
+
+                    - Concept Design: Breathing life into your initial ideas with imaginative and innovative designs.
+                    - Bespoke Furniture Design: Crafting customized furniture pieces tailored to your tastes and the demands of your space.
+                    - Architectural Design: Merging technical precision with artistic vision to shape the structural integrity and visual impact of your property.
+                    - 3D Visualization: Bringing your future space to life before your eyes through high-definition renders and immersive visualizations.
+                    - Bespoke Property Search: Streamlining your house-hunting process with personalized searches that align with your unique preferences and location requirements.
+                    - Property Report: Providing a comprehensive assessment of potential properties to make informed decisions with confidence.
+                    - Project Management: Offering you the luxury of a single point of contact as we manage and drive your project from inception to completion, including all types of inquires from house finding to personal shopping.
+                    </p>
+                </div>
+
             </Container>
             </motion.div>
         );
