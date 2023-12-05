@@ -4,144 +4,146 @@ import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
 import ModelStart from '../Three/Three';
 
+let questions = [
+	{
+		questionText: 'What services are you looking for? You can select more than one option.',
+		type: "first",
+		answerOptions: [
+			{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
+				name: "./gltf/01.gltf"},
+			{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
+				name: "./gltf/02.gltf"},
+			{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
+				name: "./gltf/03.gltf"},
+			{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
+				name: "./gltf/04.gltf"},
+			{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
+				name: "./gltf/05.gltf"},
+		],
+	},
+];
+
+let lastQuestions = [
+{
+	questionText: 'What is your timeline for the project?',
+	type: "input",
+},
+{
+	questionText: 'Please outline your budget.',
+	type: "input",
+},
+{
+	questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
+	type: "input",
+},
+{
+	type: "summary",
+},
+{
+	type: "submit",
+},
+]
+
+const property = [
+	{
+		questionText: 'Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
+		type: "input",
+		},
+	{
+		questionText: 'Are you looking to purchase a property ready to move-in or also in need of renovation? You can select both.',
+		type: "choice",
+		answerOptions: [
+			{ answerText: 'Ready to move in'},
+			{ answerText: "Renovation"},
+		],
+	},
+	{
+		questionText: 'Please outline your price range',
+		type: "choice",
+		answerOptions: [
+			{ answerText: '£0 - £250.000'},
+			{ answerText: '£250.000 - £500.000'},
+			{ answerText: '£500.000 - £1.000.000'},
+			{ answerText: '£1.000.000 - £2.000.000'},
+			{ answerText: '+2.000.000'},
+		],
+	},
+	{
+		questionText: 'How many bedrooms minimum would you like the property to have?',
+		type: "choice",
+		answerOptions: [
+			{ answerText: 'Studio'},
+			{ answerText: '1 bedroom'},
+			{ answerText: '2 bedroom'},
+			{ answerText: '3 bedroom'},
+			{ answerText: '4 bedroom'},
+			{ answerText: '+4 bedroom'},
+			{ answerText: 'Developer'}
+		],
+	},
+	{
+		questionText: 'Which of the below features interest you for your new home? Basement/Attic/Patio or Garden/Parking/Open plan',
+		type: "radio",
+		answerOptions: [
+			{ answerText: 'Potential for extension (garden, basement. attic, patio)'},
+			{ answerText: 'Garden (private or shared)'},
+			{ answerText: 'Parking (space or garage)'}
+		],
+	},
+]
+const design = [
+	{
+		questionText: 'Tell us more regarding your project. What type of service are you looking to get?',
+		type: "choice",
+		answerOptions: [
+			{ answerText: 'I am looking for architectural services.'},
+			{ answerText: "I'm looking for interior design and furnishing services."},
+		],
+		},
+	{
+		questionText: 'What type of project is it? (Residential, Commercial, Offices, Mixed Use, etc.)',
+		type: "choice",
+		answerOptions: [
+			{ answerText: 'Residential'},
+			{ answerText: 'Commercial'},
+			{ answerText: 'Offices'},
+			{ answerText: 'Mixed use'},
+			{ answerText: 'Hospitality'},
+			{ answerText: 'Food and beverages'},
+		],
+	},
+]
+const render = [
+	{
+		questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
+		type: "choice",
+		answerOptions: [
+			{ answerText: 'I am looking for an interiors 3D modelling or visualization.'},
+			{ answerText: "I am looking for an exteriors 3D modelling or visualization."},
+			{ answerText: "I am looking for a full property marketing service."},
+			{ answerText: "I am looking furniture pieces renderings."},
+		],
+		},
+]
+const joinery = [
+	{
+		questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
+		type: "choice",
+		answerOptions: [
+			{ answerText: "I'm looking to buy furniture."},
+			{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
+		],
+		},
+]
+const mortage = [
+	{
+		questionText: 'Tell us more regarding the services you need, please list all the ones you are looking for.',
+		type: "input",
+		},
+]
+
+
 function Questionnaire() {
-	let questions = [
-		{
-			questionText: 'What services are you looking for? You can select more than one option.',
-			type: "first",
-			answerOptions: [
-				{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
-					name: "./gltf/01.gltf"},
-				{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
-					name: "./gltf/02.gltf"},
-				{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
-					name: "./gltf/03.gltf"},
-				{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
-					name: "./gltf/04.gltf"},
-				{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
-					name: "./gltf/05.gltf"},
-			],
-		},
-	];
-	
-	let lastQuestions = [
-	{
-		questionText: 'What is your timeline for the project?',
-		type: "input",
-	},
-	{
-		questionText: 'Please outline your budget.',
-		type: "input",
-	},
-	{
-		questionText: 'Is there anything you’d like to add (e.g: special requirements)?',
-		type: "input",
-	},
-	{
-		type: "summary",
-	},
-	{
-		type: "submit",
-	},
-	]
-	
-	const property = [
-		{
-			questionText: 'Tell us more regarding the property you are looking to buy. Where would you like to buy your dream property? Please list all desired locations.',
-			type: "input",
-			},
-		{
-			questionText: 'Are you looking to purchase a property ready to move-in or also in need of renovation? You can select both.',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'Ready to move in'},
-				{ answerText: "Renovation"},
-			],
-		},
-		{
-			questionText: 'Please outline your price range',
-			type: "choice",
-			answerOptions: [
-				{ answerText: '£0 - £250.000'},
-				{ answerText: '£250.000 - £500.000'},
-				{ answerText: '£500.000 - £1.000.000'},
-				{ answerText: '£1.000.000 - £2.000.000'},
-				{ answerText: '+2.000.000'},
-			],
-		},
-		{
-			questionText: 'How many bedrooms minimum would you like the property to have?',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'Studio'},
-				{ answerText: '1 bedroom'},
-				{ answerText: '2 bedroom'},
-				{ answerText: '3 bedroom'},
-				{ answerText: '4 bedroom'},
-				{ answerText: '+4 bedroom'},
-				{ answerText: 'Developer'}
-			],
-		},
-		{
-			questionText: 'Which of the below features interest you for your new home? Basement/Attic/Patio or Garden/Parking/Open plan',
-			type: "radio",
-			answerOptions: [
-				{ answerText: 'Potential for extension (garden, basement. attic, patio)'},
-				{ answerText: 'Garden (private or shared)'},
-				{ answerText: 'Parking (space or garage)'}
-			],
-		},
-	]
-	const design = [
-		{
-			questionText: 'Tell us more regarding your project. What type of service are you looking to get?',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'I am looking for architectural services.'},
-				{ answerText: "I'm looking for interior design and furnishing services."},
-			],
-			},
-		{
-			questionText: 'What type of project is it? (Residential, Commercial, Offices, Mixed Use, etc.)',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'Residential'},
-				{ answerText: 'Commercial'},
-				{ answerText: 'Offices'},
-				{ answerText: 'Mixed use'},
-				{ answerText: 'Hospitality'},
-				{ answerText: 'Food and beverages'},
-			],
-		},
-	]
-	const render = [
-		{
-			questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
-			type: "choice",
-			answerOptions: [
-				{ answerText: 'I am looking for an interiors 3D modelling or visualization.'},
-				{ answerText: "I am looking for an exteriors 3D modelling or visualization."},
-				{ answerText: "I am looking for a full property marketing service."},
-				{ answerText: "I am looking furniture pieces renderings."},
-			],
-			},
-	]
-	const joinery = [
-		{
-			questionText: 'Tell us more regarding the project. What are you looking for? You can select more than one option.',
-			type: "choice",
-			answerOptions: [
-				{ answerText: "I'm looking to buy furniture."},
-				{ answerText: "I'm looking to design and purchase bespoke Joineries (kitchenette, wardrobes, etc.)"},
-			],
-			},
-	]
-	const mortage = [
-		{
-			questionText: 'Tell us more regarding the services you need, please list all the ones you are looking for.',
-			type: "input",
-			},
-	]
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [questionnaire, setQuestions] = useState(questions)
@@ -155,6 +157,7 @@ function Questionnaire() {
 	const [dbmessage, setdbMessage] = useState("");
 	const [sent, setSent] = useState("Send")
 	const stateRef = useRef();
+	const ref = useRef();
 	stateRef.current = answerToQuestion;
 
 	const navigate = useNavigate();
@@ -169,7 +172,7 @@ let firstQuestion = <Form>
 					<div className='answer-section' id='answer-section-first-form' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
-							<div id={i+10}><ModelStart name={answerOption.name} i={i} /></div>
+							<div className='model-questions' ref={ref} id={i+10}><ModelStart ref={ref} name={answerOption.name} i={i} /></div>
 							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 						</div>

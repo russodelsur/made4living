@@ -113,26 +113,10 @@ header {
   padding: 1rem;
   height: 100%;
 }
-.header-group:hover .li-header{
-  min-height: 10px;
-  max-height: 1000px;
-  opacity: 1;
-  padding-top: 1rem;
-}
 
 .header-group{
   justify-content: center;
 }
-
-.li-header{
-  list-style: none;
-  padding-left: 0;
-  min-height: 0;
-  max-height: 0;
-  opacity: 0;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  }
 
 #offcanvasNavbar-expand-false{
   width: 100%;
@@ -185,10 +169,6 @@ a {
   pointer-events: all;
 }
 
-.header-onhover, .ul-header-hidden{
-  padding-left: 0;
-}
-
 .header-title{
   padding-right: 2rem;
   border-bottom: 1px solid var(--white);
@@ -199,11 +179,6 @@ a {
   border-bottom: 1px solid var(--white);
   color: var(--white)!important;
   font-size: 1.8rem;
-}
-
-.li-header-mobile{
-  color: var(--white)!important;
-  font-size: 1.5rem;
 }
 
 .nav-link{
@@ -298,10 +273,7 @@ li {
   border-radius: 1rem;
   overflow: hidden;
 }
-.display{
-  height: 100%;
-  width: 100%;
-}
+
 #white{
   color: var(--white);
 }
@@ -325,14 +297,6 @@ li {
   padding: 2rem;
 }
 
-.services-list{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 0;
-  padding: 0;
-
-}
 .container-intro{
   display: flex;
   flex-direction: column;
@@ -401,10 +365,38 @@ li {
 }
 
 /* HOME SCREEN END */
-
+.model-canvas{
+  display: flex;
+  flex-grow: auto;
+  height: 100%;
+}
+.model-questions{
+  height: 16rem;
+  width: 100%;
+}
+.display{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+.services-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 30%;
+  margin: 0;
+  padding: 0;
+}
+.para-services{
+  padding: 1rem;
+  font-size: 1rem;
+  height: fit-content;
+  }
 .container{
   flex:1;
   max-width: 80% !important;
+  padding-top: 1rem;
 }
 
 .container-question{
@@ -541,26 +533,6 @@ position: absolute;
   margin: auto;
 }
 
-.title-aboutus {
-  text-align: left;
-  margin: 0;
-  margin-top: 0rem;
-  margin-bottom: .5rem;
-}
-
-.para-aboutus{
-  padding: 0rem;
-  width: 100%;
-  text-align: justify;
-  padding: 0rem;
-
-}
-
-.para-services{
-padding: 1rem;
-font-size: 1rem;
-}
-
 .logo-image{
   width: 100%;
 }
@@ -619,11 +591,14 @@ font-size: 1rem;
   display: block;
 }
 
-#canvas-london{
+#canvas-video{
   width: 100%;
-  height: 30rem;
-  margin-bottom: 1rem;
+  max-height: 40rem;
+  object-fit: cover;
+  overflow: hidden;
+  display: inline;
 }
+
 .london{
 margin: auto;
 }
@@ -631,11 +606,40 @@ margin: auto;
 .aboutus-block{
   width: 50%;
   padding-bottom: 1rem;
+  padding-top: 1rem;
+  margin-bottom: .5rem;
   position: relative;
 }
 
 #our-approach{
-  margin-right: 0;
+  float: right;
+}
+#our-expertise{
+  width: 70%;
+}
+.our-expertise{
+  padding-top: 2rem;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 2rem;  
+}
+.our-expertise>*{
+  text-align: left;
+  padding-left: 0;
+  margin-top: .5rem;
+}
+.title-aboutus {
+  text-align: left;
+  margin: 0;
+  margin-top: 0rem;
+  margin-bottom: .5rem;
+}
+
+.para-aboutus{
+  padding: 0rem;
+  width: 100%;
+  text-align: justify;
+  padding: 0rem;
 }
 
 .contact-info{
@@ -696,15 +700,6 @@ margin: auto;
   text-align: center;
 }
 
-.service-card {
-  height: 100;
-}
-
-.service-image {
-  overflow: hidden !important;
-
-}
-
 .service-title {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -729,7 +724,34 @@ margin: auto;
 }
 .card-projects{
   border: none !important;
-  --bs-card-inner-border-radius: none !important;
+  --bs-card-inner-border-radius: 10px!important;
+  max-height: 50vh;
+  overflow: hidden;
+}
+
+.project-title{
+  border-bottom: 1px solid rgba(43,46,52,.5);
+  padding-bottom: 1rem;
+  text-align: left;
+}
+
+.service-image{
+  border-radius: 1rem;
+}
+
+.project-type{
+  text-align: left;
+  padding-left: 0;
+}
+.work-title{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: left;
+}
+.card-img-top{
+  object-fit: cover;
+  overflow: hidden;
+  display: inline;
 }
 
 .card-single-project{
@@ -757,13 +779,17 @@ margin: auto;
     padding: 1rem;
     flex-direction: column;
   }
-
-  .container-aboutus{
-    display: flex;
-    flex-direction: column;
+  .aboutus-block{
+    width: 60%;
   }
   .question-section{
     min-width: 5rem;
+  }
+  #our-expertise{
+    width: 100%;
+  }
+  .our-expertise{
+    width: 100%;
   }
 }
 
@@ -805,6 +831,9 @@ margin: auto;
   .services-list{
     flex-direction: row;
     flex-wrap: wrap;
+  }
+  .aboutus-block{
+    width: 100%;
   }
   footer {
     flex-direction: column;

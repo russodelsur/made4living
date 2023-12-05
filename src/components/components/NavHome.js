@@ -60,32 +60,19 @@ const NavHome = () => {
                   >
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/" id="home" onClick={()=>toggleMenu()}>Home</Link></h4>
-                        <ul className='header-onhover'>
-                          <li className='li-header'></li>
-                        </ul>
                       </div>
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/about" id="about" onClick={()=>toggleMenu()}>About us</Link></h4>
-                        <ul className='header-onhover'>
-                          <li className='li-header'></li>
-                        </ul>
                       </div>
                       <div className='header-group'>     
-                      <NavLink ><img alt='m4llogo' src={require('../../img/logo-single-white.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>                                     
-                      <Offcanvas.Header closeButton/>
+                        <NavLink ><img alt='m4llogo' src={require('../../img/logo-single-white.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>                                     
+                        <Offcanvas.Header closeButton/>
                       </div>
                       <div className='header-group'>
-                        <h4><a className="header-title">Practice</a></h4>
-                        <ul className='header-onhover'>
-                          <li className='li-header'><Link to="/services" id="services" onClick={()=>toggleMenu()}>Services</Link></li>
-                          <li className='li-header'><Link to="/work" id="work" onClick={()=>toggleMenu()}>Work</Link></li>
-                        </ul>
+                        <h4><Link className="header-title" to="/work" id="work" onClick={()=>toggleMenu()}>Work</Link></h4>
                       </div>
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/contact" id="contact" onClick={()=>toggleMenu()}>Contact</Link></h4>
-                        <ul className='header-onhover'>
-                          <li className='li-header'></li>
-                        </ul>
                       </div>
 
                   </Navbar.Offcanvas>

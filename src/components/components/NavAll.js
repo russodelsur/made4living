@@ -39,27 +39,18 @@ function NavAll() {
           <Container  className='header-regular'>
                     <div className='header-group'>
                       <h4><Link to="/" id="home">Home</Link></h4>
-                      <ul className='header-onhover'>
-                        <li className='li-header'></li>
-                      </ul>
                     </div>
                     <div className='header-group'>
                       <h4><Link to="/about" id="about">About us</Link></h4>
-                      <ul className='header-onhover'>
-                        <li className='li-header'></li>
-                      </ul>
                     </div>
                     <div className='header-group'>     
                     <NavLink ><img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>                                     
                     </div>
                     <div className='header-group'>
-                      <h4 className='header-show'><Link to="/work" id="work">Work</Link></h4>
+                      <h4><Link to="/work" id="work">Work</Link></h4>
                     </div>
                     <div className='header-group'>
                       <h4><Link  to="/contact" id="contact">Contact</Link></h4>
-                      <ul className='header-onhover'>
-                        <li className='li-header'></li>
-                      </ul>
                     </div>
               </Container>
           </Navbar>

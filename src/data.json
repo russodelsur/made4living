@@ -39,32 +39,38 @@
     {
         "service": "Architectural Design",
         "image": "arch.jpg",
-        "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality."
+        "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality.",
+        "name": "./gltf/02.gltf"
     },    
     {
         "service": "Interior design",
         "image": "interiordesign.jpg",
-        "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury."
+        "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury.",
+        "name": "./gltf/02.gltf"
     },
     {
         "service": "3D visualization",
         "image": "render.jpg",
-        "copy": "Experience your project before it comes to life with our cutting-edge 3D visualization services. Our realistic renderings bring your ideas to vivid reality, allowing you to make informed decisions and visualize the end result with unparalleled clarity."
+        "copy": "Experience your project before it comes to life with our cutting-edge 3D visualization services. Our realistic renderings bring your ideas to vivid reality, allowing you to make informed decisions and visualize the end result with unparalleled clarity.",
+        "name": "./gltf/test.gltf"
     },
     {
         "service": "Bespoke furniture",
         "image": "bespoke.jpg",
-        "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style."
+        "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style.",
+        "name": "./gltf/04.gltf"
     },
     {
         "service": "Professional consultancy",
         "image": "professional.jpg",
-        "copy": "Navigate the complexities of your house purchase or renovation with our expert consultancy services. We connect you with trusted professionals from various disciplines, ensuring a seamless and efficient process from start to finish."
+        "copy": "Navigate the complexities of your house purchase or renovation with our expert consultancy services. We connect you with trusted professionals from various disciplines, ensuring a seamless and efficient process from start to finish.",
+        "name": "./gltf/05.gltf"
     },
     {
         "service": "House search and report",
         "image": "housesearch.jpg",
-        "copy": "Discover your dream property with our expert guidance. Our team supports you with tailored advice, detailed inspections, and clear reports to ensure you make informed choices every step of the way."
+        "copy": "Discover your dream property with our expert guidance. Our team supports you with tailored advice, detailed inspections, and clear reports to ensure you make informed choices every step of the way.",
+        "name": "./gltf/01.gltf"
     }
 ]
 }

@@ -4,15 +4,58 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap/all';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, forwardRef} from 'react';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
+const ModelStart = forwardRef((props, ref) => {
 
-function ModelStart(props) {
+  let pixelRatio = window.devicePixelRatio
+  let AA = true
+  if (pixelRatio > 1) {
+    AA = false
+  }
   const [scenes, setScenes] = useState([]);
   const [canvas] = useState(document.createElement('canvas'));
-  let model, camera, scene, renderer, exposure;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [camera] = useState(new THREE.PerspectiveCamera( 30, window.innerWidth/window.innerHeight, .01, 15 ))
+  const [renderer] = useState(
+  new THREE.WebGLRenderer({ 
+    canvas: canvas,
+    alpha: false, 
+    antialias: AA,
+    powerPreference: "high-performance",
+    precision: "highp",
+  })
+  )
+  
+  let model, scene, exposure;
+  
+  useEffect(() => {
+    const rect = ref.current.getBoundingClientRect()
+    camera.aspect = rect.width/ rect.height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(rect.width, rect.height);
+  }, []); 
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      if (ref.current) {
+        // Get the dimensions and position of the element
+      setWindowWidth(window.innerWidth);
+      const rect = ref.current.getBoundingClientRect()
+      camera.aspect = rect.width/ rect.height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(rect.width, rect.height);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+    window.removeEventListener('resize', handleResize);
+    };
+}, [windowWidth]); // Empty dependency array, so the effect runs only once on mount
+
 
 useEffect(() =>{
   canvas.className = 'render-item';
@@ -38,20 +81,6 @@ function init(name, i, canvas) {
   scene = new THREE.Scene();
   scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
   scene.fog = new THREE.Fog( scene.background, 1, 5000 );
-
-  let pixelRatio = window.devicePixelRatio
-  let AA = true
-  if (pixelRatio > 1) {
-    AA = false
-  }
-
-  renderer = new THREE.WebGLRenderer({ 
-    canvas: canvas,
-    alpha: false, 
-    antialias: AA,
-    powerPreference: "high-performance",
-    precision: "highp",
-  });
 
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -116,7 +145,7 @@ loader.load(name, function (gltf) {
 
 });
 
-camera = new THREE.PerspectiveCamera( 30, 1.2, .01, 15 );
+// camera = new THREE.PerspectiveCamera( 30, 1.2, .01, 15 );
 
 camera.position.set(0,2,5);
 camera.rotation.set(Math.PI/-14, 0, 0)
@@ -273,6 +302,6 @@ function animate() {
   renderer.render( scene, camera );
 }
 
-}
+});
 
 export default ModelStart;
