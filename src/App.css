@@ -666,7 +666,12 @@ margin: auto;
   padding: .3rem;
   text-align: center;
 }
-
+.material-select{
+  position: relative;
+  float: right!important;
+  margin-right: 0!important;
+  right: 0;
+}
 .light-text{
   font-weight: 100;
   font-size: small;
@@ -831,6 +836,10 @@ margin: auto;
   .services-list{
     flex-direction: row;
     flex-wrap: wrap;
+    width: auto;
+  }
+  .model-canvas{
+    min-height: 20rem;
   }
   .aboutus-block{
     width: 100%;

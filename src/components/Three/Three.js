@@ -4,7 +4,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap/all';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { useState, useEffect, forwardRef} from 'react';
+import { useState, useEffect, forwardRef, useRef} from 'react';
+// import TWEEN from '@tweenjs/tween.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
@@ -28,15 +29,30 @@ const ModelStart = forwardRef((props, ref) => {
     precision: "highp",
   })
   )
+  const frameIdRef = useRef(null);
+
+  // const originalMaterials = {};
   
   let model, scene, exposure;
   
+  const stopAnimation = () => {
+    if (frameIdRef.current) {
+     cancelAnimationFrame(frameIdRef.current);
+      frameIdRef.current = null;
+      }
+    };
+
   useEffect(() => {
     const rect = ref.current.getBoundingClientRect()
     camera.aspect = rect.width/ rect.height;
     camera.updateProjectionMatrix();
     renderer.setSize(rect.width, rect.height);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); 
+
+  useEffect(() => {
+    stopAnimation();
+  }, [props.click]); 
 
   useEffect(() => {
 
@@ -54,6 +70,7 @@ const ModelStart = forwardRef((props, ref) => {
     return () => {
     window.removeEventListener('resize', handleResize);
     };
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [windowWidth]); // Empty dependency array, so the effect runs only once on mount
 
 
@@ -75,6 +92,7 @@ async function renderCanvas(i) {
   div.appendChild(canvas);
 }
 
+// FUNCTION START
 
 function init(name, i, canvas) {
 
@@ -90,17 +108,11 @@ function init(name, i, canvas) {
   renderer.toneMappingExposure = exposure;
   renderer.setPixelRatio( window.devicePixelRatio );
 
-
-
 // Materials
 
 const material = new THREE.MeshLambertMaterial({
-  // roughness: .5,
-  // metalness: .2,
   color: 0xffffff,
-  side: THREE.DoubleSide
-  // clearcoat: 1,
-  // clearcoatRoughness: .2,
+  side: THREE.DoubleSide,
 })	
 
 // Loading models
@@ -112,40 +124,50 @@ const draco = new DRACOLoader();
 draco.setDecoderPath(decoderPath);
 loader.setDRACOLoader( draco );
 
-loader.load(name, function (gltf) {
+
+loader.load("./gltf/floor.gltf", function (gltf) {
+  model = gltf.scene;
   gltf.scene.traverse((o) => {
     if (o.isMesh) o.material = material;
-  });		
+  });
   gltf.scene.traverse((o) => {
     if (o.isMesh) {
     o.castShadow = true;
     o.receiveShadow = true;
     }
   });
-  model = gltf.scene;
-  scene.add(model);
+  scene.add(gltf.scene);
+});
 
-  if (i !== 4) {
-    const mesh = model.children[0];
+
+loader.load(name, function (gltf) {
+  model = gltf.scene;
+  // model.traverse((o) => {
+  //   if (o.isMesh) {
+  //   // Save the original material with the unique ID of the mesh as the key
+  //   originalMaterials[o.id] = o.material;
+  //   }
+  //   });
+  model.traverse((o) => {
+    if (o.isMesh) o.material = material;
+  });
+  model.traverse((o) => {
+    if (o.isMesh) {
+    o.castShadow = true;
+    o.receiveShadow = true;
+    }
+  });
+  scene.add(model);
+  for (let i = 0; i < model.children.length; i++) {
+    const mesh = model.children[i];
     // mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
     const edges = new THREE.EdgesGeometry( mesh.geometry );
     let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000} ));
     line.material.opacity = 0.25;
     line.material.transparent = true;
     scene.add( line );
-  } else {
-    const mesh = model.children[0];
-    // mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
-    const edges = new THREE.EdgesGeometry( mesh.geometry );
-    let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x5f5f5f } ));
-    line.material.opacity = 0.25;
-    line.material.transparent = true;
-    scene.add( line ); 
   }
-
 });
-
-// camera = new THREE.PerspectiveCamera( 30, 1.2, .01, 15 );
 
 camera.position.set(0,2,5);
 camera.rotation.set(Math.PI/-14, 0, 0)
@@ -170,6 +192,10 @@ let lightUp = "";
 let lightDown = "";
 let quantity = 2;
 document.getElementById(i+10).addEventListener("mouseover", function(){
+  // model.traverse((o) => {
+  //   if (o.isMesh) o.material = originalMaterials[o.id];
+  // });
+  // scene.add(model);
   moveCamera(0, 2, 4);
   rotateCamera(Math.PI/-10, 0, 0);
   lightUp = setInterval(lighting, 30)
@@ -185,6 +211,10 @@ document.getElementById(i+10).addEventListener("mouseover", function(){
 });
 
 document.getElementById(i+10).addEventListener("mouseout", function(){
+  // model.traverse((o) => {
+  //   if (o.isMesh) o.material = material;
+  // });
+  // scene.add(model);
   moveCamera(0, 2, 5);
   rotateCamera(Math.PI/-14, 0, 0);
   clearInterval(lightUp);
@@ -197,15 +227,6 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
     quantity = dirLight.intensity; 
   }
 }});
-
-// const controls = new OrbitControls( camera, renderer.domElement );
-// controls.minDistance = 2;
-// controls.maxDistance = 10;
-// controls.maxPolarAngle = Math.PI / 2;
-// controls.target.set( 0, 0, 0 );
-// controls.update();
-// controls.enableZoom = false;
-
 
 				// LIGHTS
 
@@ -239,20 +260,6 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
 				dirLight.shadow.camera.far = 3500;
 				dirLight.shadow.bias = - 0.0001;
 
-
-        // GROUND
-
-				// const groundGeo = new THREE.PlaneGeometry( 10000, 10000 );
-				// const groundMat = new THREE.MeshLambertMaterial( { color: 0xffffff } );
-				// // groundMat.color.setHSL( 0.095, 1, 0.75 );
-
-				// const ground = new THREE.Mesh( groundGeo, groundMat );
-				// ground.position.y = -.04;
-				// ground.rotation.x = - Math.PI / 2;
-				// ground.receiveShadow = true;
-				// scene.add( ground );
-
-
 				// Add Sky
 				let sky = new Sky();
 				sky.scale.setScalar( 450000 );
@@ -282,8 +289,6 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
         uniforms[ 'sunPosition' ].value.copy( sun );
 
 				scene.add( sky );
-				// let sun = new THREE.Vector3();
-
 
 const light = new THREE.DirectionalLight( 0xffffff, 2 );
 light.position.set( 1, 1, 1 );
@@ -296,12 +301,12 @@ animate()
 }
 
 function animate() {
-  requestAnimationFrame( animate );
+  frameIdRef.current = requestAnimationFrame(animate); // Save the frame ID to frameIdRef.current.
+  // requestAnimationFrame( animate );
   renderer.toneMappingExposure = Math.pow( exposure, 5.0 ); // to allow for very bright scenes.
   renderer.setClearColor( 0xffffff );
   renderer.render( scene, camera );
-}
-
+  }
 });
 
 export default ModelStart;

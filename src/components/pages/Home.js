@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
-import React, {useState, useEffect, forwardRef, useRef } from 'react';
-import {Link, useNavigate, useLocation} from "react-router-dom";
+import React, {useState, useEffect,useRef } from 'react';
+import {Link} from "react-router-dom";
 import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
 import services from "../../data.json";
@@ -8,57 +8,59 @@ import ScrollIcon from '../components/Scroll';
 import { Element } from 'react-scroll';
 import ModelStart from '../Three/Three';
 
-// function Icon({svgImage}) {
-//   return (
-//     <div dangerouslySetInnerHTML={{__html: svgImage}}/>
-//   );
-// }
- function Home() {
-    const [isShown, setIsShown] = useState(false);
-    const [localMousePos, setLocalMousePos] = useState({});
-    const [loaded, turnOffLanding] = useState(true)
-    const [currentService, setService] = useState(services.services[0])
-    const [currentIndex, setIndex] = useState(1);
-	const ref = useRef();
+function Home() {
+const [isShown, setIsShown] = useState(false);
+const [localMousePos, setLocalMousePos] = useState({});
+const [loaded, turnOffLanding] = useState(true)
+const [currentService, setService] = useState(services.services[0])
+const [currentIndex, setIndex] = useState(1);
+const [click, setClick] = useState(null);
+const ref = useRef();
 
-    useEffect(() => {
-        const visitedBefore = sessionStorage.getItem("visitedBefore")
-        if (visitedBefore) {
-            turnOffLanding(false);
-        } else {
-            sessionStorage.setItem("visitedBefore", "true");
-            setTimeout(()=>{turnOffLanding(false)}, 4000)
-        }  
-        }, []);
-    useEffect(() => {
-        let serviceList = services.services;
-        for (let i = 0; i < services.services.length; i++) {
-            const element = serviceList[i].service;
-            if (currentService.service === element) {
-               let li =  document.getElementById(i);
-                li.style.background ="var(--black)";
-                setIndex(i);
-            } else {
-                let li =  document.getElementById(i);
-                 li.style.background ="none";
-            }
-        }
-    }, [currentService])
+useEffect(() => {
+    const visitedBefore = sessionStorage.getItem("visitedBefore")
+    if (visitedBefore) {
+        turnOffLanding(false);
+    } else {
+        sessionStorage.setItem("visitedBefore", "true");
+        setTimeout(()=>{turnOffLanding(false)}, 4000)
+    }  
+}, []);
 
+const isFirstRender = useRef(true);
 
-    const div = document.querySelector('.intro-image');
-    const handleMouseMove = (event) => {
-      const localX = event.pageX - event.target.offsetLeft;
-      const localY = event.pageY - event.target.offsetTop;
-      setLocalMousePos({ x: localX, y: localY });
-      if (isShown){div.style.setProperty('--x', localMousePos.x + 'px');div.style.setProperty('--y', localMousePos.y + 'px')}
-    };
-        return (
+useEffect(() => {
+// Skip the first render
+if (isFirstRender.current) {
+    isFirstRender.current = false; // Toggle the ref so it's false for next renders
+    return;
+}
+let serviceList = services.services;
+for (let i = 0; i < serviceList.length; i++) {
+    const element = serviceList[i].service;
+    let li = document.getElementById(i.toString());
+    if (currentService.service === element) {
+        li.style.background = "var(--black)";
+        setIndex(i);
+    } else {
+        li.style.background = "none";
+    }
+    }
+}, [currentService]); // Add any other dependencies if needed
+
+const div = document.querySelector('.intro-image');
+const handleMouseMove = (event) => {
+    const localX = event.pageX - event.target.offsetLeft;
+    const localY = event.pageY - event.target.offsetTop;
+    setLocalMousePos({ x: localX, y: localY });
+    if (isShown){div.style.setProperty('--x', localMousePos.x + 'px');div.style.setProperty('--y', localMousePos.y + 'px')}
+};
+    return (
                 <>
-                {/* {
+                {
                     loaded ?
                     <Landing/>
-                    : */}
+                    :
                     <div className='home'>
                     <ScrollIcon/>
                         <section className='page01'>
@@ -90,15 +92,17 @@ import ModelStart from '../Three/Three';
                                         <div className='display'>
                                             {/* <img alt="service-image" className='home-service-image' variant="top" 
                                             src={require("../../img/"+currentService.image)} /> */}
-                                            <div className='model-canvas' ref={ref} id={currentIndex+10}><ModelStart ref={ref} name={currentService.name} i={currentIndex} /></div>
+                                            <div className='model-canvas' ref={ref} id={currentIndex+10}>
+                                                <ModelStart ref={ref} name={currentService.name} i={currentIndex} click={click} />
+                                            </div>
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                         <ul className='services-list'>
-                                        <Link to={`/services`} className='white-text'>
+                                        <Link to={`/work`} className='white-text'>
                                              <h3 className='service-title' >Our services</h3>
                                         </Link>
                                         {services.services.map((service, index) => (
-                                            <li className="service-icon" id={index} key={index} index={index}>
+                                            <li className="service-icon" id={index} key={index} index={index} onClick={()=>setClick(index)}>
                                                     <p id='white' className='p-service-home' 
                                                     onClick={()=>setService(service)}>{service.service}</p>
                                             </li>
@@ -113,7 +117,7 @@ import ModelStart from '../Three/Three';
                             <Carousel  id="carousel-container">
                             {services.projects.map((project, index) => (
                                     <Carousel.Item key={index} index={index} interval={2000}>
-                                        <img alt="carousel-image" className='carousel-image'src={require("../../img/"+project.image+".jpg")} />
+                                        <img alt="carouselimage" className='carousel-image'src={require("../../img/"+project.image+".jpg")} />
                                         <Carousel.Caption>
                                         <Link to={`/work`} id={project.name}>
                                             <h3>Selected Projects</h3>
@@ -127,7 +131,7 @@ import ModelStart from '../Three/Three';
                             </Carousel>
                         </section>
                     </div>
-                {/* } */}
+                }
             </>
         );
     };

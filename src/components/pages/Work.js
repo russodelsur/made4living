@@ -1,5 +1,5 @@
 import {React, useEffect, useState, useRef} from 'react';
-import { Container, Card, Row } from 'react-bootstrap';
+import { Container, Card, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import data from "../../data.json"
 import {motion} from 'framer-motion';
@@ -9,6 +9,7 @@ function Work() {
 
     const [currentService, setService] = useState(data.services[0])
     const [currentIndex, setIndex] = useState(1);
+    const [click, setClick] = useState(null);
     const ref = useRef();
 
     useEffect(() => {
@@ -35,16 +36,19 @@ function Work() {
             <Container>     
             <div style={{marginBottom:"5rem"}}>
                 <h2 className='work-title'>Our Services</h2>
-                 <div style={{background:"none", height:"60vh"}} className='services-box'>
+                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
                         {/* <img alt="service-image" className='home-service-image' variant="top" 
                         src={require("../../img/"+currentService.image)} /> */}
-                        <div className='model-canvas' ref={ref} id={currentIndex+10}><ModelStart ref={ref} name={currentService.name} i={currentIndex} /></div>
+                        <div className='model-canvas' ref={ref} id={currentIndex+10}>
+                            {/* <Button className='material-select'></Button>    */}
+                            <ModelStart ref={ref} name={currentService.name} i={currentIndex} click={click} />
+                        </div>
                         <p className='para-services'>{currentService?.copy}</p>
                     </div>
                     <ul style={{marginLeft:"2rem"}} className='services-list'>
                     {data.services.map((service, index) => (
-                        <li className="service-icon" id={index} key={index} index={index}>
+                        <li className="service-icon" id={index} key={index} index={index} onClick={()=>setClick(index)}>
                                 <p className='p-service-home' 
                                 onClick={()=>setService(service)}>{service.service}</p>
                         </li>

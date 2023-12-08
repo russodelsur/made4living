@@ -5,7 +5,6 @@ import Work from './pages/Work';
 import About from './pages/About';
 import Home from './pages/Home';
 import Header from './components/Header';
-import Services from './pages/Services';
 import Contact from "./pages/Contact";
 import Privacy from './pages/Privacy';
 import ProjectSingle from './pages/ProjectSingle';
@@ -54,7 +53,7 @@ function AnimatedRoutes() {
             element={<ProjectSingle projects={projects}/>}
           />
           <Route exact path="about" element={<About />} />
-          <Route exact path="services" element={<Services />} />
+          <Route exact path="work" element={<Work />} />
           <Route exact path="contact" element={<Contact />} />
           <Route exact path="privacy-policy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
