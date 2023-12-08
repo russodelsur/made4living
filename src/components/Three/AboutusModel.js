@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import "./Three.css";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { gsap } from 'gsap/all';
+// import { gsap } from 'gsap/all';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { useState, useEffect} from 'react';
@@ -41,6 +41,7 @@ useEffect(() => {
   camera.aspect = rect.width/ rect.height;
   camera.updateProjectionMatrix();
   renderer.setSize(rect.width, rect.height);
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []); 
 
 useEffect(() => {
@@ -59,6 +60,7 @@ useEffect(() => {
     return () => {
     window.removeEventListener('resize', handleResize);
     };
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [windowWidth]); // Empty dependency array, so the effect runs only once on mount
 
 useEffect(() =>{
@@ -99,14 +101,14 @@ function init() {
 
 // Materials
 
-const material = new THREE.MeshLambertMaterial({
-  // roughness: .5,
-  // metalness: .2,
-  color: 0xffffff,
-  side: THREE.DoubleSide
-  // clearcoat: 1,
-  // clearcoatRoughness: .2,
-})	
+// const material = new THREE.MeshLambertMaterial({
+//   // roughness: .5,
+//   // metalness: .2,
+//   color: 0xffffff,
+//   side: THREE.DoubleSide
+//   // clearcoat: 1,
+//   // clearcoatRoughness: .2,
+// })	
 
 // Loading models
 let decoderPath = 'https://www.gstatic.com/draco/versioned/decoders/1.4.1/';
