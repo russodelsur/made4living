@@ -51,6 +51,7 @@ function ScrollIcon(){
         }, [currentSection]);
     return(
         <div>        
+        <button>
         <ScrollLink
             to={nextSection}
             spy={true}
@@ -61,6 +62,7 @@ function ScrollIcon(){
             >
         <Scroll className='scroll'/>
         </ScrollLink>
+        </button>    
     </div>
     );
 }
