@@ -40,22 +40,22 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomeLayout />}>
-          <Route path="/" index element={<Home/>} />
+        <Route exact path="/" element={<HomeLayout />}>
+          <Route exact path="/" index element={<Home/>} />
         </Route>
-        <Route path="/" element={<BasicLayout />}>
-          <Route path="work" element={<Work />} />
+        <Route exact path="/" element={<BasicLayout />}>
+          <Route exact path="work" element={<Work />} />
           <Route
-            path="/projects/:slug"
+            exact path="/projects/:slug"
             element={<ProjectSingle projects={projects}/>}
           />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="privacy-policy" element={<Privacy />} />
+          <Route exact path="about" element={<About />} />
+          <Route exact path="contact" element={<Contact />} />
+          <Route exact path="privacy-policy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/" element={<QuestionnaireLayout />}>
-          <Route path="tellusmore" element={<Questionnaire />} />
+        <Route exact path="/" element={<QuestionnaireLayout />}>
+          <Route exact path="tellusmore" element={<Questionnaire />} />
         </Route>
       </Routes>
       </AnimatePresence>

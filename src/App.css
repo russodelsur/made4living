@@ -808,9 +808,12 @@ margin: auto;
     padding-left: 1.5rem !important;
   }
   .para-services{
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 0rem;
+    padding-bottom: 1rem;
     }
+  .p-service-home{
+    padding: .6rem;
+  }
   .service-title {
     padding: .5rem;
     text-align: center;
@@ -839,7 +842,7 @@ margin: auto;
     width: auto;
   }
   .model-canvas{
-    min-height: 20rem;
+    min-height: 30vh;
   }
   .aboutus-block{
     width: 100%;
@@ -849,6 +852,7 @@ margin: auto;
   }
   p {
     text-align: center;
+    font-size: .9rem!important;
   }
   a{
     font-size: .9rem;
