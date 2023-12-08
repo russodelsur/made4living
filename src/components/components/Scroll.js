@@ -1,10 +1,10 @@
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import { ReactComponent as Scroll } from "../../img/scroll.svg";
 import React, {useState, useEffect } from 'react';
 
 function ScrollIcon(){
     const [currentSection, setSection] = useState(null)
-    const [nextSection, setNextSection] = useState(null)
+    const [nextSection, setNextSection] = useState("/")
 
     useEffect(() => {
         // Define a handler for scroll events
@@ -51,7 +51,7 @@ function ScrollIcon(){
         }, [currentSection]);
     return(
         <div>        
-        <Link
+        <ScrollLink
             to={nextSection}
             spy={true}
             smooth={true}
@@ -60,7 +60,7 @@ function ScrollIcon(){
             delay={0}
             >
         <Scroll className='scroll'/>
-        </Link>
+        </ScrollLink>
     </div>
     );
 }

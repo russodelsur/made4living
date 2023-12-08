@@ -10,9 +10,9 @@ let questions = [
 		type: "first",
 		answerOptions: [
 			{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
-				name: "./gltf/arch.gltf"},
-			{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
 				name: "./gltf/house.gltf"},
+			{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
+				name: "./gltf/arch.gltf"},
 			{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
 				name: "./gltf/vis.gltf"},
 			{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
@@ -172,7 +172,7 @@ let firstQuestion = <Form>
 					<div className='answer-section' id='answer-section-first-form' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
-							<div className='model-questions' ref={ref} id={i+10}><ModelStart ref={ref} name={answerOption.name} i={i} /></div>
+							<div className='model-questions' ref={ref} id={i+10}><ModelStart ref={ref} name={answerOption.name} i={i} click={null}/></div>
 							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 						</div>

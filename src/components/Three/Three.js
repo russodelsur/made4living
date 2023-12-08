@@ -34,6 +34,15 @@ const ModelStart = forwardRef((props, ref) => {
   // const originalMaterials = {};
   
   let model, scene, exposure;
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const rect = ref.current.getBoundingClientRect()
+    camera.aspect = rect.width/ rect.height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(rect.width, rect.height);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
   
   const stopAnimation = () => {
     if (frameIdRef.current) {
@@ -43,15 +52,12 @@ const ModelStart = forwardRef((props, ref) => {
     };
 
   useEffect(() => {
-    const rect = ref.current.getBoundingClientRect()
-    camera.aspect = rect.width/ rect.height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(rect.width, rect.height);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
-
-  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // Toggle the ref so it's false for next renders
+      return;
+  }
     stopAnimation();
+    console.log("hey")
   }, [props.click]); 
 
   useEffect(() => {
@@ -88,8 +94,12 @@ function renderThree() {
 }
 async function renderCanvas(i) {
   await renderThree();
-  const div = document.getElementById(i+10);
-  div.appendChild(canvas);
+  if (props.click === null) {
+    const div = document.getElementById(i+10);
+    div.appendChild(canvas);
+  } else {
+    ref.current.appendChild(canvas);
+  }
 }
 
 // FUNCTION START
