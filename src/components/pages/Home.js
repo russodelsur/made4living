@@ -14,7 +14,7 @@ const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
 const [currentService, setService] = useState(data?.services[0])
 const [currentIndex, setIndex] = useState(1);
-const [click, setClick] = useState(null);
+const [click, setClick] = useState(10);
 const ref = useRef();
 
 // useEffect(() => {
@@ -31,7 +31,7 @@ useEffect(() => {
 let serviceList = data.services;
 for (let i = 0; i < serviceList.length; i++) {
     const element = serviceList[i].service;
-    let li = document.getElementById(i.toString());
+    let li = document.getElementById("home"+i.toString());
     if (currentService.service === element) {
         li.style.background = "var(--black)";
         setIndex(i);
@@ -72,7 +72,7 @@ const handleMouseMove = (event) => {
                                 <h1>Smart design and property solutions. All in one place.</h1>
                                 <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                                 <h6>Tell us more about your project.</h6>
-                                <Link className="button-questionnaire-link"  to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
+                                <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
                         </section>
 
@@ -81,7 +81,7 @@ const handleMouseMove = (event) => {
                             <div className='container-page03'>
                                     <div className='services-box'>
                                         <div className='display'>
-                                            <div className='model-canvas' ref={ref} id={currentIndex+10}>
+                                            <div className='model-canvas' ref={ref}>
                                                 <ModelStart ref={ref} name={currentService?.name} i={currentIndex} click={click} />
                                             </div>
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
@@ -91,7 +91,7 @@ const handleMouseMove = (event) => {
                                              <h3 className='service-title' >Our services</h3>
                                         </Link>
                                         {data.services.map((service, index) => (
-                                            <li className="service-icon" id={index} key={index} index={index} onClick={()=>setClick(index)}>
+                                            <li className="service-icon" id={"home"+index} key={index} index={index} onClick={()=>setClick(index)}>
                                                     <p id='white' className='p-service-home' 
                                                     onClick={()=>setService(service)}>{service.service}</p>
                                             </li>

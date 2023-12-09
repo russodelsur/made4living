@@ -6,11 +6,11 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { useState, useEffect, forwardRef, useRef} from 'react';
 // import TWEEN from '@tweenjs/tween.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
+// import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
 const ModelStart = forwardRef((props, ref) => {
-
+  const isReactSnap = navigator.userAgent.includes('ReactSnap');
   let pixelRatio = window.devicePixelRatio
   let AA = true
   if (pixelRatio > 1) {
@@ -46,7 +46,7 @@ const ModelStart = forwardRef((props, ref) => {
   
   const stopAnimation = () => {
     if (frameIdRef.current) {
-     cancelAnimationFrame(frameIdRef.current);
+      cancelAnimationFrame(frameIdRef.current);
       frameIdRef.current = null;
       }
     };
@@ -82,14 +82,16 @@ const ModelStart = forwardRef((props, ref) => {
 
 useEffect(() =>{
   canvas.className = 'render-item';
+  if (!isReactSnap) {
   renderCanvas(props.i);
+  }
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[props.i])
 
 
 function renderThree() {
   return new Promise((resolve) => {
-  resolve(init(props.name,props.i,canvas))
+  resolve(init(props.name,props.i))
   });
 }
 async function renderCanvas(i) {
@@ -104,18 +106,17 @@ async function renderCanvas(i) {
 
 // FUNCTION START
 
-function init(name, i, canvas) {
+function init(name, i) {
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
   scene.fog = new THREE.Fog( scene.background, 1, 5000 );
 
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-  renderer.toneMapping = THREE.ReinhardToneMapping;
-  exposure = 1.2;
-  renderer.toneMappingExposure = exposure;
+  // renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // renderer.toneMapping = THREE.LinearToneMapping ;
+  // exposure = 1.2;
+  // renderer.toneMappingExposure = exposure;
   renderer.setPixelRatio( window.devicePixelRatio );
 
 // Materials
@@ -134,21 +135,19 @@ const draco = new DRACOLoader();
 draco.setDecoderPath(decoderPath);
 loader.setDRACOLoader( draco );
 
-
 loader.load("./gltf/floor.gltf", function (gltf) {
   model = gltf.scene;
   gltf.scene.traverse((o) => {
     if (o.isMesh) o.material = material;
   });
-  gltf.scene.traverse((o) => {
-    if (o.isMesh) {
-    o.castShadow = true;
-    o.receiveShadow = true;
-    }
-  });
+  // gltf.scene.traverse((o) => {
+  //   if (o.isMesh) {
+  //   o.castShadow = true;
+  //   o.receiveShadow = true;
+  //   }
+  // });
   scene.add(gltf.scene);
 });
-
 
 loader.load(name, function (gltf) {
   model = gltf.scene;
@@ -161,12 +160,12 @@ loader.load(name, function (gltf) {
   model.traverse((o) => {
     if (o.isMesh) o.material = material;
   });
-  model.traverse((o) => {
-    if (o.isMesh) {
-    o.castShadow = true;
-    o.receiveShadow = true;
-    }
-  });
+  // model.traverse((o) => {
+  //   if (o.isMesh) {
+  //   o.castShadow = true;
+  //   o.receiveShadow = true;
+  //   }
+  // });
   scene.add(model);
   for (let i = 0; i < model.children.length; i++) {
     const mesh = model.children[i];
@@ -201,42 +200,80 @@ gsap.to(camera.rotation, {
 let lightUp = "";
 let lightDown = "";
 let quantity = 2;
-document.getElementById(i+10).addEventListener("mouseover", function(){
-  // model.traverse((o) => {
-  //   if (o.isMesh) o.material = originalMaterials[o.id];
-  // });
-  // scene.add(model);
-  moveCamera(0, 2, 4);
-  rotateCamera(Math.PI/-10, 0, 0);
-  lightUp = setInterval(lighting, 30)
-  function lighting(){
-  clearInterval(lightDown)
-  if (quantity === 50) {
-    clearInterval(lightUp)
-  } else {
-  dirLight.intensity = quantity+1;
-  quantity = dirLight.intensity;
-  }
-  }
-});
 
-document.getElementById(i+10).addEventListener("mouseout", function(){
-  // model.traverse((o) => {
-  //   if (o.isMesh) o.material = material;
-  // });
-  // scene.add(model);
-  moveCamera(0, 2, 5);
-  rotateCamera(Math.PI/-14, 0, 0);
-  clearInterval(lightUp);
-  lightDown = setInterval(lighting, 30)
-  function lighting(){
-  if (quantity === 2) {
-      clearInterval(lightDown)
-  } else {
-    dirLight.intensity = quantity-1;
-    quantity = dirLight.intensity; 
-  }
-}});
+if (props.click === null) {
+  document.getElementById(i+10).addEventListener("mouseover", function(){
+    // model.traverse((o) => {
+    //   if (o.isMesh) o.material = originalMaterials[o.id];
+    // });
+    // scene.add(model);
+    moveCamera(0, 2, 4);
+    rotateCamera(Math.PI/-10, 0, 0);
+    lightUp = setInterval(lighting, 30)
+    function lighting(){
+    clearInterval(lightDown)
+    if (quantity === 50) {
+      clearInterval(lightUp)
+    } else {
+    dirLight.intensity = quantity+1;
+    quantity = dirLight.intensity;
+    }
+    }
+  });
+  document.getElementById(i+10).addEventListener("mouseout", function(){
+    // model.traverse((o) => {
+    //   if (o.isMesh) o.material = material;
+    // });
+    // scene.add(model);
+    moveCamera(0, 2, 5);
+    rotateCamera(Math.PI/-14, 0, 0);
+    clearInterval(lightUp);
+    lightDown = setInterval(lighting, 30)
+    function lighting(){
+    if (quantity === 2) {
+        clearInterval(lightDown)
+    } else {
+      dirLight.intensity = quantity-1;
+      quantity = dirLight.intensity; 
+    }
+  }});
+} else {
+  ref.current.addEventListener("mouseover", function(){
+    // model.traverse((o) => {
+    //   if (o.isMesh) o.material = originalMaterials[o.id];
+    // });
+    // scene.add(model);
+    moveCamera(0, 2, 4);
+    rotateCamera(Math.PI/-10, 0, 0);
+    lightUp = setInterval(lighting, 30)
+    function lighting(){
+    clearInterval(lightDown)
+    if (quantity === 50) {
+      clearInterval(lightUp)
+    } else {
+    dirLight.intensity = quantity+1;
+    quantity = dirLight.intensity;
+    }
+    }
+  });
+  ref.current.addEventListener("mouseout", function(){
+    // model.traverse((o) => {
+    //   if (o.isMesh) o.material = material;
+    // });
+    // scene.add(model);
+    moveCamera(0, 2, 5);
+    rotateCamera(Math.PI/-14, 0, 0);
+    clearInterval(lightUp);
+    lightDown = setInterval(lighting, 30)
+    function lighting(){
+    if (quantity === 2) {
+        clearInterval(lightDown)
+    } else {
+      dirLight.intensity = quantity-1;
+      quantity = dirLight.intensity; 
+    }
+  }});
+}
 
 				// LIGHTS
 
@@ -254,11 +291,11 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
 				dirLight.position.multiplyScalar( 30 );
 				scene.add( dirLight );
 
-				dirLight.castShadow = true;
-        // dirLight.shadow.radius = 1;
+				// dirLight.castShadow = true;
+        // // dirLight.shadow.radius = 1;
 
-				dirLight.shadow.mapSize.width = 4096;
-				dirLight.shadow.mapSize.height = 4096;
+				// dirLight.shadow.mapSize.width = 4096/2;
+				// dirLight.shadow.mapSize.height = 4096/2;
 
 				const d = 50;
 
@@ -270,35 +307,35 @@ document.getElementById(i+10).addEventListener("mouseout", function(){
 				dirLight.shadow.camera.far = 3500;
 				dirLight.shadow.bias = - 0.0001;
 
-				// Add Sky
-				let sky = new Sky();
-				sky.scale.setScalar( 450000 );
-				let sun = new THREE.Vector3();
+				// // Add Sky
+				// let sky = new Sky();
+				// sky.scale.setScalar( 450000 );
+				// let sun = new THREE.Vector3();
 
-        const effectController = {
-					turbidity: 5,
-					rayleigh: .5,
-					mieCoefficient: 0.005,
-					mieDirectionalG: 0.7,
-					elevation: 100,
-					azimuth: 180,
-					exposure: renderer.toneMappingExposure
-				};
+        // const effectController = {
+				// 	turbidity: 5,
+				// 	rayleigh: .5,
+				// 	mieCoefficient: 0.005,
+				// 	mieDirectionalG: 0.7,
+				// 	elevation: 100,
+				// 	azimuth: 180,
+				// 	exposure: renderer.toneMappingExposure
+				// };
 
-        const uniforms = sky.material.uniforms;
-        uniforms[ 'turbidity' ].value = effectController.turbidity;
-        uniforms[ 'rayleigh' ].value = effectController.rayleigh;
-        uniforms[ 'mieCoefficient' ].value = effectController.mieCoefficient;
-        uniforms[ 'mieDirectionalG' ].value = effectController.mieDirectionalG;
+        // const uniforms = sky.material.uniforms;
+        // uniforms[ 'turbidity' ].value = effectController.turbidity;
+        // uniforms[ 'rayleigh' ].value = effectController.rayleigh;
+        // uniforms[ 'mieCoefficient' ].value = effectController.mieCoefficient;
+        // uniforms[ 'mieDirectionalG' ].value = effectController.mieDirectionalG;
 
-        const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
-        const theta = THREE.MathUtils.degToRad( effectController.azimuth );
+        // const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
+        // const theta = THREE.MathUtils.degToRad( effectController.azimuth );
 
-        sun.setFromSphericalCoords( 1, phi, theta );
+        // sun.setFromSphericalCoords( 1, phi, theta );
 
-        uniforms[ 'sunPosition' ].value.copy( sun );
+        // uniforms[ 'sunPosition' ].value.copy( sun );
 
-				scene.add( sky );
+				// scene.add( sky );
 
 const light = new THREE.DirectionalLight( 0xffffff, 2 );
 light.position.set( 1, 1, 1 );

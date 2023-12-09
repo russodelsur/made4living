@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container,NavLink, Navbar,Offcanvas } from 'react-bootstrap';
-import {Link, useNavigate, useLocation} from "react-router-dom";
+import { Container, Navbar, Offcanvas } from 'react-bootstrap';
+import {Link, useLocation} from "react-router-dom";
 
 
 const NavMobile = () => {
@@ -8,9 +8,7 @@ const NavMobile = () => {
     const [backColor, setBackColor] = useState("white")
     const [color, setColor] = useState("white")
     const [pos, setPos] = useState("relative")
-
-    const navigate = useNavigate();
-      const location = useLocation();
+    const location = useLocation();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen)
@@ -34,12 +32,11 @@ const NavMobile = () => {
         <header style={{background:color, position:pos, padding:"1rem"}}>
         <Navbar key={false} expand={false}>
         <Container fluid id="nav">
-            <Link to="/" id="logo" >
-              <picture>
-              <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo-long"></img>
-              </picture>
-            </Link>
-              {/* <p style={{color:colorRef.color}} >Hello</p> */}
+              <Link to="/" id="logo" >
+                <picture>
+                <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo-long"></img>
+                </picture>
+              </Link>
               <Navbar.Toggle style={{color:"black"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
                 <Navbar.Offcanvas
                 style={{backgroundColor:backColor}}
@@ -52,7 +49,11 @@ const NavMobile = () => {
                   placement="end"
                 >
                   <div className="mobile-main-div" >
-                    <NavLink ><img className="logo-mobile" alt='m4llogo-mobile' src={require('../../img/logo-single-white.png')} onClick={()=>(navigate("/"))}></img></NavLink>                                     
+                      <Link to="/" id="logo" >
+                        <picture>
+                         <img alt='m4llogo' src={require('../../img/logo-single-white.png')} onClick={()=>toggleMenu()} className="logo-mobile"></img>
+                        </picture>
+                      </Link>    
                     <Offcanvas.Header closeButton/>
                   </div>
                     <div className='header-group-mobile'>
@@ -71,8 +72,11 @@ const NavMobile = () => {
                       </h4>
                     </div>
                     <div className='header-group-mobile'>
-                      <h4><Link className="header-title-mobile" to="/contact" id="contact" onClick={()=>toggleMenu()}>Contact</Link></h4>
-
+                      <h4>
+                        <Link className="header-title-mobile" to="/contact" id="contact" onClick={()=>toggleMenu()}>
+                          Contact
+                        </Link>
+                      </h4>
                     </div>
                 </Navbar.Offcanvas>
               </Container>

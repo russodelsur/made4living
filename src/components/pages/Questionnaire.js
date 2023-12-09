@@ -172,7 +172,8 @@ let firstQuestion = <Form>
 					<div className='answer-section' id='answer-section-first-form' onChange={(e) => {produceInitialAnswer(e)}}>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
-							<div className='model-questions' ref={ref} id={i+10}><ModelStart ref={ref} name={answerOption.name} i={i} click={null}/></div>
+							<div className='model-questions' ref={ref} id={i+10}>
+								<ModelStart ref={ref} name={answerOption?.name} i={i} click={null}/></div>
 							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
 						</div>

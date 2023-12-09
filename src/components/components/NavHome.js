@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Container, NavLink, Navbar, Offcanvas } from 'react-bootstrap';
-import {Link, useNavigate} from "react-router-dom";
+import { Container, Navbar, Offcanvas } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 import NavMobile from './NavMobile';
 
 const NavHome = () => {
-
   const [menuOpen, setMenuOpen] = useState(false)
   const [windowSize, setWindowSize] = useState(null);
 
@@ -12,8 +11,6 @@ const NavHome = () => {
     setMenuOpen(!menuOpen)
   }
   const handleClose = () => setMenuOpen(false)
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Handler to call on window resize
@@ -48,7 +45,6 @@ const NavHome = () => {
                 <img alt='m4llogo' src={require('../../img/logo-full.png')} className="logo-long"></img>
                 </picture>
               </Link>
-                {/* <p style={{color:colorRef.color}} >Hello</p> */}
                 <Navbar.Toggle style={{color:"red"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
                   <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-${false}`}
@@ -59,14 +55,21 @@ const NavHome = () => {
                     placement="end"
                   >
                       <div className='header-group'>
-                        <h4><Link className="header-title" to="/" id="home" onClick={()=>toggleMenu()}>Home</Link></h4>
+                        <h4>
+                          <Link className="header-title" to="/" id="home" onClick={()=>toggleMenu()}>Home
+                          </Link>
+                        </h4>
                       </div>
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/about" id="about" onClick={()=>toggleMenu()}>About us</Link></h4>
                       </div>
                       <div className='header-group'>     
-                        <NavLink ><img alt='m4llogo' src={require('../../img/logo-single-white.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>                                     
-                        <Offcanvas.Header closeButton/>
+                      <Link to="/" id="logo" >
+                        <picture>
+                         <img alt='m4llogo' src={require('../../img/logo-single.png')} onClick={()=>toggleMenu()} className="logo"></img>
+                        </picture>
+                      </Link>                        
+                      <Offcanvas.Header closeButton/>
                       </div>
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/work" id="work" onClick={()=>toggleMenu()}>Work</Link></h4>
@@ -74,7 +77,6 @@ const NavHome = () => {
                       <div className='header-group'>
                         <h4><Link className="header-title" to="/contact" id="contact" onClick={()=>toggleMenu()}>Contact</Link></h4>
                       </div>
-
                   </Navbar.Offcanvas>
                 </Container>
             </Navbar>

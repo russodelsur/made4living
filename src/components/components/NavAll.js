@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Navbar} from 'react-bootstrap';
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import NavMobile from './NavMobile';
 
 function NavAll() {
-  const navigate = useNavigate();
-
   const [windowSize, setWindowSize] = useState(null);
-
 
   useEffect(() => {
     // Handler to call on window resize
@@ -44,7 +41,11 @@ function NavAll() {
                       <h4><Link to="/about" id="about">About us</Link></h4>
                     </div>
                     <div className='header-group'>     
-                    <Link to="/" id='home-logo'><img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo" onClick={()=>(navigate("/"))}></img></Link>                                     
+                      <Link to="/" id="logo" >
+                        <picture>
+                         <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo"></img>
+                        </picture>
+                      </Link>    
                     </div>
                     <div className='header-group'>
                       <h4><Link to="/work" id="work">Work</Link></h4>

@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 import NavAll from './NavAll';
 import NavHome from './NavHome';
 
-const Header = (colorRef) => {
+const Header = () => {
 
   const [home, isHome] = useState(false)
   const location = useLocation();
