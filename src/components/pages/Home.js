@@ -86,17 +86,19 @@ const handleMouseMove = (event) => {
                                             </div>
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
-                                        <ul className='services-list'>
-                                        <Link to="/work" className='white-text'>
-                                             <h3 className='service-title' >Our services</h3>
-                                        </Link>
-                                        {data.services.map((service, index) => (
-                                            <li className="service-icon" id={"home"+index} key={index} index={index} onClick={()=>setClick(index)}>
-                                                    <p id='white' className='p-service-home' 
-                                                    onClick={()=>setService(service)}>{service.service}</p>
-                                            </li>
-                                        ))}
-                                        </ul>
+                                            <div className='list'>
+                                                <Link to="/work" className='white-text'>
+                                                    <h3 className='service-title' >Our services</h3>
+                                                </Link>
+                                            <ul className='services-list'>
+                                            {data.services.map((service, index) => (
+                                                <li className="service-icon" id={"home"+index} key={index} index={index} onClick={()=>setClick(index)}>
+                                                        <p id='white' className='p-service-home' 
+                                                        onClick={()=>setService(service)}>{service.service}</p>
+                                                </li>
+                                            ))}
+                                            </ul>
+                                        </div>
                                     </div>
                             </div>
                         </section>

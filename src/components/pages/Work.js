@@ -45,7 +45,7 @@ return (
                         </div>
                         <p className='para-services'>{currentService?.copy}</p>
                     </div>
-                    <ul style={{marginLeft:"2rem"}} className='services-list'>
+                    <ul style={{marginLeft:"2rem", flexDirection:"column"}} className='services-list'>
                         {data.services.map((service, index) => (
                             <li className="service-icon" id={"work"+index} key={index} index={index} onClick={()=>setClick(index)}>
                                     <p className='p-service-home' 
