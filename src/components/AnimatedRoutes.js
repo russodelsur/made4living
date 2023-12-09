@@ -14,29 +14,30 @@ import Questionnaire from './pages/Questionnaire';
 
 import { AnimatePresence } from 'framer-motion';
 
+function QuestionnaireLayout() {
+  return <Outlet />
+}
+function HomeLayout() {
+  return (
+    <>
+      <Header/>
+      <Outlet/>
+    </>
+  )
+}
+function BasicLayout() {
+  return (
+    <>
+      <Header/>
+      <Outlet />
+      <Footer />
+    </>
+  )
+}
+
 function AnimatedRoutes() {
   const location = useLocation();
 
-  function QuestionnaireLayout() {
-    return <Outlet />
-  }
-  function HomeLayout() {
-    return (
-      <>
-        <Header/>
-        <Outlet/>
-      </>
-    )
-  }
-  function BasicLayout() {
-    return (
-      <>
-        <Header/>
-        <Outlet />
-        <Footer />
-      </>
-    )
-  }
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>

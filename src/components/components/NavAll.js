@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, NavLink, Navbar} from 'react-bootstrap';
+import { Container, Navbar} from 'react-bootstrap';
 import {Link, useNavigate} from "react-router-dom";
 import NavMobile from './NavMobile';
 
@@ -44,7 +44,7 @@ function NavAll() {
                       <h4><Link to="/about" id="about">About us</Link></h4>
                     </div>
                     <div className='header-group'>     
-                    <NavLink ><img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo" onClick={()=>(navigate("/"))}></img></NavLink>                                     
+                    <Link to="/" id='home-logo'><img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo" onClick={()=>(navigate("/"))}></img></Link>                                     
                     </div>
                     <div className='header-group'>
                       <h4><Link to="/work" id="work">Work</Link></h4>

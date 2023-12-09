@@ -1,4 +1,4 @@
-import {React, useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { Container, Card, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import data from "../../data.json"

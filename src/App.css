@@ -806,12 +806,9 @@ margin: auto;
     margin-left: 0;
   }
   .scroll{
-    height: 8rem;
-    margin: 1rem;
+    display: none;
   }
-  .scroll:hover .stoke, .scroll:hover {
-    height: 8rem;
-  }
+
   .logo{
     height: 2.5rem;
   } 
