@@ -255,6 +255,7 @@ overflow-x: hidden;
 section{
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   justify-content: center;
@@ -842,7 +843,7 @@ margin: auto;
   .p-service-home{
     padding: .6rem;
   }
-  .service-title {
+  .white-text{
     display: none;
   }
   .input-group {
