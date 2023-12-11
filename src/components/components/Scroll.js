@@ -50,7 +50,7 @@ function ScrollIcon(){
             }}
         }, [currentSection]);
     return(
-        <div>        
+        <div className="scroll-div">        
         <button>
         <ScrollLink
             to={nextSection}

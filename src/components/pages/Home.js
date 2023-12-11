@@ -69,7 +69,7 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <div className='home'>
-                    <ScrollIcon className="scroll-div"/>
+                    <ScrollIcon />
                         <section className='page01'>
                         <Element id="section1" className="scrollable-section"/>
                             <div 
