@@ -9,7 +9,7 @@ function Work() {
 
 const [currentService, setService] = useState(data.services[1])
 const [currentIndex, setIndex] = useState(1);
-const [click, setClick] = useState(10);
+const [click, setClick] = useState(1);
 const ref = useRef();
 
 useEffect(() => {

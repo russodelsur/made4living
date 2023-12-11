@@ -65,7 +65,6 @@ const ModelStart = forwardRef((props, ref, refProgress) => {
         camera.aspect = rect.width / rect.height;
         camera.updateProjectionMatrix();
         renderer.setSize(rect.width, rect.height);
-        console.log("activated");
       }
     };
     const currentRef = ref.current;
