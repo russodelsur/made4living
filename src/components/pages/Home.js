@@ -12,9 +12,10 @@ function Home() {
 const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
-const [currentService, setService] = useState(data?.services[0])
+const [currentService, setService] = useState(data.services[2])
 const [currentIndex, setIndex] = useState(1);
 const [click, setClick] = useState(10);
+const [marginTop, setMargin] = useState("100px");
 const ref = useRef();
 
 // useEffect(() => {
@@ -40,6 +41,19 @@ for (let i = 0; i < serviceList.length; i++) {
     }
     }
 }, [currentService]); // Add any other dependencies if needed
+
+useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+    // Set window width/height to state
+    if (window.innerWidth <= 900) {
+        setMargin("0px")
+        } 
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+}, []); // Empty array ensures that effect is only run on mount and unmount
 
 const div = document.querySelector('.intro-image');
 const handleMouseMove = (event) => {
@@ -79,9 +93,9 @@ const handleMouseMove = (event) => {
                         <section className='page03' >
                         <Element id="section3" className="scrollable-section"/>
                             <div className='container-page03'>
-                                    <div style={{marginTop:"100px"}} className='services-box'>
+                                    <div style={{marginTop:{marginTop}}} className='services-box'>
                                         <div className='display'>
-                                            <div className='model-canvas' ref={ref}>
+                                            <div className='model-canvas' ref={ref}>            
                                                 <ModelStart ref={ref} name={currentService?.name} i={currentIndex} click={click} />
                                             </div>
                                             <p id='white' className='para-services'>{currentService?.copy}</p>

@@ -14,7 +14,7 @@ function NavAll() {
       setWindowSize(false)
     } else {
       setWindowSize(true)
-    }
+      }
     }
     
     // Add event listener

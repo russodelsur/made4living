@@ -248,7 +248,7 @@ p {
 /* HOME SCREEN */
 
 html {
-scroll-snap-type: y mandatory;
+scroll-snap-type: block mandatory;
 overflow-x: hidden;
 }
 
@@ -256,11 +256,32 @@ section{
   height: 100vh;
   width: 100vw;
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-snap-stop: always;
   justify-content: center;
   display: flex;
 }
+.scrollable-section{
+  height: 100%;
+}
+#carousel-container{
+  height: 100%;
+}
 
+.page02{
+  background: var(--lightyellow);
+}
+
+.page03{
+  background: var(--reseda);
+}
+
+* > .page03{
+  color: var(--white);
+}
+
+.page04{
+  background-color: var(--white);
+}
 li {
   list-style: none;
   padding-top: 1rem;
@@ -332,21 +353,6 @@ li {
   padding: 2rem;
 }
 
-.page02{
-  background: var(--lightyellow);
-}
-
-.page03{
-  background: var(--reseda);
-}
-
-* > .page03{
-  color: var(--white);
-}
-
-.page04{
-  background-color: var(--white);
-}
 .carousel-image{
   width: 100vw;
   height: 100vh;
@@ -380,13 +386,6 @@ li {
   stroke-width: 2.5px!important;
   fill: var(--white)!important;
   height: 12rem;
-}
-
-.scrollable-section{
-  height: 100%;
-}
-#carousel-container{
-  height: 100%;
 }
 
 /* HOME SCREEN END */

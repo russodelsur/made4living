@@ -9,7 +9,7 @@ import { useState, useEffect, forwardRef, useRef} from 'react';
 // import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
-const ModelStart = forwardRef((props, ref) => {
+const ModelStart = forwardRef((props, ref, refProgress) => {
   const isReactSnap = navigator.userAgent.includes('ReactSnap');
   let pixelRatio = window.devicePixelRatio
   let AA = true
@@ -18,8 +18,6 @@ const ModelStart = forwardRef((props, ref) => {
   }
   const [scenes, setScenes] = useState([]);
   const [canvas] = useState(document.createElement('canvas'));
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [camera] = useState(new THREE.PerspectiveCamera( 30, window.innerWidth/window.innerHeight, .01, 15 ))
   const [renderer] = useState(
   new THREE.WebGLRenderer({ 
@@ -61,25 +59,29 @@ const ModelStart = forwardRef((props, ref) => {
   }, [props.click]); 
 
   useEffect(() => {
-
     const handleResize = () => {
       if (ref.current) {
-        // Get the dimensions and position of the element
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
-      const rect = ref.current.getBoundingClientRect()
-      console.log(rect)
-      camera.aspect = rect.width/ rect.height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(rect.width, rect.height);
+        const rect = ref.current.getBoundingClientRect();
+        camera.aspect = rect.width / rect.height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(rect.width, rect.height);
+        console.log("activated");
       }
     };
-    window.addEventListener('resize', handleResize);
+    const currentRef = ref.current;
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (ref.current) {
+      resizeObserver.observe(currentRef);
+    }
+
     return () => {
-    window.removeEventListener('resize', handleResize);
+      if (currentRef) {
+        resizeObserver.unobserve(currentRef);
+      }
     };
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [windowWidth, windowHeight]); // Empty dependency array, so the effect runs only once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array, so the effect runs only once on mount
 
 
 useEffect(() =>{
