@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 // import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
 import data from "../../data.json";
-import ScrollIcon from '../components/Scroll';
+// import ScrollIcon from '../components/Scroll';
 import { Element } from 'react-scroll';
 import ModelStart from '../Three/Three';
 
@@ -69,7 +69,7 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <div className='home'>
-                    <ScrollIcon/>
+                    {/* <ScrollIcon/> */}
                         <section className='page01'>
                             <div 
                             onMouseOver={() => setIsShown(true)}
