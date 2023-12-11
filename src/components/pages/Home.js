@@ -13,7 +13,7 @@ const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
 const [currentService, setService] = useState(data.services[2])
-const [currentIndex, setIndex] = useState(1);
+const [currentIndex, setIndex] = useState(2);
 const [click, setClick] = useState(10);
 const [marginTop, setMargin] = useState("100px");
 const ref = useRef();
@@ -69,7 +69,7 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <div className='home'>
-                    <ScrollIcon/>
+                    <ScrollIcon className="scroll-div"/>
                         <section className='page01'>
                         <Element id="section1" className="scrollable-section"/>
                             <div 
