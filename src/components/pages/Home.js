@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 // import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
 import data from "../../data.json";
-// import ScrollIcon from '../components/Scroll';
+import ScrollIcon from '../components/Scroll';
 import { Element } from 'react-scroll';
 import ModelStart from '../Three/Three';
 
@@ -13,8 +13,8 @@ const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
 const [currentService, setService] = useState(data.services[2])
-const [currentIndex, setIndex] = useState(2);
-const [click, setClick] = useState(1);
+const [currentIndex, setIndex] = useState(1);
+const [click, setClick] = useState(10);
 const [marginTop, setMargin] = useState("100px");
 const ref = useRef();
 
@@ -69,21 +69,20 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <div className='home'>
-                    {/* <ScrollIcon/> */}
+                    <ScrollIcon/>
                         <section className='page01'>
+                        <Element id="section1" className="scrollable-section"/>
                             <div 
                             onMouseOver={() => setIsShown(true)}
                             onMouseOut={() => setIsShown(false)}
                             onMouseMove={(e)=>handleMouseMove(e)}
                             className='intro-image'>
-                            <Element id="section1" className="scrollable-section"/>
-
                             </div>
                         </section>
                         
                         <section className='page02'>
+                            <Element id="section2" className="scrollable-section"/>
                             <div className='container-intro'>
-                                <Element id="section2" className="scrollable-section"/>
                                 <h1>Smart design and property solutions. All in one place.</h1>
                                 <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                                 <h6>Tell us more about your project.</h6>
@@ -92,9 +91,8 @@ const handleMouseMove = (event) => {
                         </section>
 
                         <section className='page03' >
+                        <Element id="section3" className="scrollable-section"/>
                             <div className='container-page03'>
-                            <Element id="section3" className="scrollable-section"/>
-
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
                                         <div className='display'>
                                             <div className='model-canvas' ref={ref}>            

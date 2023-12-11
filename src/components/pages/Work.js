@@ -6,7 +6,6 @@ import {motion} from 'framer-motion';
 import ModelStart from '../Three/Three';
 
 function Work() {
-
 const [currentService, setService] = useState(data.services[1])
 const [currentIndex, setIndex] = useState(1);
 const [click, setClick] = useState(1);
@@ -39,7 +38,7 @@ return (
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
                         <div className='model-canvas' ref={ref}>
-                            <ModelStart ref={ref} name={currentService?.name} i={currentIndex} click={click} />
+                            <ModelStart ref={ref} name={currentService.name} i={currentIndex} click={click} />
                         </div>
                         <p className='para-services'>{currentService?.copy}</p>
                     </div>

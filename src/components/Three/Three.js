@@ -9,7 +9,7 @@ import { useState, useEffect, forwardRef, useRef} from 'react';
 // import { Sky } from 'three/examples/jsm/objects/Sky.js';
 // import Stats from 'animate/examples/jsm/libs/stats.module'
 
-const ModelStart = forwardRef((props, ref, refProgress) => {
+const ModelStart = forwardRef((props, ref) => {
   const isReactSnap = navigator.userAgent.includes('ReactSnap');
   let pixelRatio = window.devicePixelRatio
   let AA = true
@@ -60,7 +60,7 @@ const ModelStart = forwardRef((props, ref, refProgress) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (ref.current) {
+      if (ref.current) {  
         const rect = ref.current.getBoundingClientRect();
         camera.aspect = rect.width / rect.height;
         camera.updateProjectionMatrix();
@@ -110,7 +110,8 @@ async function renderCanvas(i) {
 // FUNCTION START
 
 function init(name, i) {
-
+  console.log(name)
+  console.log(i)
   scene = new THREE.Scene();
   scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
   scene.fog = new THREE.Fog( scene.background, 1, 5000 );

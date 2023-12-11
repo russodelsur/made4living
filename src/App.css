@@ -44,7 +44,7 @@ font-family: 'Abril Fatface', cursive;
 font-family: 'Gafata', sans-serif;  */
 }
 #root{
-  min-height: 100vh; 
+  min-height: 100dvh; 
   margin:0; 
   display:flex; 
   flex-direction:column;
@@ -253,8 +253,8 @@ overflow-x: hidden;
 }
 
 section{
-  height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100dvw;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -355,8 +355,8 @@ li {
 }
 
 .carousel-image{
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   object-fit: cover;
   overflow: hidden;
   display: inline;
@@ -555,8 +555,8 @@ position: absolute;
 }
 
 .intro-image {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   --x: 500px;
   --y: 300px;
   background-image: url('/src/img/home02.jpg');
