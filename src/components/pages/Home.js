@@ -79,7 +79,7 @@ const handleMouseMove = (event) => {
                         <section className='page03' >
                         <Element id="section3" className="scrollable-section"/>
                             <div className='container-page03'>
-                                    <div className='services-box'>
+                                    <div style={{marginTop:"100px"}} className='services-box'>
                                         <div className='display'>
                                             <div className='model-canvas' ref={ref}>
                                                 <ModelStart ref={ref} name={currentService?.name} i={currentIndex} click={click} />

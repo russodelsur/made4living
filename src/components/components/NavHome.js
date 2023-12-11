@@ -66,7 +66,7 @@ const NavHome = () => {
                       <div className='header-group'>     
                       <Link to="/" id="logo" >
                         <picture>
-                         <img alt='m4llogo' src={require('../../img/logo-single.png')} onClick={()=>toggleMenu()} className="logo"></img>
+                         <img alt='m4llogo' src={require('../../img/logo-single-white.png')} onClick={()=>toggleMenu()} className="logo"></img>
                         </picture>
                       </Link>                        
                       <Offcanvas.Header closeButton/>

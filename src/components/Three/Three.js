@@ -19,6 +19,7 @@ const ModelStart = forwardRef((props, ref) => {
   const [scenes, setScenes] = useState([]);
   const [canvas] = useState(document.createElement('canvas'));
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [camera] = useState(new THREE.PerspectiveCamera( 30, window.innerWidth/window.innerHeight, .01, 15 ))
   const [renderer] = useState(
   new THREE.WebGLRenderer({ 
@@ -57,7 +58,6 @@ const ModelStart = forwardRef((props, ref) => {
       return;
   }
     stopAnimation();
-    console.log("hey")
   }, [props.click]); 
 
   useEffect(() => {
@@ -66,7 +66,9 @@ const ModelStart = forwardRef((props, ref) => {
       if (ref.current) {
         // Get the dimensions and position of the element
       setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
       const rect = ref.current.getBoundingClientRect()
+      console.log(rect)
       camera.aspect = rect.width/ rect.height;
       camera.updateProjectionMatrix();
       renderer.setSize(rect.width, rect.height);
@@ -77,7 +79,7 @@ const ModelStart = forwardRef((props, ref) => {
     window.removeEventListener('resize', handleResize);
     };
 // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [windowWidth]); // Empty dependency array, so the effect runs only once on mount
+}, [windowWidth, windowHeight]); // Empty dependency array, so the effect runs only once on mount
 
 
 useEffect(() =>{

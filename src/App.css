@@ -271,7 +271,32 @@ li {
   flex-direction: row;
   background: var(--reseda);
   border-radius: 1rem;
-  overflow: hidden;
+  max-width: 100%;
+}
+
+.display{
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.services-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
+.model-canvas{
+  flex-grow: auto;
+  height: 100%;
+  display: flex;
+}
+
+.render-item{
+  position: absolute;
 }
 
 #white{
@@ -365,21 +390,12 @@ li {
 }
 
 /* HOME SCREEN END */
-.model-canvas{
-  display: flex;
-  flex-grow: auto;
-  height: 100%;
-}
+
 .model-questions{
   height: 16rem;
   width: 100%;
 }
-.display{
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-}
+
 .list{
   position: relative;
   display: flex;
@@ -388,14 +404,7 @@ li {
   top: 0;
   bottom: 0;
 }
-.services-list{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+
 .para-services{
   padding: 1rem;
   font-size: 1rem;
@@ -808,10 +817,17 @@ margin: auto;
 }
 
 @media screen and (max-width: 900px) {  
+  .container-intro{
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .slogan{
+    text-align: center !important;
+  }
   .scroll{
     display: none;
   }
-
   .logo{
     height: 2.5rem;
   } 
@@ -828,8 +844,7 @@ margin: auto;
     padding: .6rem;
   }
   .service-title {
-    padding: .5rem;
-    text-align: center;
+    display: none;
   }
   .input-group {
     display: flex;
@@ -847,7 +862,7 @@ margin: auto;
   }
   .services-box{
     flex-direction: column;
-    height: 80vh;
+    height: auto;
     margin: auto;
     justify-content: space-evenly;
   }

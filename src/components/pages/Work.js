@@ -36,8 +36,6 @@ return (
     >
         <Container>     
             <h2 className='work-title'>Our Services</h2>
-
-            <div style={{marginBottom:"5rem"}}>
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
                         <div className='model-canvas' ref={ref}>
@@ -53,7 +51,6 @@ return (
                             </li>
                         ))}
                     </ul>
-                </div>
             </div>
 
             <h2 className='work-title'>Selected Work</h2>
