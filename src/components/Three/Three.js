@@ -7,7 +7,7 @@ import { useState, useEffect, useRef} from 'react';
 
 function ModelStart(props){
   const [scenes, setScenes] = useState([]);
-
+  const isReactSnap = navigator.userAgent.includes('ReactSnap');
   let model, scene, dirLight;
 
   const frameIdRef = useRef(null);
@@ -35,11 +35,6 @@ function ModelStart(props){
     
 useEffect(() => {
   if (typeof window !== 'undefined') {
-    console.log(window.innerWidth)
-
-  console.log(typeof window)
-  console.log(window.innerWidth)
-
   // if (typeof window !== 'undefined')  return;
   // if (!canvasRef.current) return;
   let pixelRatio = window.devicePixelRatio
@@ -59,9 +54,9 @@ useEffect(() => {
   camera.current.aspect = rect.width/ rect.height;
   camera.current.updateProjectionMatrix();
   renderer.current.setSize(rect.width, rect.height);
-
+  if (!isReactSnap) {
   init(props.name);
-  
+  }
   function moveCamera (x, y, z) {
     gsap.to(camera.current.position,    {
       x,
@@ -135,7 +130,6 @@ useEffect(() => {
 }, [props.click]); // Run once on mount
 
 function init(name) {
-  console.log(name)
   scene = new THREE.Scene();
   scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
   scene.fog = new THREE.Fog( scene.background, 1, 5000 );
