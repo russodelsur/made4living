@@ -30,21 +30,8 @@ function ModelStart(props){
       return;
   }
   stopAnimation();
-  }, [props.click]);
 
-  useEffect(() => {
-    return () => {
-    if (renderer.current) {
-    renderer.current.dispose();
-    }
-    if (scene) {
-    scene.dispose();
-    }
-    stopAnimation();
-    // Any other cleanup if necessary.
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  }, [props.click]);
     
 useEffect(() => {
   if (typeof window !== 'undefined') {
