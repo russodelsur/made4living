@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, Card, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import data from "../../data.json"
@@ -7,9 +7,12 @@ import ModelStart from '../Three/Three';
 
 function Work() {
 const [currentService, setService] = useState(data.services[1])
-const [currentIndex, setIndex] = useState(1);
 const [click, setClick] = useState(1);
-const ref = useRef();
+const [isClient, setIsClient] = useState(false)
+
+useEffect(() => {
+    setIsClient(true)
+  }, [])
 
 useEffect(() => {
 let serviceList = data.services;
@@ -19,7 +22,6 @@ for (let i = 0; i < serviceList.length; i++) {
     if (currentService.service === element) {
         li.style.background = "var(--black)";
         li.children[0].style.color = "var(--white)"
-        setIndex(i);
     } else {
         li.style.background = "none";
         li.children[0].style.color = "black"
@@ -37,9 +39,13 @@ return (
             <h2 className='work-title'>Our Services</h2>
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
-                        <div className='model-canvas' ref={ref}>
-                            <ModelStart ref={ref} name={currentService.name} i={currentIndex} click={click} />
-                        </div>
+                        {isClient ? 
+                          <ModelStart name={currentService?.name} click={click} />
+                        :
+                            <div id='check' className='model-canvas'>            
+                                <canvas className='render-item'/>
+                            </div>
+                        }
                         <p className='para-services'>{currentService?.copy}</p>
                     </div>
                     <ul style={{marginLeft:"2rem", flexDirection:"column"}} className='services-list'>
@@ -51,7 +57,6 @@ return (
                         ))}
                     </ul>
             </div>
-
             <h2 className='work-title'>Selected Work</h2>
 
             <Row xs={1} md={1} className="g-4">

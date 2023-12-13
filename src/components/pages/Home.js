@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import React, {useState, useEffect,useRef } from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 // import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
@@ -12,11 +12,10 @@ function Home() {
 const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
-const [currentService, setService] = useState(data.services[2])
-const [currentIndex, setIndex] = useState(2);
-const [click, setClick] = useState(10);
+const [currentService, setService] = useState(data.services[1]);
+const [currentIndex, setIndex] = useState(1);
+const [click, setClick] = useState(1);
 const [marginTop, setMargin] = useState("100px");
-const ref = useRef();
 
 // useEffect(() => {
 //     const visitedBefore = sessionStorage.getItem("visitedBefore")
@@ -95,9 +94,7 @@ const handleMouseMove = (event) => {
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
                                         <div className='display'>
-                                            <div className='model-canvas' ref={ref}>            
-                                                <ModelStart ref={ref} name={currentService?.name} i={currentIndex} click={click} />
-                                            </div>
+                                            <ModelStart suppressHydrationWarning={true} name={currentService?.name} i={currentIndex} click={click} />
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                             <div className='list'>
