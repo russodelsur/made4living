@@ -18,7 +18,7 @@ export function Model(props) {
     <group>
       {aNodes.map((node, index) => (
       <mesh key={index} geometry={node.geometry} material={material}>
-      <Edges scale={1} threshold={5} color={0x4D4D4D}/>
+      <Edges scale={1} threshold={4} color={0x4D4D4D}/>
       </mesh>
       ))}
     </group>

@@ -7,9 +7,8 @@
 // import { useThree } from '@react-three/fiber'
 
 import "./Three.css";
-import { PresentationControls, Environment, ContactShadows, PerspectiveCamera } from '@react-three/drei'
+import { PresentationControls, PerspectiveCamera } from '@react-three/drei'
 import {Model} from './Models/Model';
-
 
 function Scene(props){
   // const [scenes, setScenes] = useState([]);
@@ -27,10 +26,10 @@ return (
         <directionalLight
           position={[3.3, 1.0, 4.4]}
           castShadow
-          intensity={Math.PI * 2}
+          intensity={Math.PI * 6}
         />
-        <Environment preset="city" />
-        <pointLight position={[5, 0, 2]} />
+        {/* <Environment preset="city" /> */}
+        {/* <pointLight position={[5, 0, 2]} /> */}
         <PresentationControls
           enabled={true} // the controls can be disabled by setting this to false
           // global={false} // Spin globally or by dragging the model
@@ -50,9 +49,9 @@ return (
         position={[0, 0, 0]} />
         </PresentationControls>
         {/* <OrbitControls target={[0 , .8, 0]} /> */}
-        <ContactShadows           
+        {/* <ContactShadows           
         position={[1, 1, 1]}
-        color="#ffffff" />
+        color="#ffffff" /> */}
   </>
   )
 };

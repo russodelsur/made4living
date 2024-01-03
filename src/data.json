@@ -51,7 +51,7 @@
     {
         "service": "3D visualization",
         "image": "render.jpg",
-        "copy": "Experience your project before it comes to life with our cutting-edge 3D visualization services. Our realistic renderings bring your ideas to vivid reality, allowing you to make informed decisions and visualize the end result with unparalleled clarity.",
+        "copy": "Experience your project with our advanced 3D visualization services. Our realistic renderings make your ideas clear, helping you make informed decisions and visualize the final outcome.",
         "name": "/vis.gltf"
     },
     {
@@ -63,7 +63,7 @@
     {
         "service": "Professional consultancy",
         "image": "professional.jpg",
-        "copy": "Navigate the complexities of your house purchase or renovation with our expert consultancy services. We connect you with trusted professionals from various disciplines, ensuring a seamless and efficient process from start to finish.",
+        "copy": "Streamline your house purchase or renovation with our expert consultancy services, linking you with reliable professionals for a seamless and effective process from beginning to end.",
         "name": "/professional.gltf"
     },
     {

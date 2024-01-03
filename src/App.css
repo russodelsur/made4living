@@ -320,6 +320,7 @@ li {
 
 .model-canvas * {
   touch-action: none;
+  border-radius: 1rem;
 }
 
 .render-item{
@@ -760,10 +761,6 @@ margin: auto;
   border-bottom: 1px solid rgba(43,46,52,.5);
   padding-bottom: 1rem;
   text-align: left;
-}
-
-.service-image{
-  border-radius: 1rem;
 }
 
 .project-type{

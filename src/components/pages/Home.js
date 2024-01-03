@@ -12,9 +12,9 @@ function Home() {
 const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
 // const [loaded, turnOffLanding] = useState(true)
-const [currentService, setService] = useState(data.services[1]);
-const [currentIndex, setIndex] = useState(1);
-const [click, setClick] = useState(1);
+const [currentService, setService] = useState(data.services[0]);
+const [currentIndex, setIndex] = useState(0);
+const [click, setClick] = useState(0);
 const [marginTop, setMargin] = useState("100px");
 
 // useEffect(() => {
@@ -94,7 +94,7 @@ const handleMouseMove = (event) => {
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
                                         <div className='display'>
-                                            <ModelStart suppressHydrationWarning={true} url={currentService?.name} i={currentIndex} click={click} />
+                                            <ModelStart url={currentService?.name} i={currentIndex} click={click} />
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                             <div className='list'>

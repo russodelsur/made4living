@@ -4,23 +4,24 @@
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // import { gsap } from 'gsap/all';
 // import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { useState, useEffect } from 'react';
 
-
+import { useState, Suspense, useEffect } from 'react';
 import "./Three.css";
 import { Canvas } from '@react-three/fiber'
+import { Loader } from "@react-three/drei"
 import Scene from './Scene';
 
 function ModelStart(props){
   const [snap, setSnap] = useState(false);
+  
+  useEffect(() => {
   const isReactSnap = navigator.userAgent.includes('ReactSnap');
   console.log(isReactSnap)
-
-  useEffect(() => {
   if (!isReactSnap) {
     setSnap(true);
     }
-  }, [isReactSnap]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 return (
   <> 
@@ -29,8 +30,11 @@ return (
       {/* <Canvas className='render-item'> */}
       <Canvas 
        shadows={true}>
-        <Scene url={props.url}/>
+        <Suspense fallback={null}>
+         <Scene url={props.url}/>
+        </Suspense>
       </Canvas>
+      <Loader />
     </div> 
     :
     <div>HeyMate</div>
