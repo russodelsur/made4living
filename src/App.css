@@ -318,6 +318,10 @@ li {
   display: flex;
 }
 
+.model-canvas * {
+  touch-action: none;
+}
+
 .render-item{
   position: absolute;
 }

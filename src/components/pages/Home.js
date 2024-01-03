@@ -94,7 +94,7 @@ const handleMouseMove = (event) => {
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
                                         <div className='display'>
-                                            <ModelStart suppressHydrationWarning={true} name={currentService?.name} i={currentIndex} click={click} />
+                                            <ModelStart suppressHydrationWarning={true} url={currentService?.name} i={currentIndex} click={click} />
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                             <div className='list'>

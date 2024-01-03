@@ -10,15 +10,15 @@ let questions = [
 		type: "first",
 		answerOptions: [
 			{ answerText: 'Purchase a property in London', index: "property", image:"arch", explain: "I’m looking to find a property to buy or I have already one in mind but I would like a professional opinion on it (Currently available only in the London area).", 
-				name: "./gltf/house.gltf"},
+				name: "/house.gltf"},
 			{ answerText: "Architectural, interior design or FFE", index: "design", image: "housesearch", explain:"",
-				name: "./gltf/arch.gltf"},
+				name: "/arch.gltf"},
 			{ answerText: '3D modelling and visualization', index: "render", image:"home01", explain:"",
-				name: "./gltf/vis.gltf"},
+				name: "/vis.gltf"},
 			{ answerText: 'Bespoke furniture and joinery', index: "joinery", image:"bespoke", explain:"",
-				name: "./gltf/bf.gltf"},
+				name: "/bf.gltf"},
 			{ answerText: 'Hire other professional services', index: "mortage", image:"professional", explain:"I’m looking for other professional services (mortgage broker, sollicitor, party wall surveyor, structural engineer, contractor, electrician, plumber, etc).",
-				name: "./gltf/professional.gltf"},
+				name: "/professional.gltf"},
 		],
 	},
 ];
@@ -173,7 +173,7 @@ let firstQuestion = <Form>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
 							<div className='model-questions'>
-								<ModelStart name={answerOption?.name} i={i} click={null}/>
+								<ModelStart url={answerOption?.name} i={i} click={null}/>
 							</div>
 							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>
