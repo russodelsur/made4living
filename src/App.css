@@ -103,8 +103,6 @@ header {
   display: grid;
   width: 100%;
   height: auto;
-  position: fixed;
-  top: 0;
   z-index: 2;
   /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
 }
@@ -246,7 +244,13 @@ p {
 }
 
 /* HOME SCREEN */
-
+.fullpage-wrapper{
+  height: 100%; 
+  position: relative; 
+  touch-action: none; 
+  transform: translate3d(0px, 0px, 0px); 
+  transition: all 500ms ease 0s;
+}
 html {
 scroll-snap-type: block mandatory;
 height: 100%;
@@ -258,7 +262,7 @@ section{
   max-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   scroll-snap-stop: always;
   justify-content: center;
   display: flex;
