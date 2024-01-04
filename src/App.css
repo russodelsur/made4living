@@ -254,6 +254,7 @@ p {
   position: fixed; 
   top: 0;
   transform: translate3d(0px, 0px, 0px); 
+  touch-action: none; 
 }
 
 html {
