@@ -246,7 +246,6 @@ p {
 /* HOME SCREEN */
 .home{
   transition: all 500ms ease 0s;
-  touch-action: none; 
 }
 
 .fullpage-wrapper{
