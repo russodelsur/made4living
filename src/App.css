@@ -44,7 +44,7 @@ font-family: 'Abril Fatface', cursive;
 font-family: 'Gafata', sans-serif;  */
 }
 #root{
-  min-height: 100lvh; 
+  min-height: 100dvh; 
   margin:0; 
   display:flex; 
   flex-direction:column;
@@ -254,9 +254,9 @@ overflow-x: hidden;
 }
 
 section{
-  height: 100lvh;
-  max-height: 100lvh;
-  width: 100lvw;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: 100dvw;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -363,7 +363,7 @@ li {
 
 .carousel-image{
   width: 100lvw;
-  height: 100lvh;
+  height: 100dvh;
   object-fit: cover;
   overflow: hidden;
   display: inline;
