@@ -68,8 +68,9 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <main className='home'>
-                    <div id='fullpage' className="fullpage-wrapper">
                     <ScrollIcon />
+                    <div id='fullpage' className="fullpage-wrapper">
+                    </div>
                         <section className='page01'>
                         <Element id="section1" className="scrollable-section"/>
                             <div 
@@ -133,7 +134,6 @@ const handleMouseMove = (event) => {
                                     ))}
                             </Carousel>
                         </section>
-                        </div>
                     </main>
                 {/* } */}
             </>

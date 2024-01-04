@@ -51,7 +51,7 @@ function ScrollIcon(){
         }, [currentSection]);
     return(
         <div className="scroll-div">        
-        <button>
+        <button style={{height:"0px"}}>
         <ScrollLink
             to={nextSection}
             spy={true}

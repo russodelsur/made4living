@@ -244,13 +244,19 @@ p {
 }
 
 /* HOME SCREEN */
-.fullpage-wrapper{
-  height: 100%; 
-  position: relative; 
-  touch-action: none; 
-  transform: translate3d(0px, 0px, 0px); 
+.home{
   transition: all 500ms ease 0s;
+  touch-action: none; 
 }
+
+.fullpage-wrapper{
+  height: 0px;
+  width: 100vh; 
+  position: fixed; 
+  top: 0;
+  transform: translate3d(0px, 0px, 0px); 
+}
+
 html {
 scroll-snap-type: block mandatory;
 height: 100%;
@@ -258,8 +264,8 @@ overflow-x: hidden;
 }
 
 section{
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   width: 100vw;
   overflow: hidden;
   scroll-snap-align: center;
