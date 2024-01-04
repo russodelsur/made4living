@@ -16,7 +16,6 @@ function ModelStart(props){
   
   useEffect(() => {
   const isReactSnap = navigator.userAgent.includes('ReactSnap');
-  console.log(isReactSnap)
   if (!isReactSnap) {
     setSnap(true);
     }
