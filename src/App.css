@@ -44,7 +44,6 @@ font-family: 'Abril Fatface', cursive;
 font-family: 'Gafata', sans-serif;  */
 }
 #root{
-  min-height: 100%; 
   margin:0; 
   display:flex; 
   flex-direction:column;
@@ -103,6 +102,7 @@ header {
   display: grid;
   width: 100%;
   height: auto;
+
   z-index: 2;
   /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
 }
@@ -241,21 +241,10 @@ p {
   height: 2rem!important;
   width: 2rem!important;
   margin: .5rem;
+  padding: 1.1rem;
 }
 
 /* HOME SCREEN */
-.home{
-  transition: all 500ms ease 0s;
-}
-
-.fullpage-wrapper{
-  height: 0px;
-  width: 100vh; 
-  position: fixed; 
-  top: 0;
-  transform: translate3d(0px, 0px, 0px); 
-  touch-action: none; 
-}
 
 html {
 scroll-snap-type: block mandatory;
@@ -264,11 +253,11 @@ overflow-x: hidden;
 }
 
 section{
-  height: 100dvh;
-  max-height: 100dvh;
+  height: 100vh;
+  max-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
   justify-content: center;
   display: flex;
@@ -572,8 +561,8 @@ position: absolute;
 }
 
 .intro-image {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   --x: 500px;
   --y: 300px;
   background-image: url('/src/img/home02.jpg');
