@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
 // import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
@@ -26,6 +26,77 @@ const [marginTop, setMargin] = useState("100px");
 //         setTimeout(()=>{turnOffLanding(false)}, 4000)
 //     }  
 // }, []);
+
+const [prop, setProp] = useState(0);
+const containerRef = useRef(null);
+const translateY = useRef(0);
+const sections = 4; // the number of sections
+const isScrolling = useRef(false);
+const sectionHeight = window.innerHeight;
+const [next, setNext] = useState(1);
+
+useEffect(() => {
+    const container = containerRef.current;
+    container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+    console.log("clicked", translateY.current)
+}, []);
+
+const isFirstRender = useRef(true);
+
+useEffect(() => {
+    const container = containerRef.current;
+    if (isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+    }
+    if (sectionHeight*sections-sectionHeight === translateY.current) {
+        translateY.current = 0
+        container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+    } else {
+    translateY.current = translateY.current + sectionHeight;
+    container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+    console.log(translateY.current);
+    }
+}, [next, sectionHeight]);
+
+useLayoutEffect(() => {
+    const container = containerRef.current;
+    const snapScroll = (nextSectionIndex) => {
+        translateY.current = nextSectionIndex * sectionHeight;
+        container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+        setProp(translateY.current);
+    };
+
+    const handleScroll = (event) => {
+        if (!isScrolling.current) {
+            isScrolling.current = true;
+
+        // Calculate the current section index
+        const currentSectionIndex = Math.round(translateY.current / sectionHeight);
+
+        let nextSectionIndex = currentSectionIndex + (event.deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
+        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
+
+        // If we've scrolled into another section, snap to it
+        if (nextSectionIndex !== currentSectionIndex) {
+        snapScroll(nextSectionIndex);
+        }
+
+        // Ensure smooth animations and prevent overlapping animations
+        setTimeout(() => {
+        isScrolling.current = false;
+        }, 500);
+    }
+
+        // Prevent default scrolling
+        event.preventDefault();
+    };
+    container.addEventListener('wheel', handleScroll, { passive: false });
+
+    return () => {
+     container.removeEventListener('wheel', handleScroll);
+    };
+}, [sectionHeight, sections]);
 
 useEffect(() => {
 let serviceList = data.services;
@@ -68,9 +139,8 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <main className='home'>
-                    <ScrollIcon />
-                    <div id='fullpage' className="fullpage-wrapper">
-                    </div>
+                        <ScrollIcon onParentClick={() => setNext(next+1)} position={prop}/>
+                    <div ref={containerRef} id='fullpage' className="fullpage-wrapper">
                         <section className='page01'>
                         <Element id="section1" className="scrollable-section"/>
                             <div 
@@ -134,6 +204,7 @@ const handleMouseMove = (event) => {
                                     ))}
                             </Carousel>
                         </section>
+                        </div>
                     </main>
                 {/* } */}
             </>

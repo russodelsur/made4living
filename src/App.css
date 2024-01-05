@@ -246,19 +246,23 @@ p {
 
 /* HOME SCREEN */
 
+.fullpage-wrapper{
+  visibility: visible;
+  top: 0;
+  position: absolute;
+  height: auto;
+  transition: all 1000ms ease 0s
+}
+
 html {
-scroll-snap-type: block mandatory;
 height: 100%;
 overflow-x: hidden;
 }
 
 section{
   height: 100vh;
-  max-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   justify-content: center;
   display: flex;
 }
@@ -826,9 +830,6 @@ margin: auto;
   }
   .slogan{
     text-align: center !important;
-  }
-  .scroll-div{
-    display: none;
   }
   .logo{
     height: 2.5rem;
