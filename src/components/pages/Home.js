@@ -127,7 +127,8 @@ useLayoutEffect(() => {
     container.removeEventListener('touchstart', handleTouchStart);
     container.removeEventListener('touchmove', handleTouchMove);
     };
-    }, [sectionHeight, sections, snapScroll]); // Dependencies for the effect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sectionHeight, sections]); // Dependencies for the effect
 
 useEffect(() => {
 let serviceList = data.services;
