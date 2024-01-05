@@ -27,7 +27,6 @@ const [marginTop, setMargin] = useState("100px");
 //     }  
 // }, []);
 
-const [prop, setProp] = useState(0);
 const containerRef = useRef(null);
 const translateY = useRef(0);
 const sections = 4; // the number of sections
@@ -59,44 +58,76 @@ useEffect(() => {
     }
 }, [next, sectionHeight]);
 
+// Define helper function for snap scrolling
+const snapScroll = (nextSectionIndex) => {
+    translateY.current = nextSectionIndex * sectionHeight;
+    containerRef.current.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+    // setProp(translateY.current); // call your setProp function (whatever it does)
+    };
+
 useLayoutEffect(() => {
     const container = containerRef.current;
-    const snapScroll = (nextSectionIndex) => {
-        translateY.current = nextSectionIndex * sectionHeight;
-        container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-        setProp(translateY.current);
+    let startTouchY = 0;
+    
+    // Create an event handler for touchstart
+    const handleTouchStart = (event) => {
+    startTouchY = event.touches[0].clientY;
     };
-
-    const handleScroll = (event) => {
-        if (!isScrolling.current) {
-            isScrolling.current = true;
-
-        // Calculate the current section index
-        const currentSectionIndex = Math.round(translateY.current / sectionHeight);
-
-        let nextSectionIndex = currentSectionIndex + (event.deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
-        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
-
-        // If we've scrolled into another section, snap to it
-        if (nextSectionIndex !== currentSectionIndex) {
-        snapScroll(nextSectionIndex);
-        }
-
-        // Ensure smooth animations and prevent overlapping animations
-        setTimeout(() => {
-        isScrolling.current = false;
-        }, 500);
+    
+    // Create an event handler for touchmove
+    const handleTouchMove = (event) => {
+    event.preventDefault();
+    // Don't do anything if we're currently animating a scroll
+    if (isScrolling.current) {
+    return;
     }
-
-        // Prevent default scrolling
-        event.preventDefault();
+    const touchY = event.touches[0].clientY;
+    const deltaY = startTouchY - touchY;
+    handleScrollLogic(deltaY);
     };
-    container.addEventListener('wheel', handleScroll, { passive: false });
-
+    
+    // Create an event handler for the 'wheel' event
+    const handleWheel = (event) => {
+    event.preventDefault();
+    handleScrollLogic(event.deltaY);
+    };
+    
+    // Create a shared scroll logic function
+    const handleScrollLogic = (deltaY) => {
+    if (isScrolling.current) {
+    return;
+    }
+    isScrolling.current = true;
+    
+    // Calculate the current section index
+    const currentSectionIndex = Math.round(translateY.current / sectionHeight);
+    
+    let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
+    nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
+    
+    // If we've scrolled into another section, snap to it
+    if (nextSectionIndex !== currentSectionIndex) {
+    snapScroll(nextSectionIndex);
+    }
+    
+    // Ensure smooth animations and prevent overlapping animations
+    setTimeout(() => {
+    isScrolling.current = false;
+    }, 500);
+    };
+    
+    // Add event listeners for wheel and touch events
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    // Clean up event listeners
     return () => {
-     container.removeEventListener('wheel', handleScroll);
+    container.removeEventListener('wheel', handleWheel);
+    container.removeEventListener('touchstart', handleTouchStart);
+    container.removeEventListener('touchmove', handleTouchMove);
     };
-}, [sectionHeight, sections]);
+    }, [sectionHeight, sections, snapScroll]); // Dependencies for the effect
 
 useEffect(() => {
 let serviceList = data.services;
@@ -139,7 +170,7 @@ const handleMouseMove = (event) => {
                     <Landing/>
                     : */}
                     <main className='home'>
-                        <ScrollIcon onParentClick={() => setNext(next+1)} position={prop}/>
+                        <ScrollIcon onParentClick={() => setNext(next+1)} />
                     <div ref={containerRef} id='fullpage' className="fullpage-wrapper">
                         <section className='page01'>
                         <Element id="section1" className="scrollable-section"/>
