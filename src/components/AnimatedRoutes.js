@@ -11,7 +11,6 @@ import ProjectSingle from './pages/ProjectSingle';
 import projects from "../data.json"
 import NotFound from './pages/NotFound';
 import Questionnaire from './pages/Questionnaire';
-
 import { AnimatePresence } from 'framer-motion';
 
 function QuestionnaireLayout() {

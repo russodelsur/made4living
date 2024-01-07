@@ -29,7 +29,7 @@ const NavMobile = () => {
 
     return(
     <>
-        <header style={{background:color, position:pos, padding:"1rem"}}>
+        <header style={{background:color, position:pos, padding:"1rem", top:"0"}}>
         <Navbar key={false} expand={false}>
         <Container fluid id="nav">
               <Link to="/" id="logo" >

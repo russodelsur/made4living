@@ -876,6 +876,13 @@ margin: auto;
     height: 9rem;
     margin: .5rem;
   }
+
+  .scroll:hover .stoke, .scroll:hover {
+    stroke: none; 
+    stroke-width: none;
+    fill: none;
+    height: none;
+  }
   .container-intro{
     width: 100%;
     max-width: 100%;

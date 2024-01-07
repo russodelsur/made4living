@@ -7,6 +7,7 @@ import data from "../../data.json";
 import ScrollIcon from '../components/Scroll';
 import ModelStart from '../Three/Three';
 import ReactPlayer from 'react-player';
+import introVideo from '../../img/intro-video.webm';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);
@@ -16,7 +17,6 @@ const [currentService, setService] = useState(data.services[0]);
 const [currentIndex, setIndex] = useState(0);
 const [click, setClick] = useState(0);
 const [marginTop, setMargin] = useState("100px");
-
 // useEffect(() => {
 //     const visitedBefore = sessionStorage.getItem("visitedBefore")
 //     if (visitedBefore) {
@@ -209,7 +209,7 @@ const handleMouseMove = (event) => {
                                 <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
                             <div className='video-background'></div>
-                            <ReactPlayer url={require("../../img/intro-video.webm")} 
+                            <ReactPlayer url={introVideo} 
                             playing={true} loop={true} width={"100%"} height={"100%"} 
                             style={{position:"absolute", zIndex:"5"}}/>
                         </section>
