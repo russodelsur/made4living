@@ -173,7 +173,7 @@ let firstQuestion = <Form>
 					{questionnaire[currentQuestion]?.answerOptions?.map((answerOption, i) => (
 						<div key={i} className='form-check'>
 							<div className='model-questions'>
-								<ModelStart url={answerOption?.name} i={i} click={null}/>
+								<ModelStart url={answerOption?.name} i={i} class={"model-box"} click={null}/>
 							</div>
 							<input value={answerOption?.index} type="checkbox" className="btn-check" id={i} autoComplete="off"/>
 							<label className="btn btn-outline-secondary" htmlFor={i}>{answerOption?.answerText}</label>

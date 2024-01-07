@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 import { Carousel } from 'react-bootstrap';
 import data from "../../data.json";
 import ScrollIcon from '../components/Scroll';
-import { Element } from 'react-scroll';
 import ModelStart from '../Three/Three';
+import ReactPlayer from 'react-player';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);
@@ -31,13 +31,23 @@ const containerRef = useRef(null);
 const translateY = useRef(0);
 const sections = 4; // the number of sections
 const isScrolling = useRef(false);
-const sectionHeight = window.innerHeight;
+const [sectionHeight, setHeight] = useState(window.innerHeight);
 const [next, setNext] = useState(1);
+const excludedDivRef = useRef(null); // Ref for the div you want to exclude
+
+useEffect(() => {
+    const handleResize = () => {
+        setHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+        window.removeEventListener("resize", handleResize);
+    };
+}, []);
 
 useEffect(() => {
     const container = containerRef.current;
     container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-    console.log("clicked", translateY.current)
 }, []);
 
 const isFirstRender = useRef(true);
@@ -54,62 +64,71 @@ useEffect(() => {
     } else {
     translateY.current = translateY.current + sectionHeight;
     container.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-    console.log(translateY.current);
     }
-}, [next, sectionHeight]);
-
-// Define helper function for snap scrolling
-const snapScroll = (nextSectionIndex) => {
-    translateY.current = nextSectionIndex * sectionHeight;
-    containerRef.current.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-    // setProp(translateY.current); // call your setProp function (whatever it does)
-    };
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [next]);
 
 useLayoutEffect(() => {
     const container = containerRef.current;
     let startTouchY = 0;
+
+    // Define helper function for snap scrolling
+    const snapScroll = (nextSectionIndex) => {
+        translateY.current = nextSectionIndex * sectionHeight;
+        containerRef.current.style.transform = `translate3d(0,-${translateY.current}px,0)`;
+        // setProp(translateY.current); // call your setProp function (whatever it does)
+    };
+
     
     // Create an event handler for touchstart
     const handleTouchStart = (event) => {
-    startTouchY = event.touches[0].clientY;
-    };
+        // Check to see if the event target is the excluded div or a descendant of it
+        if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
+        return; // Do nothing, as the touch started within the excluded div
+        }
+        startTouchY = event.touches[0].clientY;
+        };
     
     // Create an event handler for touchmove
     const handleTouchMove = (event) => {
-    event.preventDefault();
-    // Don't do anything if we're currently animating a scroll
-    if (isScrolling.current) {
-    return;
-    }
-    const touchY = event.touches[0].clientY;
-    const deltaY = startTouchY - touchY;
-    handleScrollLogic(deltaY);
+        // Check to see if the event target is the excluded div or a descendant of it
+        if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
+            return; // Allow the default touch behavior within the excluded div
+        }
+        event.preventDefault(); // Prevent default behavior for touches outside excluded div
+        // Don't do anything if we're currently animating a scroll
+        if (isScrolling.current) {
+          return;
+        }
+        const touchY = event.touches[0].clientY;
+        const deltaY = startTouchY - touchY;
+        handleScrollLogic(deltaY);
     };
     
     // Create an event handler for the 'wheel' event
     const handleWheel = (event) => {
-    event.preventDefault();
-    handleScrollLogic(event.deltaY);
+        event.preventDefault();
+        handleScrollLogic(event.deltaY);
     };
     
     // Create a shared scroll logic function
     const handleScrollLogic = (deltaY) => {
-    if (isScrolling.current) {
-    return;
-    }
-    isScrolling.current = true;
-    
-    // Calculate the current section index
-    const currentSectionIndex = Math.round(translateY.current / sectionHeight);
-    
-    let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
-    nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
-    
+        if (isScrolling.current) {
+        return;
+        }
+        isScrolling.current = true;
+        
+        // Calculate the current section index
+        const currentSectionIndex = Math.round(translateY.current / sectionHeight);
+        
+        let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
+        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
+        
     // If we've scrolled into another section, snap to it
-    if (nextSectionIndex !== currentSectionIndex) {
-    snapScroll(nextSectionIndex);
-    }
-    
+        if (nextSectionIndex !== currentSectionIndex) {
+        snapScroll(nextSectionIndex);
+        }
+        
     // Ensure smooth animations and prevent overlapping animations
     setTimeout(() => {
     isScrolling.current = false;
@@ -128,7 +147,7 @@ useLayoutEffect(() => {
     container.removeEventListener('touchmove', handleTouchMove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sectionHeight, sections]); // Dependencies for the effect
+    }, [sectionHeight, sections, excludedDivRef.current]); // Dependencies for the effect
 
 useEffect(() => {
 let serviceList = data.services;
@@ -174,7 +193,6 @@ const handleMouseMove = (event) => {
                         <ScrollIcon onParentClick={() => setNext(next+1)} />
                     <div ref={containerRef} id='fullpage' className="fullpage-wrapper">
                         <section className='page01'>
-                        <Element id="section1" className="scrollable-section"/>
                             <div 
                             onMouseOver={() => setIsShown(true)}
                             onMouseOut={() => setIsShown(false)}
@@ -184,21 +202,23 @@ const handleMouseMove = (event) => {
                         </section>
                         
                         <section className='page02'>
-                            <Element id="section2" className="scrollable-section"/>
                             <div className='container-intro'>
                                 <h1>Smart design and property solutions. All in one place.</h1>
                                 <h5 className='slogan'>When design combines innovative tech, real estate know-how, dedicated experts and tailored services.</h5>
                                 <h6>Tell us more about your project.</h6>
                                 <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
+                            <div className='video-background'></div>
+                            <ReactPlayer url={require("../../img/intro-video.webm")} 
+                            playing={true} loop={true} width={"100%"} height={"100%"} 
+                            style={{position:"absolute", zIndex:"5"}}/>
                         </section>
 
                         <section className='page03' >
-                        <Element id="section3" className="scrollable-section"/>
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
-                                        <div className='display'>
-                                            <ModelStart url={currentService?.name} i={currentIndex} click={click} />
+                                        <div ref={excludedDivRef}  className='display'>
+                                            <ModelStart class={"model-canvas"} url={currentService?.name} i={currentIndex} click={click} />
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                             <div className='list'>
@@ -219,7 +239,6 @@ const handleMouseMove = (event) => {
                         </section>
                         
                         <section className='page04' >
-                        <Element id="section4" className="scrollable-section"/>
                             <Carousel  id="carousel-container">
                             {data.projects.map((project, index) => (
                                     <Carousel.Item key={index} index={index} interval={3000}>

@@ -275,6 +275,7 @@ section{
 
 .page02{
   background: var(--lightyellow);
+  position: relative;
 }
 
 .page03{
@@ -293,14 +294,6 @@ li {
   padding-top: 1rem;
 }
 
-.services-box{
-  display: flex;
-  flex-direction: row;
-  background: var(--reseda);
-  border-radius: 1rem;
-  max-width: 100%;
-}
-
 .display{
   flex: 1; /* Take up remaining space */
   display: flex;
@@ -316,7 +309,7 @@ li {
   padding: 0;
 }
 
-.model-canvas{
+.model-canvas, .model-box{
   flex-grow: auto;
   height: 100%;
   display: flex;
@@ -344,33 +337,58 @@ li {
   border-radius: 1rem!important; 
 }
 
-
 .container-page03{
   display: flex;
   flex-direction: column;
-  max-width: 60rem;
+  max-width: 75%;
   min-width: 20rem;
   margin: auto;
   padding: 2rem;
 }
 
+.services-box{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: var(--reseda);
+  border-radius: 1rem;
+  max-width: 100%;
+}
+
+
 .container-intro{
   display: flex;
   flex-direction: column;
   width: 70vw;
-  max-width: 30rem;
+  max-width: 40rem;
   min-width: 15rem;
   margin: auto;
   padding: 2rem;
+  z-index: 10;
 }
 
-.carousel-image{
+.container-intro * {
+  color: black;
+  font-weight: 800;
+  /* -webkit-text-stroke: .2px #000000; */
+}
+
+.carousel-image, .page02 video{
   width: 100svw;
   height: 100svh;
   object-fit: cover;
   overflow: hidden;
   display: inline;
 }
+
+.video-background{
+  background-color: rgba(255, 255, 255, 0.15);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 6;
+}
+
 .carousel-item {
   overflow: hidden;
   width: 100%;
@@ -629,6 +647,26 @@ position: absolute;
 .london{
 margin: auto;
 }
+.cities{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: auto;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+.london-div{
+  min-height: 400px;
+  height: 400px;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.london-div *{
+  margin: auto;
+  margin-bottom: 1rem;
+}
 
 .aboutus-block{
   width: 50%;
@@ -670,6 +708,7 @@ margin: auto;
 }
 
 .contact-info{
+  max-width: 50%;
   justify-content: center;
   margin: auto;
   display: flex;
@@ -707,13 +746,6 @@ margin: auto;
   width: 100%;
   text-align: center;
   padding: .5rem;
-}
-
-.para-contact-light {
-  width: 100%;
-  text-align: center;
-  padding: .5rem;
-  font-size: .9rem;
 }
 
 .para-privacy{
@@ -808,6 +840,9 @@ margin: auto;
   padding: .2rem;
   font-size: 1rem;
   }
+  .contact-info{
+    max-width: 100%;
+  }
   .box-question{
     width: 100%;
     padding: 1rem;
@@ -825,9 +860,22 @@ margin: auto;
   .our-expertise{
     width: 100%;
   }
+  .cities{
+    flex-direction: column;
+  }
+  .london-div{
+    max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 900px) {  
+ .scroll, .scroll .stoke{
+    stroke: var(--black)!important; 
+    stroke-width: 2.5px!important;
+    fill: var(--black)!important;
+    height: 9rem;
+    margin: .5rem;
+  }
   .container-intro{
     width: 100%;
     max-width: 100%;
@@ -878,7 +926,7 @@ margin: auto;
     justify-content: space-evenly;
   }
   .model-canvas{
-    height: 300px;
+    height: 250px;
     margin-bottom: 1rem;
   }
   .services-list{

@@ -21,22 +21,27 @@ function ModelStart(props){
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+let clase = props.class;
+
+const loaderInsideCanvas = <Loader containerStyles={{ position: 'relative', top: '0', left: '0', width: '100%', height: '100%' }} />
 
 return (
   <> 
     { snap ? 
-    <div className='model-canvas'>            
+    <div className={clase}>            
       {/* <Canvas className='render-item'> */}
+      <Suspense fallback={loaderInsideCanvas}>
       <Canvas 
        shadows={true}>
-        <Suspense fallback={null}>
          <Scene url={props.url}/>
-        </Suspense>
       </Canvas>
-      <Loader />
+      </Suspense>
+      {/* <Loader />  */}
     </div> 
     :
-    <div>HeyMate</div>
+    <div>            
+      <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo"></img>
+    </div>
     }
   </>
   )

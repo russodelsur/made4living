@@ -1,7 +1,7 @@
 import {React} from 'react';
 import { Container} from 'react-bootstrap';
 import {motion} from 'framer-motion';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 
 function About() {
 

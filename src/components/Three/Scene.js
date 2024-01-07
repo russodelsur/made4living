@@ -44,7 +44,8 @@ return (
           polar={[0, Math.PI / 4]} 
           azimuth={[-Math.PI / 10, Math.PI / 10]}
           config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
-        ><Model 
+        >
+        <Model 
         url={props.url}
         position={[0, 0, 0]} />
         </PresentationControls>

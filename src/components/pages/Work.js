@@ -40,7 +40,7 @@ return (
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
                         {isClient ? 
-                          <ModelStart url={currentService?.name} click={click} />
+                          <ModelStart class={"model-canvas"} url={currentService?.name} click={click} />
                         :
                             <div id='check' className='model-canvas'>            
                                 <canvas className='render-item'/>

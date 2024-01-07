@@ -50,7 +50,7 @@ function Footer() {
           <button className="privacy-button" onClick={function Clicked(){navigate("/contact")} }> Contact us </button>
         </ul>
         <ul className="footer-content">
-          <p className="light-text">@made4living {year}</p>
+          <p className="light-text">@made4living {year}. All rights reserved.</p>
           <p className="light-text">MADE 4 LIVING DESIGN LIMITED</p>
           <p className="light-text">Company Number 14492468</p>
         </ul>
