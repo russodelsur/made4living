@@ -99,11 +99,10 @@ textarea{
 
 header {
   flex-grow: 1;
-  display: grid;
+  display: block;
   width: 100%;
   height: auto;
-
-  z-index: 2;
+  z-index: 1000;
   /* background: linear-gradient(to top, transparent, rgb(39, 39, 39)); */
 }
 
@@ -878,11 +877,12 @@ margin: auto;
   }
 
   .scroll:hover .stoke, .scroll:hover {
-    stroke: none; 
-    stroke-width: none;
-    fill: none;
-    height: none;
+    stroke: var(--black)!important; 
+    stroke-width: 2.5px!important;
+    fill: var(--black)!important;
+    height: 9rem;
   }
+
   .container-intro{
     width: 100%;
     max-width: 100%;

@@ -40,10 +40,10 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route exact path="/" element={<HomeLayout />}>
+        <Route path="/" element={<HomeLayout />}>
           <Route exact path="/" index element={<Home/>} />
         </Route>
-        <Route exact path="/" element={<BasicLayout />}>
+        <Route element={<BasicLayout />}>
           <Route exact path="work" element={<Work />} />
           <Route
             exact path="/projects/:slug"

@@ -210,6 +210,7 @@ const handleMouseMove = (event) => {
                             </div>
                             <div className='video-background'></div>
                             <ReactPlayer url={introVideo} 
+                            muted={true} autoPlay={true}
                             playing={true} loop={true} width={"100%"} height={"100%"} 
                             style={{position:"absolute", zIndex:"5"}}/>
                         </section>

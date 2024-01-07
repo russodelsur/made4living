@@ -18,7 +18,11 @@ function About() {
                     Welcome to Made4Living, the premier design and architecture studio where your vision for the perfect living space transforms into reality with absolute elegance and efficiency. At Made4Living, we embrace the art of creating harmonious designs that not only encapsulate the essence of sophistication but also integrate functionality, sustainability, and the unique facets of each client's lifestyle.                    </p> 
                 </div>
                 <div id='canvas-video'>
-                 <ReactPlayer className="video" url={require("../../img/video01.webm")} playing={true} loop={true} width={"100%"} height={"auto"}/>
+                 <ReactPlayer 
+                 className="video" 
+                 url={require("../../img/video01.webm")} 
+                 muted={true} autoPlay={true}
+                 playing={true} loop={true} width={"100%"} height={"auto"}/>
                 </div>
                 <div className='aboutus-block' id='our-approach'>
                     <h3 className='title-aboutus' id='our-approach-title'>Our Approach</h3> 
@@ -27,7 +31,11 @@ function About() {
                     </p>
                 </div>
                 <div id='canvas-video'>
-                 <ReactPlayer className="video" url={require("../../img/video02.webm")} playing={true} loop={true} width={"100%"} height={"auto"}/>
+                 <ReactPlayer 
+                 className="video" 
+                 url={require("../../img/video02.webm")} 
+                 muted={true} autoPlay={true}
+                 playing={true} loop={true} width={"100%"} height={"auto"}/>
                 </div>
                 <div className='aboutus-block' id='our-expertise' >
                     <h3 className='title-aboutus'>Our Expertise</h3> 
