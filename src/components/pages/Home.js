@@ -7,7 +7,7 @@ import data from "../../data.json";
 import ScrollIcon from '../components/Scroll';
 import ModelStart from '../Three/Three';
 import ReactPlayer from 'react-player';
-import introVideo from '../../img/intro-video.webm';
+import introVideo from '../../img/intro-video.mp4';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);

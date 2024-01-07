@@ -20,7 +20,7 @@ function About() {
                 <div id='canvas-video'>
                  <ReactPlayer 
                  className="video" 
-                 url={require("../../img/video01.webm")} 
+                 url={require("../../img/video01.mp4")} 
                  muted={true} autoPlay={true}
                  playing={true} loop={true} width={"100%"} height={"auto"}/>
                 </div>
@@ -33,7 +33,7 @@ function About() {
                 <div id='canvas-video'>
                  <ReactPlayer 
                  className="video" 
-                 url={require("../../img/video02.webm")} 
+                 url={require("../../img/video02.mp4")} 
                  muted={true} autoPlay={true}
                  playing={true} loop={true} width={"100%"} height={"auto"}/>
                 </div>

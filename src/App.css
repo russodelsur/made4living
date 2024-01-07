@@ -868,6 +868,9 @@ margin: auto;
 }
 
 @media screen and (max-width: 900px) {  
+  .project-description{
+    width: 100%;
+  }
  .scroll, .scroll .stoke{
     stroke: var(--black)!important; 
     stroke-width: 2.5px!important;

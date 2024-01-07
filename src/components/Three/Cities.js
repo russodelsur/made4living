@@ -7,7 +7,9 @@ import * as THREE from 'three';
 import { Suspense, useState, useEffect } from 'react';
 
 export default function City(props) {
-    const loaderInsideCanvas = <Loader containerStyles={{ position: 'relative', top: '0', left: '0', width: '100%', height: '100%' }} />
+    const loaderInsideCanvas = <Loader containerStyles={{ position: 'relative', top: '0', left: '0', width: '100%', 
+                                                          height: '100%', margin:"none", flexWrap:"wrap", 
+                                                          alignItems:"center", alignContent:"center"}} />
     const material = new THREE.MeshStandardMaterial( { color: 0xffffff}, {roughness: ".2"} );
     const [snap, setSnap] = useState(false);
 
