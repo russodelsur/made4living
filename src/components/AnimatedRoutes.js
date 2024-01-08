@@ -1,5 +1,6 @@
-import {React} from 'react';
+import {React, useEffect, useState} from 'react';
 import { useLocation, Routes, Route, Outlet } from "react-router-dom";
+import Landing from '../components/components/Landing';
 import Footer from './components/Footer';
 import Work from './pages/Work';
 import About from './pages/About';
@@ -37,11 +38,28 @@ function BasicLayout() {
 function AnimatedRoutes() {
   const location = useLocation();
 
+  const [loaded, turnOffLanding] = useState(true)
+
+  useEffect(() => {
+    const visitedBefore = sessionStorage.getItem("visitedBefore")
+    if (visitedBefore) {
+        turnOffLanding(false);
+    } else {
+        sessionStorage.setItem("visitedBefore", "true");
+        setTimeout(()=>{turnOffLanding(false)}, 5000)
+    }  
+}, []);
+
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomeLayout />}>
+          {
+          loaded ?
+          <Route exact path="/" index element={<Landing/>} />
+          :
           <Route exact path="/" index element={<Home/>} />
+        } 
         </Route>
         <Route element={<BasicLayout />}>
           <Route exact path="work" element={<Work />} />

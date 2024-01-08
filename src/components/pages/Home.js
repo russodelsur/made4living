@@ -1,7 +1,6 @@
 import { Button } from 'react-bootstrap';
 import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
-// import Landing from '../components/Landing';
 import { Carousel } from 'react-bootstrap';
 import data from "../../data.json";
 import ScrollIcon from '../components/Scroll';
@@ -12,20 +11,11 @@ import introVideo from '../../img/intro-video.mp4';
 function Home() {
 const [isShown, setIsShown] = useState(false);
 const [localMousePos, setLocalMousePos] = useState({});
-// const [loaded, turnOffLanding] = useState(true)
 const [currentService, setService] = useState(data.services[0]);
 const [currentIndex, setIndex] = useState(0);
 const [click, setClick] = useState(0);
 const [marginTop, setMargin] = useState("100px");
-// useEffect(() => {
-//     const visitedBefore = sessionStorage.getItem("visitedBefore")
-//     if (visitedBefore) {
-//         turnOffLanding(false);
-//     } else {
-//         sessionStorage.setItem("visitedBefore", "true");
-//         setTimeout(()=>{turnOffLanding(false)}, 4000)
-//     }  
-// }, []);
+
 
 const containerRef = useRef(null);
 const translateY = useRef(0);
@@ -185,10 +175,6 @@ const handleMouseMove = (event) => {
 };
     return (
                 <>
-                {/* {
-                    loaded ?
-                    <Landing/>
-                    : */}
                     <main className='home'>
                         <ScrollIcon onParentClick={() => setNext(next+1)} />
                     <div ref={containerRef} id='fullpage' className="fullpage-wrapper">
@@ -258,7 +244,6 @@ const handleMouseMove = (event) => {
                         </section>
                         </div>
                     </main>
-                {/* } */}
             </>
         );
     };
