@@ -21,7 +21,7 @@ function Contact() {
                 <div className='contact-info'>
                     <p className='para-contact'>Thank you for your interest in Made4Living. We look forward to hearing from you soon.</p>                
                     <p className='para-contact'>Contact us with your name, contact details, and a short description of your project or call us to set up a meeting. We provide a free first meeting to talk about your needs, give advice, and estimate costs and time. At Made4Living, we value clear communication, openness, creativity, and precision. We'll keep you updated and included throughout the project and aim to surpass your expectations.</p> 
-                    <p className='para-contact'>Email: info@made4living.com </p>
+                    <p className='para-contact'>Email: info@made4living.co.uk </p>
                     <p className='para-contact'>Phone: +44 7490462682 </p>
                     <p className='para-contact'>Business Hours: Monday to Friday, 9am to 6pm.</p>
                     <ul style={{padding:"1rem", margin:"auto",  justifyContent:"space-evenly"}}>

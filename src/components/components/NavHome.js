@@ -45,7 +45,7 @@ const NavHome = () => {
                 <img alt='m4llogo' src={require('../../img/logo-full.png')} className="logo-long"></img>
                 </picture>
               </Link>
-                <Navbar.Toggle style={{color:"red"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
+                <Navbar.Toggle style={{color:"var(--greyblue)"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
                   <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-${false}`}
                     aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}

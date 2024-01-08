@@ -39,7 +39,7 @@ const NavMobile = () => {
               </Link>
               <Navbar.Toggle style={{color:"black"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
                 <Navbar.Offcanvas
-                style={{backgroundColor:backColor}}
+                  style={{backgroundColor:backColor}}
                   className='nav-mobile'
                   id={`offcanvasNavbar-expand-${false}`}
                   aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
