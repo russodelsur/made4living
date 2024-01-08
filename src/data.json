@@ -1,4 +1,12 @@
 { "projects": [ {
+    "name": "Welbeck street HQ",
+    "location": "London",
+    "type": "Workspace",
+    "body": "The headquarters of a UK-based real estate developer encompasses over 300 square meters of workspace, featuring two tea points, three meeting rooms, seating for 40 people, and executive offices. We were tasked with responsibility for project delivery throughout all stages. The project showcases a vibrant unfinished aesthetic, employing polished plaster combined with Scandinavian furniture, Russian feature lighting, and walnut as the chosen natural wood. Meeting room desks, executive desks, and the selection of artwork were all designed in-house.",
+    "image": "vonder",
+    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
+    "slug": "vonder"
+},{
     "name": "Via Beccari",
     "location": "Rome",
     "type":"Residential",
@@ -16,15 +24,7 @@
     "images": ["sr0", "sr1", "sr2","sr3","sr4","sr5"],
     "slug": "sr"
 },
-{
-    "name": "Vonder HQ",
-    "location": "London",
-    "type": "Workspace",
-    "body": "The headquarters of Vonder in the UK. Over 300 square meters of workplace housing two tea points, three meeting rooms, seating space for 40 people, and executive offices. For this project, I was responsible for the design and project delivery throughout all stages. This project features a colorful unfinished look, using polished plaster with Scandinavian furniture, russian feature lightinh, and walnut as the natural wood of choice. Meeting room desks, executive desk, artwork selection... were designed in-house.",
-    "image": "vonder",
-    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
-    "slug": "vonder"
-},
+
 {
     "name": "Lingfield",
     "location": "London",
@@ -39,32 +39,38 @@
     {
         "service": "Architectural Design",
         "image": "arch.jpg",
-        "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality."
+        "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality.",
+        "name": "/arch.gltf"
     },    
     {
         "service": "Interior design",
         "image": "interiordesign.jpg",
-        "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury."
+        "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury.",
+        "name": "/id.gltf"
     },
     {
         "service": "3D visualization",
         "image": "render.jpg",
-        "copy": "Experience your project before it comes to life with our cutting-edge 3D visualization services. Our realistic renderings bring your ideas to vivid reality, allowing you to make informed decisions and visualize the end result with unparalleled clarity."
+        "copy": "Experience your project with our advanced 3D visualization services. Our realistic renderings make your ideas clear, helping you make informed decisions and visualize the final outcome.",
+        "name": "/vis.gltf"
     },
     {
         "service": "Bespoke furniture",
         "image": "bespoke.jpg",
-        "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style."
+        "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style.",
+        "name": "/bf.gltf"
     },
     {
         "service": "Professional consultancy",
         "image": "professional.jpg",
-        "copy": "Navigate the complexities of your house purchase or renovation with our expert consultancy services. We connect you with trusted professionals from various disciplines, ensuring a seamless and efficient process from start to finish."
+        "copy": "Streamline your house purchase or renovation with our expert consultancy services, linking you with reliable professionals for a seamless and effective process from beginning to end.",
+        "name": "/professional.gltf"
     },
     {
         "service": "House search and report",
         "image": "housesearch.jpg",
-        "copy": "Let us be your guide in finding your dream property. Our dedicated team accompanies you throughout the house hunting process, providing insightful advice, conducting thorough inspections, and delivering comprehensive reports, empowering you to make informed decisions."
+        "copy": "Discover your dream property with our expert guidance. Our team supports you with tailored advice, detailed inspections, and clear reports to ensure you make informed choices every step of the way.",
+        "name": "/house.gltf"
     }
 ]
 }

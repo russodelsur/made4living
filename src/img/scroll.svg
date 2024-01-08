@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="7.04mm" height="70.58mm" viewBox="0 0 19.94 200.06">
+  <g>
+    <line class="stoke" x1="9.97" y1="115.88" x2="9.97" y2="185.71" style="fill: none; stroke: #231f20; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    <polygon class="stoke" points="0 182.79 9.97 200.06 19.94 182.79 0 182.79" style="fill: #231f20; stroke-width: 0px;"/>
+  </g>
+  <text transform="translate(9.8 .32)" style="fill: #231f20; font-family: MuseoSans-900, &apos;Museo Sans&apos;; font-size: 18px; glyph-orientation-vertical: 0deg; text-orientation: upright; writing-mode: tb;"><tspan x="0" y="0">NEXT</tspan></text>
+</svg>

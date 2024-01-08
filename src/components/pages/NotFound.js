@@ -5,7 +5,7 @@ function NotFound() {
         return (
             <Container className='container-404'>
                 <div className='contact-info'>
-                    <p>404 Error</p>
+                    <p>"404" error</p>
                     <p>Page not found</p>
                 </div>
             </Container>
