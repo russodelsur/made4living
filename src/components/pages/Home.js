@@ -195,25 +195,24 @@ const handleMouseMove = (event) => {
                                 <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
                             <div className='video-background'></div>
-                            <ReactPlayer
-                            url={introVideo}
-                            muted={true}
-                            autoPlay={true}
-                            playing={true}
-                            loop={true}
-                            width={"100%"}
-                            height={"100%"}
-                            style={{ position: "absolute", zIndex: "5" }}
+                            <ReactPlayer url={introVideo} 
+                            muted={true} autoPlay={true}
+                            playing={true} loop={true} width={"100%"} height={"100%"} 
+                            style={{position:"absolute", zIndex:"5", pointerEvents:"none"}}
                             controls={false} // Explicitly set controls to false
-                            playsinline // Add the playsinline attribute
                             />
                         </section>
 
                         <section className='page03' >
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
-                                        <div ref={excludedDivRef}  className='display'>
-                                            <ModelStart class={"model-canvas"} url={currentService?.name} i={currentIndex} click={click} />
+                                        <div className='display'>
+                                            <div
+                                            ref={excludedDivRef} 
+                                            style={{position:"relative", width:"100%", height:"100%"}}
+                                            >
+                                                <ModelStart class={"model-canvas"} url={currentService?.name} i={currentIndex} click={click} />
+                                            </div>
                                             <p id='white' className='para-services'>{currentService?.copy}</p>
                                         </div>
                                             <div className='list'>

@@ -24,6 +24,7 @@
     "mongoose": "^6.10.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
+    "react-calendly": "^4.3.0",
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-player": "^2.13.0",
@@ -42,12 +43,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postbuild": "react-snap"
-  },  
+  },
   "reactSnap": {
     "page": {
-    "timeout": 60000
+      "timeout": 60000
     }
-    },
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
