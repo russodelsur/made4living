@@ -125,7 +125,7 @@ useLayoutEffect(() => {
     setTimeout(() => {
     isScrolling.current = false;
     }, 500);
-    }, 1000, { 'trailing': false }); // throttle with a 500ms wait time, adjust as required
+    }, 600, { 'trailing': false }); // throttle with a 500ms wait time, adjust as required
     
     // Add event listeners for wheel and touch events
     container.addEventListener('wheel', handleWheel, { passive: false });
