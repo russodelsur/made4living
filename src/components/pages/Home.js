@@ -62,83 +62,77 @@ useEffect(() => {
 useLayoutEffect(() => {
     const container = containerRef.current;
     let startTouchY = 0;
-
-    // Define helper function for snap scrolling
+    let lastTimeStamp = 0;
+    
+    // Helper function for snap scrolling
     const snapScroll = (nextSectionIndex) => {
         translateY.current = nextSectionIndex * sectionHeight;
         containerRef.current.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-        // setProp(translateY.current); // call your setProp function (whatever it does)
+        // Set your property or state if needed
+        // setProp(translateY.current);
     };
-
     
-    // Create an event handler for touchstart
+    // Event handler for touchstart
     const handleTouchStart = (event) => {
-        // Check to see if the event target is the excluded div or a descendant of it
         if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
-        return; // Do nothing, as the touch started within the excluded div
-        }
-        startTouchY = event.touches[0].clientY;
-        };
-    
-    // Create an event handler for touchmove
-    const handleTouchMove = (event) => {
-        // Check to see if the event target is the excluded div or a descendant of it
-        if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
-            return; // Allow the default touch behavior within the excluded div
-        }
-        event.preventDefault(); // Prevent default behavior for touches outside excluded div
-        // Don't do anything if we're currently animating a scroll
-        if (isScrolling.current) {
-          return;
-        }
-        const touchY = event.touches[0].clientY;
-        const deltaY = startTouchY - touchY;
-        handleScrollLogic(deltaY);
-    };
-    
-    // Create an event handler for the 'wheel' event
-    const handleWheel = (event) => {
-        event.preventDefault();
-        handleScrollLogic(event.deltaY);
-    };
-    
-    // Create a shared scroll logic function
-    const handleScrollLogic = (deltaY) => {
-        if (isScrolling.current) {
         return;
         }
+        startTouchY = event.touches[0].clientY;
+    };
+    
+    // Event handler for touchmove
+    const handleTouchMove = (event) => {
+        if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
+        return;
+        }
+            if (isScrolling.current) {
+            return;
+        }
+    const touchY = event.touches[0].clientY;
+    const deltaY = startTouchY - touchY;
+    handleScrollLogic(deltaY);
+    };
+    
+    // Shared scroll logic function, but with added timestamp check
+    const handleScrollLogic = (deltaY, timeStamp = 0) => {
+        if (isScrolling.current || (timeStamp - lastTimeStamp < 50)) { // Adding a throttle
+        return;
+        }
+        lastTimeStamp = timeStamp;
         isScrolling.current = true;
-        
-        // Calculate the current section index
+    
         const currentSectionIndex = Math.round(translateY.current / sectionHeight);
-        
-        let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
-        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
-        
-    // If we've scrolled into another section, snap to it
+        let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1);
+        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1);
+    
         if (nextSectionIndex !== currentSectionIndex) {
         snapScroll(nextSectionIndex);
-        }
-        
-    // Ensure smooth animations and prevent overlapping animations
+    }
+    
     setTimeout(() => {
     isScrolling.current = false;
     }, 500);
     };
     
-    // Add event listeners for wheel and touch events
+    // Event handler for wheel events, now includes timeStamp
+    const handleWheel = (event) => {
+    event.preventDefault();
+    handleScrollLogic(event.deltaY, event.timeStamp);
+    };
+    
+    // Add event listeners
     container.addEventListener('wheel', handleWheel, { passive: false });
     container.addEventListener('touchstart', handleTouchStart, { passive: false });
     container.addEventListener('touchmove', handleTouchMove, { passive: false });
     
-    // Clean up event listeners
+    // Clean up event listeners on unmount
     return () => {
     container.removeEventListener('wheel', handleWheel);
     container.removeEventListener('touchstart', handleTouchStart);
     container.removeEventListener('touchmove', handleTouchMove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sectionHeight, sections, excludedDivRef.current]); // Dependencies for the effect
+    }, [sectionHeight, sections, excludedDivRef.current]);
 
 useEffect(() => {
 let serviceList = data.services;
