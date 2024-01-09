@@ -51,12 +51,17 @@ function About() {
                         The premier design and architecture studio where your vision for the perfect living space transforms into reality with absolute elegance and efficiency. At Made4Living, we embrace the art of creating harmonious designs that not only encapsulate the essence of sophistication but also integrate functionality, sustainability, and the unique facets of each client's lifestyle.                    </p> 
                     </div>
                 </div>
-                <div id='canvas-video'>
+                <div 
+                style={{ pointerEvents: 'none'}}
+                id='canvas-video'>
                  <ReactPlayer 
-                 className="video" 
+                className="react-player"
                  url={require("../../img/video01.mp4")} 
                  muted={true} autoPlay={true}
-                 playing={true} loop={true} width={"100%"} height={"auto"}/>
+                 playing={true} loop={true} 
+                 controls={false}
+                 playsinline={true} // Add the playsinline attribute
+                 width={"100%"} height={"auto"}/>
                 </div>
                 <div className='aboutus-block' id='our-approach'>
                     <h5
@@ -75,12 +80,17 @@ function About() {
                         </p>
                     </div>
                 </div>
-                <div id='canvas-video'>
+                <div 
+                style={{ pointerEvents: 'none'}}
+                id='canvas-video'>
                  <ReactPlayer 
-                 className="video" 
-                 url={require("../../img/video02.mp4")} 
+                className="react-player"
+                url={require("../../img/video02.mp4")} 
                  muted={true} autoPlay={true}
-                 playing={true} loop={true} width={"100%"} height={"auto"}/>
+                 playing={true} loop={true} 
+                 controls={false}
+                 playsinline={true} // Add the playsinline attribute
+                 width={"100%"} height={"auto"}/>
                 </div>
                 <div className='aboutus-block'>
                     <h5

@@ -12,10 +12,7 @@
   --orange: #923e25;
   --lightyellow: #c2a973;
 }
-video{
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
+
 .react-player video::-webkit-media-controls {
   display: none !important;
   }
