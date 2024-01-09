@@ -13,6 +13,14 @@
   --lightyellow: #c2a973;
 }
 
+.react-player video::-webkit-media-controls {
+  display: none !important;
+  }
+
+.react-player video::-webkit-media-controls-panel {
+  display: none !important;
+  }
+
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
