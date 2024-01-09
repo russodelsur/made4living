@@ -195,10 +195,18 @@ const handleMouseMove = (event) => {
                                 <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
                             <div className='video-background'></div>
-                            <ReactPlayer url={introVideo} 
-                            muted={true} autoPlay={true}
-                            playing={true} loop={true} width={"100%"} height={"100%"} 
-                            style={{position:"absolute", zIndex:"5"}}/>
+                            <ReactPlayer
+                            url={introVideo}
+                            muted={true}
+                            autoPlay={true}
+                            playing={true}
+                            loop={true}
+                            width={"100%"}
+                            height={"100%"}
+                            style={{ position: "absolute", zIndex: "5" }}
+                            controls={false} // Explicitly set controls to false
+                            playsinline // Add the playsinline attribute
+                            />
                         </section>
 
                         <section className='page03' >
