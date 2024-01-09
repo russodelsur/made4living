@@ -3,6 +3,7 @@ import { useLocation, Routes, Route, Outlet } from "react-router-dom";
 import Landing from '../components/components/Landing';
 import { AnimatePresence } from 'framer-motion';
 import projects from "../data.json"
+import Loading from './components/Loading';
 
 const Footer = React.lazy(() => import('./components/Footer'));
 const Work = React.lazy(() => import('./pages/Work'));
@@ -57,31 +58,31 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence>
-      <Suspense fallback={<Landing/>}>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomeLayout />}>
-          {
-          loaded ?
-          <Route exact path="/" index element={<Landing/>}/>
-          :
-          <Route exact path="/" index element={<Home/>}/>
-        } 
-        </Route>
-        <Route element={<BasicLayout />}>
-          <Route exact path="work" element={<Work />} />
-          <Route
-            exact path="/projects/:slug"
-            element={<ProjectSingle projects={projects}/>}
-          />
-          <Route exact path="about" element={<About />} />
-          <Route exact path="contact" element={<Contact />} />
-          <Route exact path="privacy-policy" element={<Privacy />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-        <Route exact path="/" element={<QuestionnaireLayout />}>
-          <Route exact path="tellusmore" element={<Questionnaire />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={<Loading/>}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<HomeLayout />}>
+            {
+            loaded ?
+            <Route exact path="/" index element={<Landing/>}/>
+            :
+            <Route exact path="/" index element={<Home/>}/>
+          } 
+          </Route>
+          <Route element={<BasicLayout />}>
+            <Route exact path="work" element={<Work />} />
+            <Route
+              exact path="/projects/:slug"
+              element={<ProjectSingle projects={projects}/>}
+            />
+            <Route exact path="about" element={<About />} />
+            <Route exact path="contact" element={<Contact />} />
+            <Route exact path="privacy-policy" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route exact path="/" element={<QuestionnaireLayout />}>
+            <Route exact path="tellusmore" element={<Questionnaire />} />
+          </Route>
+        </Routes>
       </Suspense>
       </AnimatePresence>
   );
