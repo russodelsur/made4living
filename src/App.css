@@ -371,7 +371,7 @@ li {
   min-width: 15rem;
   margin: auto;
   padding: 2rem;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .container-intro * {
@@ -393,7 +393,7 @@ li {
   height: 100%;
   width: 100%;
   position: absolute;
-  z-index: 6;
+  z-index: 200;
 }
 
 .carousel-item {

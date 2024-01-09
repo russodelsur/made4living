@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 
 const VideoPlayer = ({ introVideo }) => {
     return (
-        <div style={{ pointerEvents: 'none', position: 'absolute', zIndex: 5, width: '100%', height: '100%' }}>
+        <div style={{ pointerEvents: 'none', position: 'absolute', zIndex: 1, width: '100%', height: '100%' }}>
             <ReactPlayer
             className="react-player"
             url={introVideo}
