@@ -3,7 +3,8 @@ import { Container} from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import City from '../Three/Cities';
 import { LevaPanel, useStoreContext } from 'leva'
-import { SocialIcon } from 'react-social-icons';
+// import { SocialIcon } from 'react-social-icons';
+import { PopupWidget } from "react-calendly";
 
 function Contact() {
     // const ref = useRef()
@@ -24,11 +25,22 @@ function Contact() {
                     <p className='para-contact'>Email: info@made4living.co.uk </p>
                     <p className='para-contact'>Phone: +44 7490462682 </p>
                     <p className='para-contact'>Business Hours: Monday to Friday, 9am to 6pm.</p>
-                    <ul style={{padding:"1rem", margin:"auto",  justifyContent:"space-evenly"}}>
+                    {/* <ul style={{padding:"1rem", margin:"auto",  justifyContent:"space-evenly"}}>
                         <SocialIcon bgColor="var(--gentian)" url="https://www.linkedin.com/company/made-4-living/about/" />
                         <SocialIcon bgColor="var(--orange)" url="https://www.instagram.com/m4living/" />
                         <SocialIcon bgColor="var(--greyblue)" url="mailto:info@made4living.co.uk" />
-                    </ul>
+                    </ul> */}
+                    <PopupWidget
+                                    url="https://calendly.com/d/4yb-jb2-qnt/introductory-consultation"
+                                    /*
+                                    * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+                                    * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+                                    */
+                                    rootElement={document.getElementById("root")}
+                                    text="Click here to schedule a meeting"
+                                    textColor="#ffffff"
+                                    color="var(--black)"
+                                />
                 </div>
                 <h3 style={{padding:"1rem"}}>We are based in</h3>
                 <div className='cities'>

@@ -13,6 +13,15 @@
   --lightyellow: #c2a973;
 }
 
+.calendly-badge-widget {
+  position: relative!important;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  bottom: 0!important;
+  right: 0!important;
+  margin: auto;
+}
+
 .react-player video::-webkit-media-controls {
   display: none !important;
   }
