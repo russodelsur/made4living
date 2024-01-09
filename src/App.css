@@ -351,7 +351,7 @@ li {
   z-index: 10;
   top: 0;
   justify-content: center;
-  transition: all .2s ease-in-out;
+  /* transition: all .2s ease-in-out; */
 }
 .nav-link{
   margin: auto;
