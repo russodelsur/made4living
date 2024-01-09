@@ -9,11 +9,6 @@ import SEO from '../components/SEO';
 function Work() {
 const [currentService, setService] = useState(data.services[1])
 const [click, setClick] = useState(1);
-const [isClient, setIsClient] = useState(false)
-
-useEffect(() => {
-    setIsClient(true)
-  }, [])
 
 useEffect(() => {
 let serviceList = data.services;
@@ -40,14 +35,8 @@ return (
             <SEO title="Work" description="Explore our variety of services and projects." url="work"/>    
             <h2 className='work-title'>Our Services</h2>
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
-                    <div className='display'>
-                        {isClient ? 
+                    <div className='display-services'>
                           <ModelStart class={"model-canvas"} url={currentService?.name} click={click} />
-                        :
-                            <div id='check' className='model-canvas'>            
-                                <canvas className='render-item'/>
-                            </div>
-                        }
                         <p className='para-services'>{currentService?.copy}</p>
                     </div>
                     <ul style={{marginLeft:"2rem", flexDirection:"column"}} className='services-list'>

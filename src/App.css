@@ -1,5 +1,4 @@
 /* HEADER */
-
 header {
   flex-grow: 1;
   display: block;
@@ -354,7 +353,9 @@ li {
   justify-content: center;
   transition: all .2s ease-in-out;
 }
-
+.nav-link{
+  margin: auto;
+}
 .landing-logo{
   /* height: 40%; */
   width: 45%;

@@ -13,12 +13,6 @@ ReactGA.initialize([
 // Send pageview with a custom exact path
 ReactGA.send({ hitType: "pageview", page: "/my-exact path", title: "Custom Title" });
 
-// window.dataLayer = window.dataLayer || [];
-// function gtag(){dataLayer.push(arguments);}
-// gtag('js', new Date());
-
-// gtag('config', 'G-283F8NNGEC');
-
 // Send a custom event
 ReactGA.event({
   category: "your category",
@@ -29,11 +23,9 @@ ReactGA.event({
 });
 
 export default function App() {
-
   return (
     <BrowserRouter>
         <AnimatedRoutes/>
     </BrowserRouter>
   );
 }
-
