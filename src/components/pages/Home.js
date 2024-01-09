@@ -5,8 +5,8 @@ import { Carousel } from 'react-bootstrap';
 import data from "../../data.json";
 import ScrollIcon from '../components/Scroll';
 import ModelStart from '../Three/Three';
-import ReactPlayer from 'react-player';
 import introVideo from '../../img/intro-video.mp4';
+import VideoPlayer from '../components/VideoPlayer';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);
@@ -195,12 +195,7 @@ const handleMouseMove = (event) => {
                                 <Link className="button-questionnaire-link" to="/tellusmore"><Button className="button-questionnaire" variant="dark">Get Started</Button></Link>
                             </div>
                             <div className='video-background'></div>
-                            <ReactPlayer url={introVideo} 
-                            muted={true} autoPlay={true}
-                            playing={true} loop={true} width={"100%"} height={"100%"} 
-                            style={{position:"absolute", zIndex:"5", pointerEvents:"none"}}
-                            controls={false} // Explicitly set controls to false
-                            />
+                            <VideoPlayer introVideo={introVideo} />
                         </section>
 
                         <section className='page03' >
