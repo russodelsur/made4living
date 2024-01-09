@@ -34,7 +34,7 @@ const NavMobile = () => {
         <Container fluid id="nav">
               <Link to="/" id="logo" >
                 <picture>
-                <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo-long"></img>
+                <img id='nav-mobile-logo' alt='m4llogo' src={require('../../img/logo-single.png')} className="logo-long"></img>
                 </picture>
               </Link>
               <Navbar.Toggle style={{color:"black"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />

@@ -8,6 +8,7 @@ import ModelStart from '../Three/Three';
 import introVideo from '../../img/intro-video.mp4';
 import VideoPlayer from '../components/VideoPlayer';
 import SEO from '../components/SEO';
+import { throttle } from 'lodash';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);
@@ -62,77 +63,84 @@ useEffect(() => {
 useLayoutEffect(() => {
     const container = containerRef.current;
     let startTouchY = 0;
-    let lastTimeStamp = 0;
-    
-    // Helper function for snap scrolling
+
+    // Define helper function for snap scrolling
     const snapScroll = (nextSectionIndex) => {
         translateY.current = nextSectionIndex * sectionHeight;
         containerRef.current.style.transform = `translate3d(0,-${translateY.current}px,0)`;
-        // Set your property or state if needed
-        // setProp(translateY.current);
+        // setProp(translateY.current); // call your setProp function (whatever it does)
     };
+
     
-    // Event handler for touchstart
+    // Create an event handler for touchstart
     const handleTouchStart = (event) => {
+        // Check to see if the event target is the excluded div or a descendant of it
         if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
-        return;
+        return; // Do nothing, as the touch started within the excluded div
         }
         startTouchY = event.touches[0].clientY;
-    };
+        };
     
-    // Event handler for touchmove
+    // Create an event handler for touchmove
     const handleTouchMove = (event) => {
+        // Check to see if the event target is the excluded div or a descendant of it
         if (excludedDivRef.current && excludedDivRef.current.contains(event.target)) {
-        return;
+            return; // Allow the default touch behavior within the excluded div
         }
-            if (isScrolling.current) {
-            return;
+        event.preventDefault(); // Prevent default behavior for touches outside excluded div
+        // Don't do anything if we're currently animating a scroll
+        if (isScrolling.current) {
+          return;
         }
-    const touchY = event.touches[0].clientY;
-    const deltaY = startTouchY - touchY;
-    handleScrollLogic(deltaY);
+        const touchY = event.touches[0].clientY;
+        const deltaY = startTouchY - touchY;
+        handleScrollLogic(deltaY);
     };
     
-    // Shared scroll logic function, but with added timestamp check
-    const handleScrollLogic = (deltaY, timeStamp = 0) => {
-        if (isScrolling.current || (timeStamp - lastTimeStamp < 50)) { // Adding a throttle
+    // Create an event handler for the 'wheel' event
+    const handleWheel = (event) => {
+        event.preventDefault();
+        handleScrollLogic(event.deltaY);
+    };
+    
+    // Create a shared scroll logic function
+    const handleScrollLogic = throttle((deltaY) => {
+        if (isScrolling.current) {
         return;
         }
-        lastTimeStamp = timeStamp;
         isScrolling.current = true;
-    
+        
+        // Calculate the current section index
         const currentSectionIndex = Math.round(translateY.current / sectionHeight);
-        let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1);
-        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1);
-    
+        
+        let nextSectionIndex = currentSectionIndex + (deltaY > 0 ? 1 : -1); // Increase or decrease depending on scroll direction
+        nextSectionIndex = Math.min(Math.max(0, nextSectionIndex), sections - 1); // Prevent scrolling beyond the first and last section
+        
+    // If we've scrolled into another section, snap to it
         if (nextSectionIndex !== currentSectionIndex) {
         snapScroll(nextSectionIndex);
-    }
-    
+        }
+        
+    // Ensure smooth animations and prevent overlapping animations
     setTimeout(() => {
     isScrolling.current = false;
     }, 500);
-    };
+    }, 1000, { 'trailing': false }); // throttle with a 500ms wait time, adjust as required
     
-    // Event handler for wheel events, now includes timeStamp
-    const handleWheel = (event) => {
-    event.preventDefault();
-    handleScrollLogic(event.deltaY, event.timeStamp);
-    };
-    
-    // Add event listeners
+    // Add event listeners for wheel and touch events
     container.addEventListener('wheel', handleWheel, { passive: false });
     container.addEventListener('touchstart', handleTouchStart, { passive: false });
     container.addEventListener('touchmove', handleTouchMove, { passive: false });
     
-    // Clean up event listeners on unmount
+    // Clean up event listeners
     return () => {
-    container.removeEventListener('wheel', handleWheel);
-    container.removeEventListener('touchstart', handleTouchStart);
-    container.removeEventListener('touchmove', handleTouchMove);
+        handleScrollLogic.cancel();
+        container.removeEventListener('wheel', handleWheel);
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sectionHeight, sections, excludedDivRef.current]);
+    }, [sectionHeight, sections, excludedDivRef.current]); // Dependencies for the effect
 
 useEffect(() => {
 let serviceList = data.services;
@@ -197,7 +205,7 @@ const handleMouseMove = (event) => {
                         <section className='page03' >
                             <div className='container-page03'>
                                     <div style={{marginTop:{marginTop}}} className='services-box'>
-                                        <div className='display'>
+                                        <div className='display-services'>
                                             <div
                                             ref={excludedDivRef} 
                                             style={{position:"relative", width:"100%", height:"100%"}}
@@ -227,7 +235,7 @@ const handleMouseMove = (event) => {
                             <Carousel  id="carousel-container">
                             {data.projects.map((project, index) => (
                                     <Carousel.Item key={index} index={index} interval={3000}>
-                                        <img alt="carouselimage" className='carousel-image'src={require("../../img/"+project.image+".jpg")} />
+                                        <img id={"image"+project.name} alt="carouselimage" className='carousel-image'src={require("../../img/"+project.image+".jpg")} />
                                         <Carousel.Caption>
                                             <Link to="/work" id={project.name}>
                                                 <h3>Selected Projects</h3>

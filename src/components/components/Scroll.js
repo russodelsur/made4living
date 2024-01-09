@@ -8,9 +8,9 @@ function ScrollIcon({onParentClick}){
         onParentClick();
         }
     return(
-        <button className='arrow'>
+        <>
             <Scroll onClick={handleChildClick} className='scroll'/>
-        </button>    
+        </>    
     );
 }
 export default ScrollIcon;

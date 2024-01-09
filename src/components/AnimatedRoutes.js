@@ -1,22 +1,28 @@
-import {React, useEffect, useState} from 'react';
+import React, { useEffect, useState, Suspense} from 'react';
 import { useLocation, Routes, Route, Outlet } from "react-router-dom";
 import Landing from '../components/components/Landing';
-import Footer from './components/Footer';
-import Work from './pages/Work';
-import About from './pages/About';
-import Home from './pages/Home';
-import Header from './components/Header';
-import Contact from "./pages/Contact";
-import Privacy from './pages/Privacy';
-import ProjectSingle from './pages/ProjectSingle';
-import projects from "../data.json"
-import NotFound from './pages/NotFound';
-import Questionnaire from './pages/Questionnaire';
 import { AnimatePresence } from 'framer-motion';
+import projects from "../data.json"
+
+const Footer = React.lazy(() => import('./components/Footer'));
+const Work = React.lazy(() => import('./pages/Work'));
+const About = React.lazy(() => import('./pages/About'));
+const Home = React.lazy(() => import('./pages/Home'));
+const Header = React.lazy(() => import('./components/Header'));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const Privacy = React.lazy(() => import('./pages/Privacy'));
+const ProjectSingle = React.lazy(() => import('./pages/ProjectSingle'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+const Questionnaire = React.lazy(() => import('./pages/Questionnaire'));
 
 function QuestionnaireLayout() {
-  return <Outlet />
+  return (
+  <>
+    <Outlet />
+  </>
+  )
 }
+
 function HomeLayout() {
   return (
     <>
@@ -28,16 +34,15 @@ function HomeLayout() {
 function BasicLayout() {
   return (
     <>
-      <Header/>
-      <Outlet />
-      <Footer />
+        <Header/>
+        <Outlet />
+        <Footer />
     </>
   )
 }
 
 function AnimatedRoutes() {
   const location = useLocation();
-
   const [loaded, turnOffLanding] = useState(true)
 
   useEffect(() => {
@@ -52,6 +57,7 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence>
+      <Suspense fallback={<Landing/>}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomeLayout />}>
           {
@@ -76,6 +82,7 @@ function AnimatedRoutes() {
           <Route exact path="tellusmore" element={<Questionnaire />} />
         </Route>
       </Routes>
+      </Suspense>
       </AnimatePresence>
   );
 }

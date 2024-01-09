@@ -2,14 +2,12 @@ import {React} from 'react';
 import { Container} from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import City from '../Three/Cities';
-import { LevaPanel, useStoreContext } from 'leva'
 // import { SocialIcon } from 'react-social-icons';
 import { PopupWidget } from "react-calendly";
 import SEO from '../components/SEO';
 
 function Contact() {
     // const ref = useRef()
-    const store = useStoreContext()
         return (
             <motion.div className='effect-wrapper'
                 initial={{opacity:0}}
@@ -58,16 +56,6 @@ function Contact() {
                             <h3>Rome</h3>
                         <City preset="forest" url={"/rome.gltf"}/>
                     </div>
-                </div>
-                <div 
-                        style={{
-                        display: 'grid',
-                        width: "100%",
-                        gridRowGap: 10,
-                        padding: 10,
-                        background: '#fff',
-                    }}>
-                    <LevaPanel store={store} fill flat titleBar={false} />
                 </div>
             </Container>
             </motion.div>
