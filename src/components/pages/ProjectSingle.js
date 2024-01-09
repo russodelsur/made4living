@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card, Col, Row } from 'react-bootstrap';
 import {motion} from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 const ProjectSingle = ({projects}) => {
 
@@ -15,6 +16,11 @@ const ProjectSingle = ({projects}) => {
     exit={{opacity:0}}
     >
         <Container className='content'>
+        <Helmet>
+            <title>{project?.name}</title>
+            <meta name="description" content={project.body} />
+            <link rel="canonical" href={"https://made4living.co.uk/projects/"+project.slug} />
+        </Helmet> 
         <Row xs={1} md={3} className="g-4">
             <Card className="card-single-project"> 
                 <div style={{padding:".5rem"}}>

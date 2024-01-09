@@ -2,6 +2,7 @@ import {React, useEffect, useState} from 'react';
 import { Container} from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import ReactPlayer from 'react-player';
+import SEO from '../components/SEO';
 
 function About() {
     const [widthValue, setWidth] = useState("50%");
@@ -34,6 +35,7 @@ function About() {
             exit={{opacity:0}}
             >
             <Container >
+            <SEO title="About" description="Learn about our practice, expertise and approach." url="about"/>    
                 <div className='aboutus-block'>
                     <h5
                     style={{position:'relative', marginTop:'0',marginLeft:'0',fontSize:'1.2rem',fontWeight:'bold',color:'var(--reseda)'}}>

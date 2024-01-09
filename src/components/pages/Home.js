@@ -7,6 +7,7 @@ import ScrollIcon from '../components/Scroll';
 import ModelStart from '../Three/Three';
 import introVideo from '../../img/intro-video.mp4';
 import VideoPlayer from '../components/VideoPlayer';
+import SEO from '../components/SEO';
 
 function Home() {
 const [isShown, setIsShown] = useState(false);
@@ -175,6 +176,7 @@ const handleMouseMove = (event) => {
 };
     return (
                 <>
+                <SEO title="Home" description="London based architectural, interior design studio, and property experts" url=""/> 
                     <main className='home'>
                         <ScrollIcon onParentClick={() => setNext(next+1)} />
                     <div ref={containerRef} id='fullpage' className="fullpage-wrapper">

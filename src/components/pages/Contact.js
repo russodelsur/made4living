@@ -5,6 +5,7 @@ import City from '../Three/Cities';
 import { LevaPanel, useStoreContext } from 'leva'
 // import { SocialIcon } from 'react-social-icons';
 import { PopupWidget } from "react-calendly";
+import SEO from '../components/SEO';
 
 function Contact() {
     // const ref = useRef()
@@ -16,6 +17,7 @@ function Contact() {
                 exit={{opacity:0}}
             >
             <Container className='container-contactus'>
+            <SEO title="Contact us" description="Reach out to us or schedule a meeting using the bottom in the contact page." url="contact"/> 
                 {/* <div id='canvas-london' ref={ref}>
                      <LondonModel ref={ref}/>
                 </div> */}

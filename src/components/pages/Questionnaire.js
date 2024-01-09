@@ -3,6 +3,7 @@ import { Form, Button, InputGroup, Container, NavLink } from 'react-bootstrap';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
 import ModelStart from '../Three/Three';
+import SEO from '../components/SEO';
 
 let questions = [
 	{
@@ -441,6 +442,7 @@ let submit =<div className='answer-section' id='answer-section-submit'>
 	  };
         return (
             <Container className='container-question'>
+					<SEO title="Tell us more" description="What services are you looking for? Complete our online questionnaire and someone from our team will reach out." url="tellusmore"/> 
                     <div className='box-question'>
 					<NavLink className='qs-logo'><img style={{width:"25rem", height:"auto", margin:"auto", paddingBottom:".5rem"}} alt='m4llogo' src={require('../../img/logo-full.png')} className="question-logo" onClick={()=>(navigate("/"))}></img></NavLink>      
 							<div className='question-section'>

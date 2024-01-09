@@ -56,9 +56,9 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomeLayout />}>
           {
           loaded ?
-          <Route exact path="/" index element={<Landing/>} />
+          <Route exact path="/" index element={<Landing/>}/>
           :
-          <Route exact path="/" index element={<Home/>} />
+          <Route exact path="/" index element={<Home/>}/>
         } 
         </Route>
         <Route element={<BasicLayout />}>

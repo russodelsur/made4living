@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import data from "../../data.json"
 import {motion} from 'framer-motion';
 import ModelStart from '../Three/Three';
+import SEO from '../components/SEO';
 
 function Work() {
 const [currentService, setService] = useState(data.services[1])
@@ -35,7 +36,8 @@ return (
     animate={{opacity:1}}
     exit={{opacity:0}}
     >
-        <Container>     
+        <Container>
+            <SEO title="Work" description="Explore our variety of services and projects." url="work"/>    
             <h2 className='work-title'>Our Services</h2>
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display'>
