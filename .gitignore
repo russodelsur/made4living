@@ -14,8 +14,7 @@ node_modules/
 jspm_packages/
 
 # dependencies
-/node_modules
-node_modules/
+node_modules/**/*
 /.pnp
 .pnp.js
 
