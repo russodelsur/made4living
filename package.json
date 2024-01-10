@@ -45,6 +45,9 @@
     "eject": "react-scripts eject",
     "postbuild": "react-snap"
   },
+  "reactSnap": {
+    "source": "dist"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -42,7 +42,6 @@ function BasicLayout() {
             <Outlet />
           <Footer />
         </Suspense>
-
     </>
   )
 }
