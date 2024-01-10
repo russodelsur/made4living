@@ -1,20 +1,20 @@
-import React, { useEffect, useState, Suspense} from 'react';
+import React, { useEffect, useState, lazy, Suspense} from 'react';
 import { useLocation, Routes, Route, Outlet } from "react-router-dom";
 import Landing from '../components/components/Landing';
 import { AnimatePresence } from 'framer-motion';
 import projects from "../data.json"
 import Loading from './components/Loading';
 
-const Footer = React.lazy(() => import('./components/Footer'));
-const Work = React.lazy(() => import('./pages/Work'));
-const About = React.lazy(() => import('./pages/About'));
-const Home = React.lazy(() => import('./pages/Home'));
-const Header = React.lazy(() => import('./components/Header'));
-const Contact = React.lazy(() => import("./pages/Contact"));
-const Privacy = React.lazy(() => import('./pages/Privacy'));
-const ProjectSingle = React.lazy(() => import('./pages/ProjectSingle'));
-const NotFound = React.lazy(() => import('./pages/NotFound'));
-const Questionnaire = React.lazy(() => import('./pages/Questionnaire'));
+const Footer = lazy(() => import('./components/Footer'));
+const Work = lazy(() => import('./pages/Work'));
+const About = lazy(() => import('./pages/About'));
+const Home = lazy(() => import('./pages/Home'));
+const Header = lazy(() => import('./components/Header'));
+const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const ProjectSingle = lazy(() => import('./pages/ProjectSingle'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Questionnaire = lazy(() => import('./pages/Questionnaire'));
 
 function QuestionnaireLayout() {
   return (
@@ -48,17 +48,26 @@ function BasicLayout() {
 
 function AnimatedRoutes() {
   const location = useLocation();
-  const [loaded, turnOffLanding] = useState(true)
 
+// Check sessionStorage and initialize the 'loaded' state accordingly.
+const checkVisitedBefore = () => {
+  const visitedBefore = sessionStorage.getItem("visitedBefore");
+  return visitedBefore != null; // Will return true if 'visitedBefore' exists in sessionStorage, otherwise false.
+  };
+
+  const [loaded, turnOffLanding] = useState(checkVisitedBefore);
+  
   useEffect(() => {
-    const visitedBefore = sessionStorage.getItem("visitedBefore")
-    if (visitedBefore) {
-        turnOffLanding(false);
-    } else {
-        sessionStorage.setItem("visitedBefore", "true");
-        setTimeout(()=>{turnOffLanding(false)}, 5000)
-    }  
-}, []);
+  // If 'loaded' is false, it means the user hasn't visited before, so we set it in sessionStorage and start the timer.
+  if (!loaded) {
+  sessionStorage.setItem("visitedBefore", "true");
+  setTimeout(() => {
+  turnOffLanding(true);
+  }, 5000);
+  }
+  // We can also skip adding 'loaded' to the dependency array since it won't change during the lifetime of this effect.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AnimatePresence>
@@ -66,9 +75,10 @@ function AnimatedRoutes() {
           <Route path="/" element={<HomeLayout />}>
             {
             loaded ?
-            <Route exact path="/" index element={<Landing/>}/>
-            :
             <Route exact path="/" index element={<Home/>}/>
+            :
+            <Route exact path="/" index element={<Landing/>}/>
+
           } 
           </Route>            
             <Route element={<BasicLayout />}>
