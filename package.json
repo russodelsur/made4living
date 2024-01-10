@@ -32,7 +32,6 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.0",
-    "react-snap": "^1.23.0",
     "react-social-icons": "^5.15.0",
     "three": "^0.156.1",
     "web-vitals": "^2.1.4"
@@ -42,11 +41,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "source": "dist"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
