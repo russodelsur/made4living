@@ -4,11 +4,11 @@ import Landing from '../components/components/Landing';
 import { AnimatePresence } from 'framer-motion';
 import projects from "../data.json"
 import Loading from './components/Loading';
+import Home from './pages/Home';
 
 const Footer = lazy(() => import('./components/Footer'));
 const Work = lazy(() => import('./pages/Work'));
 const About = lazy(() => import('./pages/About'));
-const Home = lazy(() => import('./pages/Home'));
 const Header = lazy(() => import('./components/Header'));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import('./pages/Privacy'));
@@ -20,7 +20,7 @@ function QuestionnaireLayout() {
   return (
   <>
     <Suspense fallback={<Loading/>}>
-    <Outlet />
+      <Outlet />
     </Suspense>
   </>
   )
@@ -37,11 +37,12 @@ function HomeLayout() {
 function BasicLayout() {
   return (
     <>
-      <Suspense fallback={<Loading/>}>
-        <Header/>
-        <Outlet />
-        <Footer />
-      </Suspense>
+        <Suspense fallback={<Loading/>}>
+          <Header/>
+            <Outlet />
+          <Footer />
+        </Suspense>
+
     </>
   )
 }
@@ -59,11 +60,11 @@ const checkVisitedBefore = () => {
   
   useEffect(() => {
   // If 'loaded' is false, it means the user hasn't visited before, so we set it in sessionStorage and start the timer.
-  if (!loaded) {
-  sessionStorage.setItem("visitedBefore", "true");
-  setTimeout(() => {
-  turnOffLanding(true);
-  }, 5000);
+    if (!loaded) {
+    sessionStorage.setItem("visitedBefore", "true");
+    setTimeout(() => {
+    turnOffLanding(true);
+    }, 5000);
   }
   // We can also skip adding 'loaded' to the dependency array since it won't change during the lifetime of this effect.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,23 +79,22 @@ const checkVisitedBefore = () => {
             <Route exact path="/" index element={<Home/>}/>
             :
             <Route exact path="/" index element={<Landing/>}/>
-
           } 
           </Route>            
-            <Route element={<BasicLayout />}>
-              <Route exact path="work" element={<Work />} />
-              <Route
-                exact path="/projects/:slug"
-                element={<ProjectSingle projects={projects}/>}
-              />
-              <Route exact path="about" element={<About />} />
-              <Route exact path="contact" element={<Contact />} />
-              <Route exact path="privacy-policy" element={<Privacy />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-            <Route exact path="/" element={<QuestionnaireLayout />}>
-              <Route exact path="tellusmore" element={<Questionnaire />} />
-            </Route>
+          <Route element={<BasicLayout />}>
+            <Route exact path="work" element={<Work />} />
+            <Route
+              exact path="/projects/:slug"
+              element={<ProjectSingle projects={projects}/>}
+            />
+            <Route exact path="about" element={<About />} />
+            <Route exact path="contact" element={<Contact />} />
+            <Route exact path="privacy-policy" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route exact path="/" element={<QuestionnaireLayout />}>
+            <Route exact path="tellusmore" element={<Questionnaire />} />
+          </Route>
         </Routes>
       </AnimatePresence>
   );

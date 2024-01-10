@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Navbar, Offcanvas } from 'react-bootstrap';
 import {Link, useLocation} from "react-router-dom";
 
 
 const NavMobile = () => {
     const [menuOpen, setMenuOpen] = useState(false)
-    const [backColor, setBackColor] = useState("white")
-    const [color, setColor] = useState("white")
-    const [pos, setPos] = useState("relative")
     const location = useLocation();
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen)
-      }
-      const handleClose = () => setMenuOpen(false)
-
-      useEffect(() => {
-        if (location.pathname === "/") {
-            setColor("none")
-            setPos("fixed")
-            setBackColor("var(--reseda)")
-          } else {
-            setColor("white")
-            setPos("relative")
-            setBackColor("var(--black)")
-          }
-      }, [location])
+      setMenuOpen(!menuOpen);
+      };
+    const handleClose = () => setMenuOpen(false);
+      
+    // Calculate the styles directly based on the location
+    const isHomePage = location.pathname === "/";
+    const backColor = isHomePage ? "var(--reseda)" : "var(--black)";
+    const color = isHomePage ? "none" : "white";
+    const pos = isHomePage ? "fixed" : "relative";
 
     return(
     <>
