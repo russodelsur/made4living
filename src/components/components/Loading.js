@@ -10,8 +10,8 @@ function Loading() {
         gsap.set(logo, { opacity: 0 });
         const tl = gsap.timeline();
         tl.delay(0.1) // add delay before animation starts
-        .to(logo, { opacity: 1, duration: .5 }) // fade in logo
-        .fromTo(logo, { strokeDasharray: "4400px" }, { strokeDasharray: "0px", duration: .3, ease: "power4.out" }) // animate logo drawing itself
+        .to(logo, { opacity: 1, duration: .3 }) // fade in logo
+        .fromTo(logo, { strokeDasharray: "4400px" }, { strokeDasharray: "0px", duration: .2, ease: "power4.out" }) // animate logo drawing itself
         // Add rotation and scaling animation
         .to(logo, {
         rotation: 360,
