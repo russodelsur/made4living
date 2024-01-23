@@ -26,7 +26,7 @@ ReactGA.event({
 export default function App() {
   return (
     <BrowserRouter>
-        <SEO title="Home" description="London based architectural, interior design studio, and property experts" url=""/> 
+        <SEO title="Made4Living | Smart Design and Property Solutions" description="London based architectural, interior design studio, and property experts" url=""/> 
         <AnimatedRoutes/>
     </BrowserRouter>
   );

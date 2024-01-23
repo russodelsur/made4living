@@ -1,6 +1,5 @@
 import {React, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import SEO from './SEO';
 
 function Landing() {
 
@@ -24,7 +23,6 @@ function Landing() {
 
         return (
             <div className='container-landing' style={{zIndex:"2000"}}>
-                <SEO title="Home" description="London based architectural, interior design studio, and property experts" url=""/> 
                 {/* <svg ref={svg} className='landing-logo' 
                 version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="2834.000000pt" height="2834.000000pt" viewBox="0 0 2834.000000 2834.000000"
