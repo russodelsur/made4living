@@ -42,7 +42,7 @@ const NavHome = () => {
           <Container fluid>
               <Link to="/" id="logo" >
                 <picture>
-                <img alt='m4llogo' src={require('../../img/logo-full.png')} className="logo-long"></img>
+                <img alt='Made4Living - Home' src={require('../../img/logo-full.png')} className="logo-long"></img>
                 </picture>
               </Link>
                 <Navbar.Toggle style={{color:"var(--greyblue)"}} aria-controls={`offcanvasNavbar-expand-${false}`} onClick={toggleMenu} />
@@ -66,7 +66,7 @@ const NavHome = () => {
                       <div className='header-group'>     
                       <Link to="/" id="logo" >
                         <picture>
-                         <img alt='m4llogo' src={require('../../img/logo-single-white.png')} onClick={()=>toggleMenu()} className="logo"></img>
+                         <img alt='Made4Living - Home' src={require('../../img/logo-single-white.png')} onClick={()=>toggleMenu()} className="logo"></img>
                         </picture>
                       </Link>                        
                       <Offcanvas.Header closeButton/>

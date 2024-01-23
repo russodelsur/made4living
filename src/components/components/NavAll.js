@@ -43,7 +43,7 @@ function NavAll() {
                     <div className='header-group'>     
                       <Link to="/" id="logo" >
                         <picture>
-                         <img alt='m4llogo' src={require('../../img/logo-single.png')} className="logo"></img>
+                         <img alt='Made4Living - Home' src={require('../../img/logo-single.png')} className="logo"></img>
                         </picture>
                       </Link>    
                     </div>
