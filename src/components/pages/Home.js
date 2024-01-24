@@ -178,7 +178,7 @@ const handleMouseMove = (event) => {
 };
     return (
                 <>
-                <SEO title="Home" description="London based architectural, interior design studio, and property experts" url=""/> 
+                <SEO title="Home" description="Smart design and property solutions. All in one place. London based architectural, interior design studio, and property specialists" url=""/> 
                     <main className='home'>
                         <ScrollIcon onParentClick={() => setNext(next+1)} />
                     <div ref={containerRef} id='fullpage' className="fullpage-wrapper">
