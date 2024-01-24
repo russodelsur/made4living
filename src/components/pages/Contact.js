@@ -31,7 +31,7 @@ function Contact() {
                         <SocialIcon bgColor="var(--greyblue)" url="mailto:info@made4living.co.uk" />
                     </ul> */}
                     <PopupWidget
-                                    url="https://calendly.com/d/4yb-jb2-qnt/introductory-consultation"
+                                    url="https://calendly.com/ruslan-yps/30min"
                                     /*
                                     * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
                                     * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
