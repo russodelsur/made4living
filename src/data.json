@@ -7,6 +7,14 @@
     "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
     "slug": "welbeck"
 },{
+    "name": "Wembley Olympic Way",
+    "location": "London",
+    "type":"Multi unit | Residential - Workspace - Hospitality",
+    "body": "This premier residential development features 336 units with ample amenities spaces and a private members club for exclusive resident access. Spanning over 1000 square meters, amenities include a cinema, gym, coworking spaces, meeting rooms, concierge service, changing facilities, and games rooms, catering to both leisure and work activities. The team played a key role from detailed design (stage 3) to completion (stages 6 and 7), handling interior designs, furniture procurement, project management and custom furnishings like coworking desks to match the project's elegant style.",
+    "image": "wembley0",
+    "images": ["wembley11","wembley12", "wembley1", "wembley2","wembley3", "wembley4", "wembley5", "wembley6", "wembley7","wembley8","wembley9","wembley10","wembley0" ],
+    "slug": "wembley"
+},{
     "name": "Via Beccari",
     "location": "Rome",
     "type":"Residential",

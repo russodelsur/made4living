@@ -63,7 +63,7 @@ const checkVisitedBefore = () => {
     sessionStorage.setItem("visitedBefore", "true");
     setTimeout(() => {
     turnOffLanding(true);
-    }, 5000);
+    }, 4000);
   }
   // We can also skip adding 'loaded' to the dependency array since it won't change during the lifetime of this effect.
   // eslint-disable-next-line react-hooks/exhaustive-deps

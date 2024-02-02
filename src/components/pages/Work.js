@@ -1,29 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+// , {useEffect, useState} 
 import { Container, Card, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import data from "../../data.json"
 import {motion} from 'framer-motion';
-import ModelStart from '../Three/Three';
+// import ModelStart from '../Three/Three';
 import SEO from '../components/SEO';
 
 function Work() {
-const [currentService, setService] = useState(data.services[1])
-const [click, setClick] = useState(1);
+// const [currentService, setService] = useState(data.services[1])
+// const [click, setClick] = useState(1);
 
-useEffect(() => {
-let serviceList = data.services;
-for (let i = 0; i < serviceList.length; i++) {
-    const element = serviceList[i].service;
-    let li = document.getElementById("work"+i.toString());
-    if (currentService.service === element) {
-        li.style.background = "var(--black)";
-        li.children[0].style.color = "var(--white)"
-    } else {
-        li.style.background = "none";
-        li.children[0].style.color = "black"
-    }
-}
-}, [currentService]); // Add any other dependencies if needed
+// useEffect(() => {
+// let serviceList = data.services;
+// for (let i = 0; i < serviceList.length; i++) {
+//     const element = serviceList[i].service;
+//     let li = document.getElementById("work"+i.toString());
+//     if (currentService.service === element) {
+//         li.style.background = "var(--black)";
+//         li.children[0].style.color = "var(--white)"
+//     } else {
+//         li.style.background = "none";
+//         li.children[0].style.color = "black"
+//     }
+// }
+// }, [currentService]); // Add any other dependencies if needed
 
 return (
     <motion.div className='effect-wrapper'
@@ -116,7 +117,7 @@ return (
                     ))}
                 </Row>
 
-            <h2 className='work-title' style={{paddingTop:"3rem"}}>Our Services</h2>
+            {/* <h2 className='work-title' style={{paddingTop:"3rem"}}>Our Services</h2>
                 <div style={{background:"none", minHeight:"60vh"}} className='services-box'>
                     <div className='display-services'>
                           <ModelStart class={"model-canvas"} url={currentService?.name} click={click} />
@@ -130,7 +131,7 @@ return (
                             </li>
                         ))}
                     </ul>
-            </div>
+            </div> */}
         </Container>
         </motion.div>
     );
