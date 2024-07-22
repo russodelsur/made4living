@@ -460,6 +460,17 @@ li {
   width: 100%;
 }
 
+.card-project-individual{
+  height: 100%!important;
+}
+
+.service-image{
+  object-fit: cover;
+  overflow: hidden;
+  display: inline;
+  height: 100%;
+}
+
 .intro-image {
   width: 100svw;
   height: 100svh;
@@ -589,7 +600,7 @@ margin: auto;
 
 .project-description{
   text-align: justify;
-  width: 80%;
+  width: 100%;
 }
 
 .footer-content {
