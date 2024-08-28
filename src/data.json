@@ -34,13 +34,13 @@
     "slug": "rome"
 },
 {
-    "name": "Southampton Row",
+    "name": "Brentford Apartments",
     "location": "London",
-    "type": "Residential",
-    "body": "The project involved a complete renovation of five penthouse apartments located on the top floor of a listed building in central London. The apartments are situated atop the iconic Sicilian Avenue in Holborn. The scope of the project included obtaining listed building consent and incorporating top security features to meet the requirements of a high-tech client. The project presented a particular challenge as it required the removal of all fire lobbies, which was accomplished through the use of concealed mist sprinkler systems.",
-    "image": "sr",
-    "images": ["sr0", "sr1", "sr2","sr3","sr4","sr5"],
-    "slug": "sr"
+    "type": "Multi unit | Residential - Workspace - Hospitality",
+    "body": "Brentford Apartments, showcases our comprehensive architectural vision, interweaving functional and modern design. This development, located adjacent to Gunnersbury Park and within easy reach of Kew Bridge station, features 292 residential units with thoughtfully designed one and two-bedroom smart apartments. Our architectural studio spearheaded the project, delivering an extensive refurbishment of the lobby and a challenging transformation of car park spaces into vibrant amenities, including a state-of-the-art cinema, coworking areas, a communal kitchen, storage spaces, and engaging play areas featuring pool tables and arcades. Additionally, we revitalized the rooftop garden, creating a serene escape amidst bustling Brentford. Our holistic approach encompassed project management, architectural services, interior design, procurement, and planning from inception to completion.",
+    "image": "ba",
+    "images": ["ba","ba0", "ba1", "ba2","ba3","ba4"],
+    "slug": "ba"
 }
 ],
  "services": [ 
