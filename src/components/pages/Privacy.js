@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import SEO from '../components/SEO';
 
 function Privacy() {
         return (
-            <Container className='privacy'>
+        <Container className='content'>
+        <SEO title="Privacy" description="Our privacy notice" url="privacy-policy"/> 
         <p className="para-privacy">Made4living Design Studio is committed to protecting and respecting your privacy.</p>
 
         <p className="para-privacy">This privacy notice together with our terms of use sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us.</p>

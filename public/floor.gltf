@@ -1,0 +1,139 @@
+{
+  "extensionsUsed": [
+    "KHR_draco_mesh_compression"
+  ],
+  "extensionsRequired": [
+    "KHR_draco_mesh_compression"
+  ],
+  "accessors": [
+    {
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3",
+      "max": [
+        18.916626,
+        4.91139174,
+        -3.01585937
+      ],
+      "min": [
+        -20.7259636,
+        -0.104451589,
+        -3.11269021
+      ]
+    },
+    {
+      "componentType": 5125,
+      "count": 24,
+      "type": "SCALAR",
+      "max": [
+        47.0
+      ],
+      "min": [
+        0.0
+      ]
+    },
+    {
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3",
+      "max": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "min": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC2",
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "asset": {
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "uri": "data:application/octet-stream;base64,RFJBQ08CAgEBAAAAMBgCGAAACd/3fd/3fd/3ff8CzED/AsxA/wLMQAP/AAEAAAABAAABAAkDAAACAQEJAwABAwEDCQIAAgIEAQEBBrMHdSgdAx0DF5ED5QT/////////v8kB5B9wVQH///////9/VQHJAR/kcCnOC/RPJuj8T4ilB4nm3DfaD7SMzcG6wINoD7v8BCfmQghmb6EEVSEaiwz/AsxAAAAAAAAAAP8HAADGzqXBt+rVvVE2R8ADkh5CCwYDAQEDAQFAAQD/AAAAfwAAAP8CakMIBQEBAQetBKkaAQ4BCgdVAQdVATdVAQdVATdVAQdVAf///6+sB6wHrAes/////6wHrAesB6wiX6JNcW9CZqVNlqeYKlnXWIHDq+nLyuqYy1xIbEu0oH2NeRgAAAAgBKD9+4EAAAAA/wMAAAAAAAAAAAAAAACAPwo=",
+      "byteLength": 335
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 335
+    }
+  ],
+  "materials": [
+    {
+      "name": "_[imported]",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0253712758,
+          0.0253712758,
+          0.0253712758,
+          1.0
+        ],
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 1,
+          "material": 0,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 0,
+              "attributes": {
+                "POSITION": 0,
+                "NORMAL": 1,
+                "TEXCOORD_0": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9729
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ],
+      "extensions": {}
+    }
+  ],
+  "extensions": {}
+}
