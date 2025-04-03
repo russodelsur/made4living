@@ -99,13 +99,15 @@
             "name": "Langton",
             "location": "London",
             "type": "Residential",
-            "body": "TThis thoughtfully designed space seamlessly blends functionality with contemporary aesthetics. The open-plan kitchen and living area features a sophisticated gray cabinetry with warm wood accents, creating a perfect balance between modern and inviting. Sage green vertical paneling adds a touch of character to the kitchen backsplash, while abundant natural light flows through strategically placed windows. Indoor plants bring life to the space, complementing the natural wood flooring. The design prioritizes flow between cooking, dining, and relaxation zones, making this compact space feel expansive and harmonious—ideal for both everyday living and entertaining.",
+            "body": "This thoughtfully designed space seamlessly blends functionality with contemporary aesthetics. The open-plan kitchen and living area features sophisticated gray cabinetry with warm wood accents, creating a perfect balance between modern and inviting. Sage green vertical paneling adds a touch of character to the kitchen backsplash, while abundant natural light flows through strategically placed windows. A distinctive wooden hatch in the floor provides direct garden access, creating a unique indoor-outdoor connection that expands the living experience beyond conventional boundaries. Indoor plants bring life to the space, complementing the natural wood flooring. The design prioritizes flow between cooking, dining, relaxation zones, and garden access, making this compact space feel expansive and harmonious—ideal for both everyday living and entertaining.",
             "image": "la00",
             "images": [
                 "la00",
                 "la01",
                 "la02",
-                "la03"
+                "la03",
+                "la04",
+                "la05"
             ],
             "slug": "kh"
         },
@@ -119,7 +121,8 @@
                 "kh00",
                 "kh01",
                 "kh02",
-                "k0h3"
+                "k0h3",
+                "kh04"
             ],
             "slug": "kh"
         },
