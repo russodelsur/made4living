@@ -1,70 +1,184 @@
-{ "projects": [ {
-    "name": "Via Beccari",
-    "location": "Rome",
-    "type":"Residential",
-    "body": "The project involved a complete internal renovation of a ground floor apartment located in the San Saba neighborhood in the center of Rome. The renovation included meticulous restoration and reuse of the beautiful marble flooring and particular attention to bespoke bookshelving, which added an elegant touch to the overall design, separating the entrance to the living space whilst allowing natural light to penetrate. The outdoor garden was also transformed into a stunning oasis that complements the interior design of the space. The end result was a stunning transformation of the apartment that added an extra bathroom and two walk-in closets.",
-    "image": "rome",
-    "images": ["rome0", "rome1", "rome2","rome3"],
-    "slug": "rome"
-},
 {
-    "name": "Southampton Row",
-    "location": "London",
-    "type": "Residential",
-    "body": "The project involved a complete renovation of five penthouse apartments located on the top floor of a listed building in central London. The apartments are situated atop the iconic Sicilian Avenue in Holborn. The scope of the project included obtaining listed building consent and incorporating top security features to meet the requirements of a high-tech client. The project presented a particular challenge as it required the removal of all fire lobbies, which was accomplished through the use of concealed mist sprinkler systems.",
-    "image": "sr",
-    "images": ["sr0", "sr1", "sr2","sr3","sr4","sr5"],
-    "slug": "sr"
-},
-{
-    "name": "Vonder HQ",
-    "location": "London",
-    "type": "Workspace",
-    "body": "The headquarters of Vonder in the UK. Over 300 square meters of workplace housing two tea points, three meeting rooms, seating space for 40 people, and executive offices. For this project, I was responsible for the design and project delivery throughout all stages. This project features a colorful unfinished look, using polished plaster with Scandinavian furniture, russian feature lightinh, and walnut as the natural wood of choice. Meeting room desks, executive desk, artwork selection... were designed in-house.",
-    "image": "vonder",
-    "images": ["vonder0", "vonder1", "vonder2","vonder3","vonder4","vonder5","vonder6","vonder7","vonder8","vonder9"],
-    "slug": "vonder"
-},
-{
-    "name": "Lingfield",
-    "location": "London",
-    "type": "Residential",
-    "body": "Private residence in South West London. The design features a contemporary style with flat fronted doors, matt black bespoke ironmongery, and book matched marble splashback. The floorboards cabinetry that blends in with the Dinesen flooring, creating a contrasting rustic feel that adds warmth to the space.",
-    "image": "lingfield",
-    "images": ["lingfield0", "lingfield1", "lingfield2","lingfield3"],
-    "slug": "lingfield"
-}
-],
- "services": [ 
-    {
-        "service": "Architectural Design",
-        "image": "arch.jpg",
-        "copy": "Architectural Design: We specialize in creating customized architectural designs that bring your vision to life. Our team of experienced architects works closely with you to understand your needs and preferences, and then uses their expertise to create a functional and aesthetically pleasing design."
-    },    
-    {
-        "service": "Interior design",
-        "image": "interiordesign.jpg",
-        "copy": "Interior Design: Our interior design services are tailored to your unique style and preferences. We help you choose the right colors, materials, and furnishings to create a space that reflects your personality and meets your needs."
-    },
-    {
-        "service": "3D visualization",
-        "image": "render.jpg",
-        "copy": "3D Visualization: Our advanced 3D visualization software allows you to see your design concepts come to life before construction begins. We create realistic 3D models of your space, so you can visualize every detail and make any necessary changes to achieve your desired result."
-    },
-    {
-        "service": "Bespoke furniture",
-        "image": "bespoke.jpg",
-        "copy": "Bespoke Furniture: Our bespoke furniture services provide you with unique, one-of-a-kind pieces that are designed specifically for your space. We work with skilled craftsmen to create custom furniture that is not only beautiful but also functional and durable."
-    },
-    {
-        "service": "Professional consultancy",
-        "image": "professional.jpg",
-        "copy": "Built Works Professional Consultancy: We offer professional consultancy services to guide you throughout the entire construction process. Our team will work closely with you to ensure that your project is completed on time, within budget, and to your satisfaction. We can also help you find all the different professionals that may be required, such as solicitors, mortgage advisors, and moving companies, taking care of the entire process for you."
-    },
-    {
-        "service": "House search and report",
-        "image": "housesearch.jpg",
-        "copy": "House Search and Report: Looking for your dream home or property can be overwhelming, which is why our team of real estate and design experts is here to help. We conduct a thorough search based on your requirements and provide you with a comprehensive report that includes all the details you need to make an informed decision. Additionally, we can accompany you to viewings and offer professional advice on how the property could be transformed and adjusted to your needs."
-    }
-]
+    "projects": [
+        {
+            "name": "Welbeck HQ",
+            "location": "London",
+            "type": "Workspace",
+            "body": "The headquarters of a UK-based real estate developer encompasses over 300 square meters of workspace, featuring two tea points, three meeting rooms, seating for 40 people, and executive offices. We were tasked with responsibility for project delivery throughout all stages. The project showcases a vibrant unfinished aesthetic, employing polished plaster combined with Scandinavian furniture, Russian feature lighting, and walnut as the chosen natural wood. Meeting room desks, executive desks, and the selection of artwork were all designed in-house.",
+            "image": "vonder",
+            "images": [
+                "vonder0",
+                "vonder1",
+                "vonder2",
+                "vonder3",
+                "vonder4",
+                "vonder5",
+                "vonder6",
+                "vonder7",
+                "vonder8",
+                "vonder9"
+            ],
+            "slug": "welbeck"
+        },
+        {
+            "name": "Wembley Olympic Way",
+            "location": "London",
+            "type": "Multi unit | Residential - Workspace - Hospitality",
+            "body": "This premier residential development features 336 units with ample amenities spaces and a private members club for exclusive resident access. Spanning over 1000 square meters, amenities include a cinema, gym, coworking spaces, meeting rooms, concierge service, changing facilities, and games rooms, catering to both leisure and work activities. The team played a key role from detailed design (stage 3) to completion (stages 6 and 7), handling interior designs, furniture procurement, project management and custom furnishings like coworking desks to match the project's elegant style.",
+            "image": "wembley0",
+            "images": [
+                "wembley11",
+                "wembley12",
+                "wembley1",
+                "wembley2",
+                "wembley3",
+                "wembley4",
+                "wembley5",
+                "wembley6",
+                "wembley7",
+                "wembley8",
+                "wembley9",
+                "wembley10",
+                "wembley0"
+            ],
+            "slug": "wembley"
+        },
+        {
+            "name": "Brentford Apartments",
+            "location": "London",
+            "type": "Multi unit | Residential - Workspace - Hospitality",
+            "body": "Brentford Apartments, showcases our comprehensive architectural vision, interweaving functional and modern design. This development, located adjacent to Gunnersbury Park and within easy reach of Kew Bridge station, features 292 residential units with thoughtfully designed one and two-bedroom smart apartments. Our architectural studio spearheaded the project, delivering an extensive refurbishment of the lobby and a challenging transformation of car park spaces into vibrant amenities, including a state-of-the-art cinema, coworking areas, a communal kitchen, storage spaces, and engaging play areas featuring pool tables and arcades. Additionally, we revitalized the rooftop garden, creating a serene escape amidst bustling Brentford. Our holistic approach encompassed project management, architectural services, interior design, procurement, and planning from inception to completion.",
+            "image": "ba",
+            "images": [
+                "ba",
+                "ba0",
+                "ba1",
+                "ba2",
+                "ba3",
+                "ba4"
+            ],
+            "slug": "ba"
+        },
+        {
+            "name": "Mapesbury Conservation Area",
+            "location": "London",
+            "type": "Residential",
+            "body": "A ground-floor Edwardian Arts and Crafts apartment in the Mapesbury Conservation Area. The bright three-bedroom space was reconfigured with contemporary touches, including bespoke built-in storage and a new rear extension leading to an expansive shared garden. The apartment features oak flooring throughout, with delicate wall colors enhancing the natural light. Key highlights include a walnut and metal living room cabinetry, a modern kitchen with grey cabinetry, bespoke handles, and  quartz worktop, as well as custom storage solutions in each bedroom and in the corridors. The renovation also added a stylish WC and a family bathroom with green glass mosaic tiles and Salvatori sink with wooden detailing. This project showcases our dedication to blending modern design with classic architecture.",
+            "image": "mp",
+            "images": [
+                "mp",
+                "mp01",
+                "mp02",
+                "mp03",
+                "mp04",
+                "mp05",
+                "mp06",
+                "mp07",
+                "mp08",
+                "mp09",
+                "mp10",
+                "mp11"
+            ],
+            "slug": "mp"
+        },
+        {
+            "name": "Via Beccari",
+            "location": "Rome",
+            "type": "Residential",
+            "body": "The project involved a complete internal renovation of a ground floor apartment located in the San Saba neighborhood in the center of Rome. The renovation included meticulous restoration and reuse of the beautiful marble flooring and particular attention to bespoke bookshelving, which added an elegant touch to the overall design, separating the entrance to the living space whilst allowing natural light to penetrate. The outdoor garden was also transformed into a stunning oasis that complements the interior design of the space. The end result was a stunning transformation of the apartment that added an extra bathroom and two walk-in closets.",
+            "image": "rome",
+            "images": [
+                "rome0",
+                "rome1",
+                "rome2",
+                "rome3"
+            ],
+            "slug": "rome"
+        },
+        {
+            "name": "Langton",
+            "location": "London",
+            "type": "Residential",
+            "body": "This thoughtfully designed space seamlessly blends functionality with contemporary aesthetics. The open-plan kitchen and living area features sophisticated gray cabinetry with warm wood accents, creating a perfect balance between modern and inviting. Sage green vertical paneling adds a touch of character to the kitchen backsplash, while abundant natural light flows through strategically placed windows. A distinctive wooden hatch in the floor provides direct garden access, creating a unique indoor-outdoor connection that expands the living experience beyond conventional boundaries. Indoor plants bring life to the space, complementing the natural wood flooring. The design prioritizes flow between cooking, dining, relaxation zones, and garden access, making this compact space feel expansive and harmonious—ideal for both everyday living and entertaining.",
+            "image": "la00",
+            "images": [
+                "la00",
+                "la01",
+                "la02",
+                "la03",
+                "la04",
+                "la05"
+            ],
+            "slug": "la"
+        },
+        {
+            "name": "Kings Road",
+            "location": "London",
+            "type": "Residential",
+            "body": "This renovation exemplifies our studio's blend of functionality and warmth through an open-concept design that seamlessly connects living and kitchen spaces. The kitchen features minimalist white cabinetry with contrasting dark countertops, while exposed wooden beams honor the building's heritage. Natural light from the large period window creates an airy atmosphere. Wood elements in both built-in shelving and furniture establish design coherence, with mustard yellow accents adding vibrant touches to the neutral palette. Light wood flooring unifies and brightens the space. This project showcases our philosophy of balancing modern functionality with inviting comfort, preserving architectural character while meeting contemporary lifestyle needs.",
+            "image": "kh00",
+            "images": [
+                "kh00",
+                "kh01",
+                "kh02",
+                "kh03",
+                "kh04"
+            ],
+            "slug": "kh"
+        },
+        {
+            "name": "Southampton Row",
+            "location": "London",
+            "type": "Residential",
+            "body": "The project involved a complete renovation of five penthouse apartments located on the top floor of a listed building in central London. The apartments are situated atop the iconic Sicilian Avenue in Holborn. The scope of the project included obtaining listed building consent and incorporating top security features to meet the requirements of a high-tech client. The project presented a particular challenge as it required the removal of all fire lobbies, which was accomplished through the use of concealed mist sprinkler systems.",
+            "image": "sr",
+            "images": [
+                "sr0",
+                "sr1",
+                "sr2",
+                "sr3",
+                "sr4",
+                "sr5"
+            ],
+            "slug": "sr"
+        }
+    ],
+    "services": [
+        {
+            "service": "Architectural Design",
+            "image": "arch.jpg",
+            "copy": "Unlock your architectural dreams with our expertise in crafting customized designs that harmonize form and function. Trust our team of skilled architects to transform your vision into a remarkable reality.",
+            "name": "/arch.gltf"
+        },
+        {
+            "service": "Interior design",
+            "image": "interiordesign.jpg",
+            "copy": "Elevate your space with our exceptional interior design services. From concept to completion, we create captivating interiors that reflect your style, enhance functionality, and evoke a sense of harmony and luxury.",
+            "name": "/id.gltf"
+        },
+        {
+            "service": "3D visualization",
+            "image": "render.jpg",
+            "copy": "Experience your project with our advanced 3D visualization services. Our realistic renderings make your ideas clear, helping you make informed decisions and visualize the final outcome.",
+            "name": "/vis.gltf"
+        },
+        {
+            "service": "Bespoke furniture",
+            "image": "bespoke.jpg",
+            "copy": "Indulge in the exquisite craftsmanship of our bespoke furniture creations. Each piece is meticulously tailored to your preferences, combining aesthetics, functionality, and timeless elegance to complement your unique style.",
+            "name": "/bf.gltf"
+        },
+        {
+            "service": "Professional consultancy",
+            "image": "professional.jpg",
+            "copy": "Streamline your house purchase or renovation with our expert consultancy services, linking you with reliable professionals for a seamless and effective process from beginning to end.",
+            "name": "/professional.gltf"
+        },
+        {
+            "service": "House search and report",
+            "image": "housesearch.jpg",
+            "copy": "Discover your dream property with our expert guidance. Our team supports you with tailored advice, detailed inspections, and clear reports to ensure you make informed choices every step of the way.",
+            "name": "/house.gltf"
+        }
+    ]
 }
